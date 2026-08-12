@@ -342,5 +342,19 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
+  },
+  {
+    "name": "Liar's Bar",
+    "poster": "posters/liar-s-bar.jpg",
+    "steam": "https://store.steampowered.com/app/3097560/",
+    "dl": "https://www.pirategames.ir/online/liars-bar-online/",
+    "genres": [
+      "Party",
+      "Strategy",
+      "Multiplayer"
+    ],
+    "players": "1–4 Online",
+    "size": "4.8 GB",
+    "appid": 3097560
   }
 ]
