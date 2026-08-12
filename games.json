@@ -1,0 +1,346 @@
+[
+  {
+    "name": "Escape the Backrooms",
+    "poster": "posters/escape-the-backrooms.jpg",
+    "steam": "https://store.steampowered.com/app/1943950/",
+    "dl": "https://www.pirategames.ir/online/download-escape-the-backrooms-pc/",
+    "genres": [
+      "Horror",
+      "Co-op"
+    ],
+    "players": "1–8",
+    "size": "25 GB",
+    "appid": 1943950
+  },
+  {
+    "name": "Outbound",
+    "steam": "https://store.steampowered.com/app/2681030/",
+    "dl": "https://www.pirategames.ir/online/outbound-online/",
+    "genres": [
+      "Open World",
+      "Survival",
+      "Crafting"
+    ],
+    "players": "1–4 Online",
+    "size": "5 GB",
+    "appid": 2681030
+  },
+  {
+    "name": "Raft",
+    "poster": "posters/raft.jpg",
+    "steam": "https://store.steampowered.com/app/648800/",
+    "dl": "https://www.pirategames.ir/online/raft-online/",
+    "genres": [
+      "Survival",
+      "Open World",
+      "Crafting"
+    ],
+    "players": "1–8 Online",
+    "size": "2.4 GB",
+    "appid": 648800
+  },
+  {
+    "name": "Chained Together",
+    "poster": "posters/chained-together.jpg",
+    "steam": "https://store.steampowered.com/app/2567870/",
+    "dl": "https://www.pirategames.ir/online/chained-together/",
+    "genres": [
+      "Platformer",
+      "Co-op",
+      "Adventure"
+    ],
+    "players": "1–4 Online",
+    "size": "4 GB",
+    "appid": 2567870
+  },
+  {
+    "name": "Buckshot Roulette",
+    "poster": "posters/buckshot-roulette.jpg",
+    "steam": "https://store.steampowered.com/app/2835570/",
+    "dl": "https://www.pirategames.ir/online/buckshot-roulette-online/",
+    "genres": [
+      "Horror",
+      "Strategy",
+      "Indie"
+    ],
+    "players": "1–4 Online",
+    "size": "340 MB",
+    "appid": 2835570
+  },
+  {
+    "name": "Party Animals",
+    "steam": "https://store.steampowered.com/app/1260320/",
+    "dl": "https://www.pirategames.ir/online/party-animals-online/",
+    "genres": [
+      "Party",
+      "Fighting",
+      "Physics"
+    ],
+    "players": "1–8 Online",
+    "size": "4.3 GB",
+    "appid": 1260320
+  },
+  {
+    "name": "PowerWash Simulator 2",
+    "poster": "posters/powerwash-simulator-2.jpg",
+    "steam": "https://store.steampowered.com/app/2968420/",
+    "dl": "https://www.pirategames.ir/online/powerwash-simulator-2-online/",
+    "genres": [
+      "Simulation",
+      "Casual"
+    ],
+    "players": "1–4 Online",
+    "size": "7.2 GB",
+    "appid": 2968420
+  },
+  {
+    "name": "Counter-Strike 2",
+    "poster": "posters/counter-strike-2.jpg",
+    "steam": "https://store.steampowered.com/app/730/",
+    "dl": "https://store.steampowered.com/app/730/",
+    "genres": [
+      "FPS",
+      "Competitive"
+    ],
+    "players": "Online",
+    "size": "35 GB",
+    "appid": 730,
+    "free": true
+  },
+  {
+    "name": "Lethal Company",
+    "poster": "posters/lethal-company.jpg",
+    "steam": "https://store.steampowered.com/app/1966720/",
+    "dl": "https://www.pirategames.ir/online/lethal-company-online/",
+    "genres": [
+      "Horror",
+      "Co-op",
+      "Survival"
+    ],
+    "players": "1–4 Online",
+    "size": "600 MB",
+    "appid": 1966720
+  },
+  {
+    "name": "Fortnite",
+    "poster": "posters/fortnite.jpg",
+    "steam": "https://store.epicgames.com/p/fortnite",
+    "dl": "https://store.epicgames.com/p/fortnite",
+    "genres": [
+      "Battle Royale",
+      "Shooter"
+    ],
+    "players": "Multiplayer",
+    "size": "~60 GB",
+    "appid": null,
+    "free": true,
+    "storeLabel": "Epic Games"
+  },
+  {
+    "name": "RV There Yet?",
+    "poster": "posters/rv-there-yet.jpg",
+    "steam": "https://store.steampowered.com/app/3902800/",
+    "dl": "https://www.pirategames.ir/online/rv-there-yet-online/",
+    "genres": [
+      "Co-op",
+      "Adventure",
+      "Physics"
+    ],
+    "players": "1–4 Online",
+    "size": "1.7 GB",
+    "appid": 3902800
+  },
+  {
+    "name": "Teardown",
+    "poster": "posters/teardown.jpg",
+    "steam": "https://store.steampowered.com/app/1167630/",
+    "dl": "https://www.pirategames.ir/online/teardown/",
+    "genres": [
+      "Sandbox",
+      "Physics",
+      "Puzzle"
+    ],
+    "players": "Online",
+    "size": "2.75 GB",
+    "appid": 1167630
+  },
+  {
+    "name": "ARC Raiders",
+    "poster": "posters/arc-raiders.jpg",
+    "steam": "https://store.steampowered.com/app/1808500/",
+    "dl": null,
+    "genres": [
+      "Extraction Shooter",
+      "PvPvE",
+      "Action"
+    ],
+    "players": "Squads up to 3",
+    "size": "~100 GB",
+    "appid": 1808500,
+    "comingSoon": true
+  },
+  {
+    "name": "R.E.P.O.",
+    "poster": "posters/repo.jpg",
+    "steam": "https://store.steampowered.com/app/3241660/",
+    "dl": "https://www.pirategames.ir/online/r-e-p-o-online/",
+    "genres": [
+      "Horror",
+      "Co-op",
+      "Physics"
+    ],
+    "players": "1–6 Online",
+    "size": "572 MB",
+    "appid": 3241660
+  },
+  {
+    "name": "Deep Rock Galactic",
+    "steam": "https://store.steampowered.com/app/548430/",
+    "dl": "https://www.pirategames.ir/online/deep-rock-galactic/",
+    "genres": [
+      "Co-op",
+      "FPS",
+      "Action"
+    ],
+    "players": "1–4 Online",
+    "size": "3.4 GB",
+    "appid": 548430
+  },
+  {
+    "name": "Overcooked! All You Can Eat",
+    "poster": "posters/overcooked-ayce.jpg",
+    "steam": "https://store.steampowered.com/app/1243830/",
+    "dl": "https://www.pirategames.ir/online/overcooked-all-you-can-eat-online-2/",
+    "genres": [
+      "Party",
+      "Co-op",
+      "Cooking"
+    ],
+    "players": "1–4 Online & Local",
+    "size": "~15 GB",
+    "appid": 1243830
+  },
+  {
+    "name": "Sons of the Forest",
+    "poster": "posters/sons-of-the-forest.jpg",
+    "steam": "https://store.steampowered.com/app/1326470/",
+    "dl": "https://www.pirategames.ir/online/download-sons-of-the-forest-game-for-pc/",
+    "genres": [
+      "Survival",
+      "Horror",
+      "Open World"
+    ],
+    "players": "1–8 Online",
+    "size": "10.8 GB",
+    "appid": 1326470
+  },
+  {
+    "name": "Borderlands GOTY Enhanced",
+    "poster": "posters/borderlands-goty-enhanced.jpg",
+    "steam": "https://store.steampowered.com/app/8980/",
+    "dl": "https://www.pirategames.ir/online/borderlands-goty-enhanced-online/",
+    "genres": [
+      "FPS",
+      "RPG",
+      "Action",
+      "Loot Shooter"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "~15 GB",
+    "appid": 8980
+  },
+  {
+    "name": "Borderlands: The Pre-Sequel",
+    "poster": "posters/borderlands-the-pre-sequel.jpg",
+    "steam": "https://store.steampowered.com/app/261640/",
+    "dl": null,
+    "genres": [
+      "FPS",
+      "RPG",
+      "Action",
+      "Loot Shooter"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "~13 GB",
+    "appid": 261640,
+    "comingSoon": true
+  },
+  {
+    "name": "Borderlands 2",
+    "poster": "posters/borderlands-2.jpg",
+    "steam": "https://store.steampowered.com/app/49520/",
+    "dl": null,
+    "genres": [
+      "FPS",
+      "RPG",
+      "Action",
+      "Loot Shooter"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "~20 GB",
+    "appid": 49520,
+    "comingSoon": true
+  },
+  {
+    "name": "Tales from the Borderlands",
+    "poster": "posters/tales-from-the-borderlands.jpg",
+    "steam": "https://store.steampowered.com/app/330830/",
+    "dl": null,
+    "genres": [
+      "Adventure",
+      "Story-Rich",
+      "Interactive Movie"
+    ],
+    "players": "Single-player",
+    "size": "~8 GB",
+    "appid": 330830,
+    "comingSoon": true
+  },
+  {
+    "name": "Borderlands 3",
+    "poster": "posters/borderlands-3.jpg",
+    "steam": "https://store.steampowered.com/app/397540/",
+    "dl": null,
+    "genres": [
+      "FPS",
+      "RPG",
+      "Action",
+      "Loot Shooter"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "~75 GB",
+    "appid": 397540,
+    "comingSoon": true
+  },
+  {
+    "name": "New Tales from the Borderlands",
+    "poster": "posters/new-tales-from-the-borderlands.jpg",
+    "steam": "https://store.steampowered.com/app/1920490/",
+    "dl": null,
+    "genres": [
+      "Adventure",
+      "Story-Rich",
+      "Interactive Movie"
+    ],
+    "players": "Single-player",
+    "size": "~30 GB",
+    "appid": 1920490,
+    "comingSoon": true
+  },
+  {
+    "name": "Borderlands 4",
+    "poster": "posters/borderlands-4.jpg",
+    "steam": "https://store.steampowered.com/app/1285190/",
+    "dl": null,
+    "genres": [
+      "FPS",
+      "RPG",
+      "Action",
+      "Loot Shooter"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "~80 GB",
+    "appid": 1285190,
+    "comingSoon": true
+  }
+]

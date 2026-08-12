@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pirack</title>
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#121213;
+    --surface-2:#18181a;
+    --line:#26262a;
+    --text:#f2f2f3;
+    --muted:#8f8f96;
+    --violet:#e21f3d;
+    --cyan:#f2b705;
+    --ember:#ff3b3b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  canvas#bg{
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    z-index:0;
+    display:block;
+  }
+  .vignette{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(12,6,7,0.55) 70%, rgba(12,6,7,0.95) 100%);
+  }
+  .gridlines{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(226,31,61,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(226,31,61,0.06) 1px, transparent 1px);
+    background-size:42px 42px;
+    background-position:center center;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 20%, black 0%, transparent 75%);
+    mask-image:radial-gradient(ellipse at 50% 20%, black 0%, transparent 75%);
+  }
+  .content{ position:relative; z-index:2; }
+
+  header{
+    padding:56px 6vw 10px;
+    text-align:center;
+  }
+  .brand-logo{
+    width:160px; height:160px;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#000;
+    margin:0 auto 18px;
+  }
+  .brand-logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  h1{
+    font-family:'Orbitron',sans-serif;
+    font-weight:900;
+    font-size:clamp(32px,6vw,50px);
+    letter-spacing:0.03em;
+    color:var(--violet);
+    line-height:1;
+  }
+  .sub{
+    margin-top:14px;
+    color:var(--muted);
+    font-size:15px;
+    max-width:420px;
+    margin-inline:auto;
+    letter-spacing:0.02em;
+  }
+
+  .toolbar{
+    max-width:1100px;
+    margin:8px auto 8px;
+    padding:0 6vw;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+  }
+  .search-wrap{
+    position:relative;
+    flex:1 1 340px;
+    max-width:480px;
+  }
+  .search-wrap svg{
+    position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    width:18px; height:18px; color:var(--muted);
+  }
+  #search{
+    width:100%;
+    padding:14px 18px 14px 46px;
+    background:rgba(17,17,25,0.8);
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    font-size:16px;
+    font-weight:500;
+    backdrop-filter:blur(8px);
+    outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  #search::placeholder{color:var(--muted);}
+  #search:focus{border-color:var(--violet); box-shadow:0 0 0 3px rgba(226,31,61,0.18);}
+
+  .count{
+    font-size:13px; color:var(--muted); text-align:center; margin:14px 0 8px;
+    font-family:'Orbitron',sans-serif; letter-spacing:0.05em;
+  }
+
+  .view-tabs{
+    position:relative;
+    max-width:280px;
+    margin:20px auto 0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:4px;
+  }
+  .view-tabs .thumb{
+    position:absolute;
+    top:4px; bottom:4px;
+    left:4px;
+    width:calc(50% - 4px);
+    background:linear-gradient(90deg,var(--violet),#b3172c);
+    border-radius:9px;
+    transform:translateX(0);
+    transition:transform .3s cubic-bezier(.65,0,.35,1);
+    z-index:0;
+  }
+  .view-tabs.apps-active .thumb{ transform:translateX(100%); }
+  .view-tab{
+    position:relative;
+    z-index:1;
+    background:none;
+    border:none;
+    padding:10px 0;
+    font-family:'Orbitron',sans-serif;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    cursor:pointer;
+    border-radius:9px;
+    transition:color .25s ease;
+  }
+  .view-tab.active{ color:#fff; }
+  .view-tab:hover:not(.active){ color:var(--text); }
+
+  .grid{
+    max-width:1300px;
+    margin:0 auto;
+    padding:24px 6vw 100px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media (max-width:900px){
+    .grid{ grid-template-columns:repeat(2,1fr); gap:18px; }
+  }
+  @media (max-width:560px){
+    .grid{ grid-template-columns:1fr; gap:16px; }
+  }
+
+  .card{
+    background:linear-gradient(180deg,var(--surface),var(--surface-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,0.18);
+    box-shadow:0 16px 40px rgba(0,0,0,0.55);
+  }
+  .poster-wrap{
+    position:relative;
+    aspect-ratio:16/9;
+    background:var(--surface-2);
+    overflow:hidden;
+    display:block;
+  }
+  .poster-wrap img{
+    width:100%; height:100%; object-fit:cover;
+    display:block;
+    transition:transform .4s ease;
+  }
+  .card:hover .poster-wrap img{ transform:scale(1.06); }
+  .poster-fallback{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:18px;
+    font-family:'Orbitron',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(226,31,61,0.35), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(242,183,5,0.3), transparent 55%),
+      var(--surface-2);
+  }
+  .badge{
+    position:absolute; top:10px; right:10px;
+    font-family:'Orbitron',sans-serif;
+    font-size:10px; letter-spacing:.08em;
+    padding:5px 9px; border-radius:999px;
+    background:rgba(7,7,12,0.75);
+    border:1px solid rgba(242,183,5,0.4);
+    color:var(--cyan);
+    backdrop-filter:blur(4px);
+    text-transform:uppercase;
+  }
+  .badge.free{ border-color:rgba(226,31,61,0.6); background:rgba(226,31,61,0.85); color:#fff; }
+  .badge.soon{ border-color:rgba(242,183,5,0.5); color:var(--cyan); }
+
+  .info{
+    padding:14px 16px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1;
+  }
+  .title{
+    font-weight:700;
+    font-size:16.5px;
+    line-height:1.3;
+  }
+  .tags{
+    display:flex; flex-wrap:wrap; gap:6px;
+  }
+  .tag{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 8px;
+    border-radius:6px;
+    background:rgba(226,31,61,0.12);
+    color:#c4b5fd;
+    border:1px solid rgba(226,31,61,0.25);
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .meta{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    font-weight:500;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .meta span{display:flex;align-items:center;gap:4px;}
+
+  .actions{
+    display:flex; gap:6px; margin-top:auto; padding-top:10px;
+  }
+  .btn{
+    flex:1;
+    text-align:center;
+    padding:9px 10px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
+    border:1px solid var(--line);
+    color:var(--text);
+    transition:all .2s ease;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .btn.steam{ background:rgba(255,255,255,0.03); }
+  .btn.steam:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .btn.dl{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--line);
+    color:var(--text);
+  }
+  .btn.dl:hover{ border-color:rgba(255,255,255,0.3); }
+  .btn.trailer{
+    flex:none;
+    padding:9px 12px;
+    background:rgba(255,255,255,0.03);
+  }
+  .btn.trailer:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .btn.disabled{
+    opacity:0.45; pointer-events:none;
+  }
+
+  .empty{
+    text-align:center; color:var(--muted); padding:80px 20px;
+    display:none;
+    font-family:'Orbitron',sans-serif; letter-spacing:.05em; font-size:13px;
+  }
+
+  footer{
+    text-align:center; padding:30px 20px 50px;
+    color:var(--muted); font-size:12px;
+    position:relative; z-index:2;
+    letter-spacing:.03em;
+  }
+
+  /* ---- trailer modal ---- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:50;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(4px);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-box{
+    width:100%; max-width:640px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,0.6);
+  }
+  .modal-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+  }
+  .modal-head .modal-title{ font-weight:700; font-size:15px; }
+  .modal-close{
+    background:none; border:none; color:var(--muted);
+    font-size:20px; line-height:1; cursor:pointer;
+    padding:4px 8px; border-radius:8px;
+  }
+  .modal-close:hover{ color:var(--text); background:rgba(255,255,255,0.06); }
+  .modal-body{ background:#000; }
+  .modal-body video{ width:100%; max-height:70vh; display:block; }
+  .modal-fallback{ padding:36px 20px; text-align:center; color:var(--muted); font-size:13px; }
+
+  @media (max-width:480px){
+    header{padding:44px 6vw 20px;}
+    .brand-logo{width:110px; height:110px;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+<div class="gridlines"></div>
+<div class="vignette"></div>
+
+<div class="content">
+  <header>
+    <div class="brand-logo"><img src="favicon.jpg" alt="Pirack logo"></div>
+    <h1>Pirack</h1>
+    <p class="sub">Every game we bought — ready to grab and play together</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="Search a game, genre...">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+  </div>
+
+  <div class="view-tabs" id="viewTabs">
+    <div class="thumb"></div>
+    <button class="view-tab active" id="tabGames" data-view="games">Games</button>
+    <button class="view-tab" id="tabApps" data-view="apps">Apps</button>
+  </div>
+
+  <div class="count" id="count"></div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">Nothing found 👀</div>
+
+  <footer>Built for our crew · Keep it between us 🎮</footer>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <span class="modal-title" id="modalTitle">Trailer</span>
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+let games = [];
+let apps = [];
+
+const grid = document.getElementById('grid');
+const emptyEl = document.getElementById('empty');
+const countEl = document.getElementById('count');
+
+function slug(name){
+  return name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+function posterHTML(g){
+  if(g.poster){
+    return `<img src="${g.poster}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
+  }
+  if(g.appid){
+    const url = `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`;
+    return `<img src="${url}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
+  }
+  return fallback(g.name);
+}
+function bannerHTML(g){
+  if(g.appid){
+    const url = `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`;
+    return `<img src="${url}" alt="${g.name}" onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
+  }
+  return fallback(g.name);
+}
+function fallback(name){
+  return `<div class="poster-fallback">${name}</div>`;
+}
+
+function render(list){
+  grid.innerHTML = list.map(g => `
+    <div class="card">
+      <div class="poster-wrap">
+        ${posterHTML(g)}
+        ${g.comingSoon ? '<div class="badge soon">Coming Soon</div>' : g.free ? '<div class="badge free">Free</div>' : ''}
+      </div>
+      <div class="info">
+        <div class="title">${g.name}</div>
+        <div class="tags">${g.genres.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="meta">
+          <span>👥 ${g.players}</span>
+          <span>💾 ${g.size}</span>
+        </div>
+        <div class="actions">
+          <a class="btn steam" href="${g.steam}" target="_blank" rel="noopener">${g.storeLabel || 'Steam'}</a>
+          ${g.comingSoon
+            ? `<a class="btn dl disabled" href="#">Soon</a>`
+            : `<a class="btn dl" href="${g.dl}" target="_blank" rel="noopener">${g.free ? 'Free' : 'Download'}</a>`
+          }
+          <button class="btn trailer" onclick="openTrailer('${g.slug}')" aria-label="Watch trailer">▶</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  countEl.textContent = `${list.length} games`;
+  emptyEl.style.display = list.length ? 'none' : 'block';
+}
+
+function renderApps(list){
+  grid.innerHTML = list.map(a => `
+    <div class="card">
+      <div class="poster-wrap">
+        ${a.poster ? `<img src="${a.poster}" alt="${a.name}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${a.name.replace(/'/g,"\\'")}')">` : fallback(a.name)}
+      </div>
+      <div class="info">
+        <div class="title">${a.name}</div>
+        <div class="actions">
+          ${a.dl
+            ? `<a class="btn dl" href="${a.dl}" target="_blank" rel="noopener" style="flex:1;">Download</a>`
+            : `<a class="btn dl disabled" href="#" style="flex:1;">Soon</a>`
+          }
+        </div>
+      </div>
+    </div>
+  `).join('');
+  countEl.textContent = `${list.length} apps`;
+  emptyEl.style.display = list.length ? 'none' : 'block';
+}
+
+let currentView = 'games';
+
+function applyFilter(){
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  if(currentView === 'games'){
+    const filtered = games.filter(g =>
+      g.name.toLowerCase().includes(q) ||
+      g.genres.some(t=>t.toLowerCase().includes(q))
+    );
+    render(filtered);
+  } else {
+    const filtered = apps.filter(a => a.name.toLowerCase().includes(q));
+    renderApps(filtered);
+  }
+}
+
+document.getElementById('search').addEventListener('input', applyFilter);
+
+const viewTabs = document.getElementById('viewTabs');
+const tabGames = document.getElementById('tabGames');
+const tabApps = document.getElementById('tabApps');
+const searchInput = document.getElementById('search');
+
+function switchView(view){
+  currentView = view;
+  viewTabs.classList.toggle('apps-active', view === 'apps');
+  tabGames.classList.toggle('active', view === 'games');
+  tabApps.classList.toggle('active', view === 'apps');
+  searchInput.placeholder = view === 'games' ? 'Search a game, genre...' : 'Search an app...';
+  searchInput.value = '';
+  applyFilter();
+}
+tabGames.addEventListener('click', () => switchView('games'));
+tabApps.addEventListener('click', () => switchView('apps'));
+
+async function loadData(){
+  try{
+    const [gamesRes, appsRes] = await Promise.all([
+      fetch('games.json?t=' + Date.now()),
+      fetch('apps.json?t=' + Date.now())
+    ]);
+    games = await gamesRes.json();
+    apps = await appsRes.json();
+  }catch(err){
+    countEl.textContent = 'Failed to load data.';
+    console.error(err);
+    return;
+  }
+  games.forEach(g => g.slug = slug(g.name));
+  apps.forEach(a => a.slug = slug(a.name));
+  render(games);
+}
+loadData();
+
+const modalOverlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+
+function openTrailer(gameSlug){
+  const g = games.find(x => x.slug === gameSlug);
+  if(!g) return;
+  modalTitle.textContent = `${g.name} — Trailer`;
+  const path = `trailers/${g.slug}.mp4`;
+  modalBody.innerHTML = `<video src="${path}" controls autoplay playsinline onerror="this.outerHTML='<div class=&quot;modal-fallback&quot;>No trailer uploaded yet for this game.<br>Expected file: trailers/${g.slug}.mp4</div>'"></video>`;
+  modalOverlay.classList.add('open');
+}
+function closeTrailer(){
+  modalOverlay.classList.remove('open');
+  const v = modalBody.querySelector('video');
+  if(v) v.pause();
+  modalBody.innerHTML = '';
+}
+document.getElementById('modalClose').addEventListener('click', closeTrailer);
+modalOverlay.addEventListener('click', e => { if(e.target === modalOverlay) closeTrailer(); });
+window.addEventListener('keydown', e => { if(e.key === 'Escape') closeTrailer(); });
+
+/* ---- live wallpaper: drifting embers over dark void, subtle parallax ---- */
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let W,H,particles=[];
+let mx=0.5,my=0.5;
+
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function makeParticle(){
+  return {
+    x: Math.random()*W,
+    y: H + Math.random()*100,
+    r: Math.random()*2 + 0.6,
+    speed: Math.random()*0.6 + 0.15,
+    drift: (Math.random()-0.5)*0.4,
+    hue: Math.random() > 0.5 ? 'violet' : 'cyan',
+    alpha: Math.random()*0.5 + 0.2,
+    flicker: Math.random()*0.02 + 0.005
+  };
+}
+const COUNT = Math.min(120, Math.floor((window.innerWidth*window.innerHeight)/14000));
+for(let i=0;i<COUNT;i++){
+  const p = makeParticle();
+  p.y = Math.random()*H;
+  particles.push(p);
+}
+
+window.addEventListener('mousemove', e=>{
+  mx = e.clientX / window.innerWidth;
+  my = e.clientY / window.innerHeight;
+});
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+
+  const gx = W * (0.3 + mx*0.4);
+  const gy = H * (0.2 + my*0.3);
+  const grad = ctx.createRadialGradient(gx,gy,0,gx,gy,Math.max(W,H)*0.6);
+  grad.addColorStop(0,'rgba(226,31,61,0.06)');
+  grad.addColorStop(0.5,'rgba(242,183,5,0.025)');
+  grad.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,W,H);
+
+  const parX = (mx-0.5)*20;
+
+  particles.forEach(p=>{
+    p.y -= p.speed;
+    p.x += p.drift;
+    p.alpha += (Math.random()-0.5)*p.flicker;
+    p.alpha = Math.max(0.1, Math.min(0.7, p.alpha));
+    if(p.y < -10){
+      p.y = H + 10;
+      p.x = Math.random()*W;
+    }
+    const color = p.hue === 'violet' ? `226,31,61` : `242,183,5`;
+    ctx.beginPath();
+    ctx.arc(p.x + parX, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${color},${p.alpha})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = `rgba(${color},0.6)`;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

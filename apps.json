@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Steam",
+    "poster": "posters/steam.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/AGpuG2XH/"
+  },
+  {
+    "name": "Epic Games",
+    "poster": "posters/epic-games.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/KgC1Dbcz/"
+  },
+  {
+    "name": "Battle.net",
+    "poster": "posters/battle-net.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/gseawuqc/"
+  },
+  {
+    "name": "MSI Afterburner",
+    "poster": "posters/msi-afterburner.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/EnaZCtoE/"
+  },
+  {
+    "name": "Discord",
+    "poster": "posters/discord.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/qdA8cdw8/"
+  },
+  {
+    "name": "Wo Mic",
+    "poster": "posters/wo-mic.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/ufseZ8Oi/"
+  },
+  {
+    "name": "OBS Studio",
+    "poster": "posters/obs-studio.jpg",
+    "dl": "https://abrehamrahi.ir/o/public/hlWTbkhv/"
+  }
+]
