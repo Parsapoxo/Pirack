@@ -372,5 +372,20 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
+  },
+  {
+    "name": "Gang Beasts",
+    "poster": "posters/gang-beasts.jpg",
+    "steam": "https://store.steampowered.com/app/285900/",
+    "dl": "https://www.pirategames.ir/online/gang-beasts/",
+    "genres": [
+      "Party",
+      "Fighting",
+      "Physics"
+    ],
+    "players": "1–8 Online Multiplayer",
+    "size": "832 MB",
+    "appid": 285900,
+    "isNew": true
   }
 ]
