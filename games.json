@@ -8,7 +8,7 @@
       "Horror",
       "Co-op"
     ],
-    "players": "1–8",
+    "players": "1–8 Online Co-op",
     "size": "25 GB",
     "appid": 1943950
   },
@@ -21,7 +21,7 @@
       "Survival",
       "Crafting"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "5 GB",
     "appid": 2681030
   },
@@ -35,7 +35,7 @@
       "Open World",
       "Crafting"
     ],
-    "players": "1–8 Online",
+    "players": "1–8 Online Co-op",
     "size": "2.4 GB",
     "appid": 648800
   },
@@ -49,7 +49,7 @@
       "Co-op",
       "Adventure"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "4 GB",
     "appid": 2567870
   },
@@ -63,7 +63,7 @@
       "Strategy",
       "Indie"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Multiplayer",
     "size": "340 MB",
     "appid": 2835570
   },
@@ -76,7 +76,7 @@
       "Fighting",
       "Physics"
     ],
-    "players": "1–8 Online",
+    "players": "1–8 Online Multiplayer",
     "size": "4.3 GB",
     "appid": 1260320
   },
@@ -89,7 +89,7 @@
       "Simulation",
       "Casual"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "7.2 GB",
     "appid": 2968420
   },
@@ -102,7 +102,7 @@
       "FPS",
       "Competitive"
     ],
-    "players": "Online",
+    "players": "Online Multiplayer",
     "size": "35 GB",
     "appid": 730,
     "free": true
@@ -117,7 +117,7 @@
       "Co-op",
       "Survival"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "600 MB",
     "appid": 1966720
   },
@@ -130,7 +130,7 @@
       "Battle Royale",
       "Shooter"
     ],
-    "players": "Multiplayer",
+    "players": "Online Multiplayer",
     "size": "~60 GB",
     "appid": null,
     "free": true,
@@ -146,7 +146,7 @@
       "Adventure",
       "Physics"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "1.7 GB",
     "appid": 3902800
   },
@@ -189,7 +189,7 @@
       "Co-op",
       "Physics"
     ],
-    "players": "1–6 Online",
+    "players": "1–6 Online Co-op",
     "size": "572 MB",
     "appid": 3241660
   },
@@ -202,7 +202,7 @@
       "FPS",
       "Action"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Co-op",
     "size": "3.4 GB",
     "appid": 548430
   },
@@ -216,7 +216,7 @@
       "Co-op",
       "Cooking"
     ],
-    "players": "1–4 Online & Local",
+    "players": "1–4 Online & Local Co-op",
     "size": "~15 GB",
     "appid": 1243830
   },
@@ -230,7 +230,7 @@
       "Horror",
       "Open World"
     ],
-    "players": "1–8 Online",
+    "players": "1–8 Online Co-op",
     "size": "10.8 GB",
     "appid": 1326470
   },
@@ -244,7 +244,7 @@
       "Strategy",
       "Multiplayer"
     ],
-    "players": "1–4 Online",
+    "players": "1–4 Online Multiplayer",
     "size": "4.8 GB",
     "appid": 3097560,
     "isNew": true
@@ -262,6 +262,96 @@
     "players": "2–12 Online Co-op",
     "size": "3 GB",
     "appid": 1478500,
+    "isNew": true
+  },
+  {
+    "name": "Gang Beasts",
+    "poster": "posters/gang-beasts.jpg",
+    "steam": "https://store.steampowered.com/app/285900/",
+    "dl": "https://www.pirategames.ir/online/gang-beasts/",
+    "genres": [
+      "Party",
+      "Fighting",
+      "Physics"
+    ],
+    "players": "1–8 Online & Local Multiplayer",
+    "size": "832 MB",
+    "appid": 285900,
+    "isNew": true
+  },
+  {
+    "name": "Make Way",
+    "poster": "posters/make-way.jpg",
+    "steam": "https://store.steampowered.com/app/1445790/",
+    "dl": "https://www.pirategames.ir/online/make-way-online/",
+    "genres": [
+      "Genre: Racing",
+      "Party",
+      "Action"
+    ],
+    "players": "1–6 Online & Local Multiplayer",
+    "size": "437 MB",
+    "appid": 1445790,
+    "isNew": true
+  },
+  {
+    "name": "Human: Fall Flat",
+    "poster": "posters/human-fall-flat.jpg",
+    "steam": "https://store.steampowered.com/app/477160/",
+    "dl": "https://www.pirategames.ir/online/download-human-fall-flat-pc/",
+    "genres": [
+      "Platformer",
+      "Puzzle",
+      "Physics"
+    ],
+    "players": "1–8 Online & Local Co-op",
+    "size": "1.8 GB",
+    "appid": 477160,
+    "isNew": true
+  },
+  {
+    "name": "PICO PARK",
+    "poster": "posters/pico-park.jpg",
+    "steam": "https://store.steampowered.com/app/1509960/",
+    "dl": "https://www.pirategames.ir/online/pico-park-online/",
+    "genres": [
+      "Action",
+      "Casual",
+      "Puzzle"
+    ],
+    "players": "2–8 Online & Local Co-op",
+    "size": "130 MB",
+    "appid": 1509960,
+    "isNew": true
+  },
+  {
+    "name": "PICO PARK 2",
+    "poster": "posters/pico-park-2.jpg",
+    "steam": "https://store.steampowered.com/app/2644470/",
+    "dl": "https://www.pirategames.ir/online/pico-park-2-online/",
+    "genres": [
+      "Action",
+      "Casual",
+      "Puzzle"
+    ],
+    "players": "2–8 Online & Local Co-op",
+    "size": "140 MB",
+    "appid": 2644470,
+    "isNew": true
+  },
+  {
+    "name": "Rubber Bandits",
+    "poster": "posters/rubber-bandits.jpg",
+    "steam": "https://store.steampowered.com/app/1206610/",
+    "dl": "https://www.pirategames.ir/online/rubber-bandits-pc/",
+    "genres": [
+      "Party",
+      "Action",
+      "Physics"
+    ],
+    "players": "1–4 Online & Local Multiplayer",
+    "size": "946 MB",
+    "appid": 1206610,
     "isNew": true
   },
   {
@@ -372,20 +462,5 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
-  },
-  {
-    "name": "Gang Beasts",
-    "poster": "posters/gang-beasts.jpg",
-    "steam": "https://store.steampowered.com/app/285900/",
-    "dl": "https://www.pirategames.ir/online/gang-beasts/",
-    "genres": [
-      "Party",
-      "Fighting",
-      "Physics"
-    ],
-    "players": "1–8 Online Multiplayer",
-    "size": "832 MB",
-    "appid": 285900,
-    "isNew": true
   }
 ]
