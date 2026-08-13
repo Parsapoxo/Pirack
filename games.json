@@ -68,6 +68,22 @@
     "appid": 2835570
   },
   {
+    "name": "Machine Party",
+    "poster": "posters/machine-party.jpg",
+    "steam": "https://store.steampowered.com/app/4108000/",
+    "dl": "https://www.pirategames.ir/online/machine-party-online/",
+    "genres": [
+      "Party",
+      "Action",
+      "Co-op",
+      "Physics"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "446 MB",
+    "appid": 4108000,
+    "isNew": true
+  },
+  {
     "name": "Party Animals",
     "steam": "https://store.steampowered.com/app/1260320/",
     "dl": "https://www.pirategames.ir/online/party-animals-online/",
