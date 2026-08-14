@@ -121,7 +121,7 @@
     "players": "Online Multiplayer",
     "size": "35 GB",
     "appid": 730,
-    "free": true
+    "free": false
   },
   {
     "name": "Lethal Company",
@@ -149,7 +149,7 @@
     "players": "Online Multiplayer",
     "size": "~60 GB",
     "appid": null,
-    "free": true,
+    "free": false,
     "storeLabel": "Epic Games"
   },
   {
