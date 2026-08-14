@@ -1,22 +1,27 @@
 [
   {
-    "player": "Parsa",
+    "player": "Parsapoxo",
     "score": 0,
-    "avatar": null
+    "avatar": "avatars/parsa-0.jpg"
   },
   {
-    "player": "Sobhan",
+    "player": "Sobhan Jackson",
     "score": 57,
-    "avatar": null
+    "avatar": "avatars/sobhan-1.jpg"
   },
   {
-    "player": "Reza",
+    "player": "Amir-M-R",
     "score": 0,
-    "avatar": null
+    "avatar": "avatars/reza-2.jpg"
   },
   {
     "player": "Imani",
     "score": 0,
     "avatar": null
+  },
+  {
+    "player": "M2",
+    "score": 0,
+    "avatar": "avatars/m2-4.jpg"
   }
 ]
