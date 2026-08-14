@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pirack — Admin</title>
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#121213;
+    --surface-2:#18181a;
+    --line:#26262a;
+    --text:#f2f2f3;
+    --muted:#8f8f96;
+    --red:#e21f3d;
+    --gold:#f2b705;
+    --ok:#2ecc71;
+    --err:#ff4d4d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    min-height:100vh;
+    padding:32px 20px 100px;
+  }
+  h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:26px;
+    color:var(--red);
+    text-align:center;
+    margin-bottom:4px;
+  }
+  .subhead{ text-align:center; color:var(--muted); font-size:13px; margin-bottom:28px; }
+
+  .panel{
+    max-width:1000px;
+    margin:0 auto 22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+  .panel h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:14px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  label{ display:block; font-size:12px; color:var(--muted); margin-bottom:4px; }
+  input[type=text], input[type=password], input[type=number], textarea{
+    width:100%;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--text);
+    padding:9px 11px;
+    font-family:'Rajdhani',sans-serif;
+    font-size:14px;
+    outline:none;
+  }
+  input:focus, textarea:focus{ border-color:var(--red); }
+  .row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+  .row > div{ flex:1; min-width:180px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--red);
+    color:#fff;
+    border:none;
+    border-radius:9px;
+    padding:10px 18px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    transition:filter .15s;
+  }
+  .btn:hover{ filter:brightness(1.1); }
+  .btn.secondary{ background:var(--surface-2); border:1px solid var(--line); color:var(--text); }
+  .btn.danger{ background:#3a1116; border:1px solid rgba(226,31,61,0.4); color:#ff8b96; }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .btn.small{ padding:6px 12px; font-size:11px; }
+
+  .status{ font-size:13px; margin-top:10px; min-height:18px; }
+  .status.ok{ color:var(--ok); }
+  .status.err{ color:var(--err); }
+  .status.busy{ color:var(--gold); }
+
+  .tabs{ display:flex; gap:8px; max-width:1000px; margin:0 auto 18px; }
+  .tabs button{
+    flex:1;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--muted);
+    padding:12px;
+    border-radius:10px;
+    font-family:'Orbitron',sans-serif;
+    font-size:13px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .tabs button.active{ background:var(--red); color:#fff; border-color:var(--red); }
+
+  .entries{ display:flex; flex-direction:column; gap:14px; }
+  .entry{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    display:flex;
+    gap:16px;
+  }
+  .entry .poster-col{ width:130px; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
+  .move-col{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; flex-shrink:0; width:36px;
+  }
+  .move-col button{
+    width:30px; height:26px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--text);
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    line-height:1;
+  }
+  .move-col button:hover{ border-color:var(--red); }
+  .move-col button:disabled{ opacity:.3; cursor:not-allowed; }
+  .move-col .pos{ font-size:11px; color:var(--muted); font-family:'Orbitron',sans-serif; }
+  .entry .poster-preview{
+    width:130px; aspect-ratio:16/9;
+    background:#000;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; color:var(--muted); text-align:center; padding:4px;
+  }
+  .entry .poster-preview img{ width:100%; height:100%; object-fit:cover; }
+  .entry .fields{ flex:1; display:flex; flex-direction:column; gap:10px; }
+  .entry .fields-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .entry .fields-row > div{ flex:1; min-width:130px; }
+  .checks{ display:flex; gap:16px; align-items:center; }
+  .checks label{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text); margin:0; }
+  .entry-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:4px; }
+  .file-input{ font-size:11px; color:var(--muted); }
+
+  .hidden{ display:none !important; }
+  .save-bar{
+    max-width:1000px; margin:18px auto 0;
+    display:flex; gap:10px; justify-content:flex-end;
+  }
+
+  .modal-overlay{
+    position:fixed; inset:0; z-index:60;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .crop-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    width:100%; max-width:380px;
+    overflow:hidden;
+  }
+  .crop-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 16px; border-bottom:1px solid var(--line);
+    font-weight:700; font-size:14px;
+  }
+  .crop-head .modal-close{
+    background:none; border:none; color:var(--muted);
+    font-size:18px; cursor:pointer;
+  }
+  .crop-stage{
+    background:#000;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px;
+    touch-action:none;
+  }
+  #cropCanvas{
+    border-radius:50%;
+    cursor:grab;
+    background:#111;
+  }
+  .crop-controls{ padding:0 16px 12px; display:flex; align-items:center; gap:10px; }
+  .crop-controls label{ margin:0; }
+  .crop-controls input[type=range]{ flex:1; }
+  .crop-actions{ display:flex; gap:10px; padding:14px 16px; border-top:1px solid var(--line); justify-content:flex-end; }
+</style>
+</head>
+<body>
+
+<h1>Pirack Admin</h1>
+<p class="subhead">Edit your games &amp; apps directly — changes are committed straight to GitHub</p>
+
+<div class="panel" id="authPanel">
+  <h2>Connect to GitHub</h2>
+  <div class="row">
+    <div>
+      <label>Repository owner</label>
+      <input type="text" id="owner" value="Parsa1081">
+    </div>
+    <div>
+      <label>Repository name</label>
+      <input type="text" id="repo" value="Pirack">
+    </div>
+    <div>
+      <label>Branch</label>
+      <input type="text" id="branch" value="main">
+    </div>
+  </div>
+  <div class="row">
+    <div style="flex:2;">
+      <label>Personal Access Token (fine-grained, Contents: Read & Write)</label>
+      <input type="password" id="token" placeholder="ghp_...">
+    </div>
+  </div>
+  <button class="btn" id="connectBtn">Connect &amp; Load</button>
+  <button class="btn secondary" id="forgetBtn">Forget saved token</button>
+  <div class="status" id="authStatus"></div>
+</div>
+
+<div id="workArea" class="hidden">
+  <div class="tabs">
+    <button class="active" id="tabGamesAdmin" data-tab="games">Games (<span id="gamesCount">0</span>)</button>
+    <button id="tabAppsAdmin" data-tab="apps">Apps (<span id="appsCount">0</span>)</button>
+    <button id="tabLeaderboardAdmin" data-tab="leaderboard">Leaderboard (<span id="lbCount">0</span>)</button>
+  </div>
+
+  <div class="panel" id="gamesPanel">
+    <h2>Games</h2>
+    <div class="entries" id="gamesEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addGameBtn">+ Add game</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="appsPanel">
+    <h2>Apps</h2>
+    <div class="entries" id="appsEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addAppBtn">+ Add app</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="leaderboardPanel">
+    <h2>Leaderboard</h2>
+    <div class="entries" id="lbEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addLbBtn">+ Add player</button>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <div class="status" id="saveStatus" style="align-self:center; margin-right:auto;"></div>
+    <button class="btn" id="saveBtn">Save changes to GitHub</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cropOverlay">
+  <div class="crop-box">
+    <div class="crop-head">
+      <span>Crop avatar</span>
+      <button class="modal-close" id="cropClose">✕</button>
+    </div>
+    <div class="crop-stage" id="cropStage">
+      <canvas id="cropCanvas" width="320" height="320"></canvas>
+    </div>
+    <div class="crop-controls">
+      <label>Zoom</label>
+      <input type="range" id="zoomSlider" min="1" max="4" step="0.01" value="1">
+    </div>
+    <div class="crop-actions">
+      <button class="btn secondary" id="cropCancel">Cancel</button>
+      <button class="btn" id="cropApply">Apply crop</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const authStatus = $('authStatus');
+const saveStatus = $('saveStatus');
+
+function setStatus(el, msg, cls){
+  el.textContent = msg;
+  el.className = 'status' + (cls ? ' ' + cls : '');
+}
+
+// --- token persistence (local only) ---
+const savedToken = localStorage.getItem('pirack_admin_token');
+const savedOwner = localStorage.getItem('pirack_admin_owner');
+const savedRepo = localStorage.getItem('pirack_admin_repo');
+const savedBranch = localStorage.getItem('pirack_admin_branch');
+if(savedToken) $('token').value = savedToken;
+if(savedOwner) $('owner').value = savedOwner;
+if(savedRepo) $('repo').value = savedRepo;
+if(savedBranch) $('branch').value = savedBranch;
+
+$('forgetBtn').addEventListener('click', () => {
+  localStorage.removeItem('pirack_admin_token');
+  $('token').value = '';
+  setStatus(authStatus, 'Token forgotten.', 'ok');
+});
+
+// --- GitHub API helpers ---
+function api(){
+  return {
+    owner: $('owner').value.trim(),
+    repo: $('repo').value.trim(),
+    branch: $('branch').value.trim() || 'main',
+    token: $('token').value.trim(),
+  };
+}
+function ghHeaders(){
+  return {
+    'Authorization': `Bearer ${api().token}`,
+    'Accept': 'application/vnd.github+json',
+  };
+}
+async function ghGetFile(path){
+  const {owner, repo, branch} = api();
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`, {headers: ghHeaders()});
+  if(res.status === 404) return null;
+  if(!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
+  return res.json();
+}
+function utf8ToBase64(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+async function ghPutFile(path, contentBase64, message, sha){
+  const {owner, repo, branch} = api();
+  const body = { message, content: contentBase64, branch };
+  if(sha) body.sha = sha;
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: {...ghHeaders(), 'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if(!res.ok){
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.message || `PUT ${path} failed: ${res.status}`);
+  }
+  return res.json();
+}
+function arrayBufferToBase64(buf){
+  let binary = '';
+  const bytes = new Uint8Array(buf);
+  for(let i=0;i<bytes.byteLength;i++) binary += String.fromCharCode(bytes[i]);
+  return btoa(binary);
+}
+
+// --- state ---
+let games = [];
+let apps = [];
+let leaderboard = [];
+let gamesSha = null;
+let appsSha = null;
+let leaderboardSha = null;
+
+function slug(name){
+  return (name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+function decodeB64Json(content){
+  return JSON.parse(decodeURIComponent(escape(atob(content.replace(/\n/g,'')))));
+}
+
+$('connectBtn').addEventListener('click', async () => {
+  const {owner, repo, branch, token} = api();
+  if(!owner || !repo || !token){
+    setStatus(authStatus, 'Fill in owner, repo, and token.', 'err');
+    return;
+  }
+  localStorage.setItem('pirack_admin_token', token);
+  localStorage.setItem('pirack_admin_owner', owner);
+  localStorage.setItem('pirack_admin_repo', repo);
+  localStorage.setItem('pirack_admin_branch', branch);
+
+  setStatus(authStatus, 'Loading games.json, apps.json, and leaderboard.json…', 'busy');
+  try{
+    const [gFile, aFile, lFile] = await Promise.all([
+      ghGetFile('games.json'), ghGetFile('apps.json'), ghGetFile('leaderboard.json')
+    ]);
+    if(!gFile || !aFile) throw new Error('games.json or apps.json not found in repo root.');
+    games = decodeB64Json(gFile.content);
+    apps  = decodeB64Json(aFile.content);
+    leaderboard = lFile ? decodeB64Json(lFile.content) : [];
+    gamesSha = gFile.sha;
+    appsSha = aFile.sha;
+    leaderboardSha = lFile ? lFile.sha : null;
+    setStatus(authStatus, `Loaded ${games.length} games, ${apps.length} apps, ${leaderboard.length} leaderboard entries.`, 'ok');
+    $('workArea').classList.remove('hidden');
+    renderGamesAdmin();
+    renderAppsAdmin();
+    renderLeaderboardAdmin();
+  }catch(err){
+    console.error(err);
+    setStatus(authStatus, 'Error: ' + err.message, 'err');
+  }
+});
+
+// --- tabs ---
+$('tabGamesAdmin').addEventListener('click', () => switchTab('games'));
+$('tabAppsAdmin').addEventListener('click', () => switchTab('apps'));
+$('tabLeaderboardAdmin').addEventListener('click', () => switchTab('leaderboard'));
+function switchTab(tab){
+  $('tabGamesAdmin').classList.toggle('active', tab==='games');
+  $('tabAppsAdmin').classList.toggle('active', tab==='apps');
+  $('tabLeaderboardAdmin').classList.toggle('active', tab==='leaderboard');
+  $('gamesPanel').classList.toggle('hidden', tab!=='games');
+  $('appsPanel').classList.toggle('hidden', tab!=='apps');
+  $('leaderboardPanel').classList.toggle('hidden', tab!=='leaderboard');
+}
+
+// --- rendering games ---
+function renderGamesAdmin(){
+  $('gamesCount').textContent = games.length;
+  const wrap = $('gamesEntries');
+  wrap.innerHTML = '';
+  games.forEach((g, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="move-col">
+        <button onclick="moveEntry('games', ${i}, -1)" ${i===0?'disabled':''} title="Move up">▲</button>
+        <span class="pos">${i+1}</span>
+        <button onclick="moveEntry('games', ${i}, 1)" ${i===games.length-1?'disabled':''} title="Move down">▼</button>
+      </div>
+      <div class="poster-col">
+        <div class="poster-preview" id="gposter-${i}">${g.poster ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${g.poster}">` : 'No poster'}</div>
+        <input type="file" accept="image/*" class="file-input" onchange="uploadPoster('games', ${i}, this)">
+        <button class="btn small secondary" onclick="clearPoster('games', ${i})">Remove poster</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Name</label><input type="text" value="${esc(g.name)}" oninput="games[${i}].name=this.value"></div>
+          <div><label>Size</label><input type="text" value="${esc(g.size||'')}" oninput="games[${i}].size=this.value"></div>
+          <div><label>Players</label><input type="text" value="${esc(g.players||'')}" oninput="games[${i}].players=this.value"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Genres (comma-separated)</label><input type="text" value="${esc((g.genres||[]).join(', '))}" oninput="games[${i}].genres=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>
+          <div><label>Steam / store URL</label><input type="text" value="${esc(g.steam||'')}" oninput="games[${i}].steam=this.value"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Download URL (blank = disabled)</label><input type="text" value="${esc(g.dl||'')}" oninput="games[${i}].dl=this.value||null"></div>
+          <div><label>Steam App ID (for trailer/CDN, optional)</label><input type="text" value="${g.appid ?? ''}" oninput="games[${i}].appid=this.value?parseInt(this.value):null"></div>
+          <div><label>Store label (optional, e.g. Epic Games)</label><input type="text" value="${esc(g.storeLabel||'')}" oninput="games[${i}].storeLabel=this.value||undefined"></div>
+        </div>
+        <div class="entry-foot">
+          <div class="checks">
+            <label><input type="checkbox" ${g.free?'checked':''} onchange="games[${i}].free=this.checked"> Free</label>
+            <label><input type="checkbox" ${g.comingSoon?'checked':''} onchange="games[${i}].comingSoon=this.checked"> Coming soon</label>
+            <label><input type="checkbox" ${g.isNew?'checked':''} onchange="games[${i}].isNew=this.checked"> New</label>
+          </div>
+          <button class="btn small danger" onclick="removeEntry('games', ${i})">Delete game</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+// --- rendering apps ---
+function renderAppsAdmin(){
+  $('appsCount').textContent = apps.length;
+  const wrap = $('appsEntries');
+  wrap.innerHTML = '';
+  apps.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="move-col">
+        <button onclick="moveEntry('apps', ${i}, -1)" ${i===0?'disabled':''} title="Move up">▲</button>
+        <span class="pos">${i+1}</span>
+        <button onclick="moveEntry('apps', ${i}, 1)" ${i===apps.length-1?'disabled':''} title="Move down">▼</button>
+      </div>
+      <div class="poster-col">
+        <div class="poster-preview" id="aposter-${i}">${a.poster ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${a.poster}">` : 'No poster'}</div>
+        <input type="file" accept="image/*" class="file-input" onchange="uploadPoster('apps', ${i}, this)">
+        <button class="btn small secondary" onclick="clearPoster('apps', ${i})">Remove poster</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Name</label><input type="text" value="${esc(a.name)}" oninput="apps[${i}].name=this.value"></div>
+          <div><label>Download URL</label><input type="text" value="${esc(a.dl||'')}" oninput="apps[${i}].dl=this.value||null"></div>
+        </div>
+        <div class="entry-foot">
+          <div></div>
+          <button class="btn small danger" onclick="removeEntry('apps', ${i})">Delete app</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+function esc(str){
+  return String(str).replace(/"/g,'&quot;');
+}
+
+function removeEntry(kind, i){
+  if(!confirm('Delete this entry? This only removes it from the list (poster/avatar files stay in the repo).')) return;
+  if(kind==='games'){ games.splice(i,1); renderGamesAdmin(); }
+  else if(kind==='apps'){ apps.splice(i,1); renderAppsAdmin(); }
+  else { leaderboard.splice(i,1); renderLeaderboardAdmin(); }
+}
+
+function moveEntry(kind, i, dir){
+  const list = kind==='games' ? games : apps;
+  const j = i + dir;
+  if(j < 0 || j >= list.length) return;
+  [list[i], list[j]] = [list[j], list[i]];
+  if(kind==='games') renderGamesAdmin(); else renderAppsAdmin();
+}
+
+$('addGameBtn').addEventListener('click', () => {
+  games.push({name:'New Game', poster:null, steam:'', dl:null, genres:[], players:'', size:'', appid:null});
+  renderGamesAdmin();
+});
+$('addAppBtn').addEventListener('click', () => {
+  apps.push({name:'New App', poster:null, dl:null});
+  renderAppsAdmin();
+});
+
+// --- poster upload/remove ---
+async function uploadPoster(kind, i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  const list = kind==='games' ? games : apps;
+  const item = list[i];
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `posters/${slug(item.name)}.${ext}`;
+  const previewId = (kind==='games'?'gposter-':'aposter-') + i;
+  document.getElementById(previewId).textContent = 'Uploading…';
+  try{
+    const buf = await file.arrayBuffer();
+    const b64 = arrayBufferToBase64(buf);
+    const existing = await ghGetFile(path);
+    await ghPutFile(path, b64, `Update poster: ${item.name}`, existing ? existing.sha : undefined);
+    item.poster = path;
+    document.getElementById(previewId).innerHTML = `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+  }catch(err){
+    console.error(err);
+    document.getElementById(previewId).textContent = 'Upload failed';
+  }
+}
+function clearPoster(kind, i){
+  const list = kind==='games' ? games : apps;
+  list[i].poster = null;
+  const previewId = (kind==='games'?'gposter-':'aposter-') + i;
+  document.getElementById(previewId).innerHTML = 'No poster';
+}
+
+// --- rendering leaderboard ---
+function renderLeaderboardAdmin(){
+  $('lbCount').textContent = leaderboard.length;
+  const wrap = $('lbEntries');
+  wrap.innerHTML = '';
+  leaderboard.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="poster-col" style="width:100px;">
+        <div class="poster-preview" id="lbavatar-${i}" style="aspect-ratio:1; border-radius:50%; width:100px; height:100px;">
+          ${p.avatar ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${p.avatar}">` : 'No avatar'}
+        </div>
+        <input type="file" accept="image/*" class="file-input" onchange="startCrop(${i}, this)">
+        <button class="btn small secondary" onclick="clearAvatar(${i})">Remove avatar</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Player name</label><input type="text" value="${esc(p.player||'')}" oninput="leaderboard[${i}].player=this.value"></div>
+          <div><label>Score</label><input type="number" value="${p.score ?? 0}" oninput="leaderboard[${i}].score=parseInt(this.value)||0"></div>
+        </div>
+        <div class="entry-foot">
+          <div style="font-size:12px; color:var(--muted);">Prize (auto): 💎 <span id="lbprize-${i}">${(p.score||0)*5}</span></div>
+          <button class="btn small danger" onclick="removeEntry('leaderboard', ${i})">Delete player</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+    el.querySelector('input[type=number]').addEventListener('input', e => {
+      document.getElementById(`lbprize-${i}`).textContent = (parseInt(e.target.value)||0)*5;
+    });
+  });
+}
+
+$('addLbBtn').addEventListener('click', () => {
+  leaderboard.push({player:'New Player', score:0, avatar:null});
+  renderLeaderboardAdmin();
+});
+
+function clearAvatar(i){
+  leaderboard[i].avatar = null;
+  document.getElementById(`lbavatar-${i}`).innerHTML = 'No avatar';
+}
+
+// --- avatar crop tool ---
+let cropTarget = null;
+let cropImg = null;
+let cropScale = 1, cropMinScale = 1, cropOffX = 0, cropOffY = 0;
+let cropDragging = false, cropLastX = 0, cropLastY = 0;
+const cropCanvas = () => $('cropCanvas');
+
+function startCrop(i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  cropTarget = i;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      cropImg = img;
+      const size = 320;
+      cropMinScale = Math.max(size / img.width, size / img.height);
+      cropScale = cropMinScale;
+      cropOffX = 0; cropOffY = 0;
+      $('zoomSlider').min = cropMinScale;
+      $('zoomSlider').max = cropMinScale * 4;
+      $('zoomSlider').step = (cropMinScale*4 - cropMinScale)/100;
+      $('zoomSlider').value = cropMinScale;
+      drawCrop();
+      $('cropOverlay').classList.add('open');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  inputEl.value = '';
+}
+
+function drawCrop(){
+  const canvas = cropCanvas();
+  const ctx = canvas.getContext('2d');
+  const size = canvas.width;
+  ctx.clearRect(0,0,size,size);
+  if(!cropImg) return;
+  const w = cropImg.width * cropScale;
+  const h = cropImg.height * cropScale;
+  const x = size/2 - w/2 + cropOffX;
+  const y = size/2 - h/2 + cropOffY;
+  ctx.drawImage(cropImg, x, y, w, h);
+}
+
+cropCanvas().addEventListener('pointerdown', e => {
+  cropDragging = true;
+  cropLastX = e.clientX; cropLastY = e.clientY;
+  cropCanvas().setPointerCapture(e.pointerId);
+});
+cropCanvas().addEventListener('pointermove', e => {
+  if(!cropDragging) return;
+  const dx = e.clientX - cropLastX;
+  const dy = e.clientY - cropLastY;
+  cropLastX = e.clientX; cropLastY = e.clientY;
+  cropOffX += dx; cropOffY += dy;
+  drawCrop();
+});
+cropCanvas().addEventListener('pointerup', () => cropDragging = false);
+cropCanvas().addEventListener('pointerleave', () => cropDragging = false);
+
+$('zoomSlider').addEventListener('input', e => {
+  cropScale = parseFloat(e.target.value);
+  drawCrop();
+});
+
+$('cropClose').addEventListener('click', () => $('cropOverlay').classList.remove('open'));
+$('cropCancel').addEventListener('click', () => $('cropOverlay').classList.remove('open'));
+
+$('cropApply').addEventListener('click', async () => {
+  if(cropTarget === null || !cropImg) return;
+  const outSize = 400;
+  const out = document.createElement('canvas');
+  out.width = outSize; out.height = outSize;
+  const octx = out.getContext('2d');
+  const ratio = outSize / cropCanvas().width;
+  octx.save();
+  octx.beginPath();
+  octx.arc(outSize/2, outSize/2, outSize/2, 0, Math.PI*2);
+  octx.clip();
+  const w = cropImg.width * cropScale * ratio;
+  const h = cropImg.height * cropScale * ratio;
+  const x = outSize/2 - w/2 + cropOffX*ratio;
+  const y = outSize/2 - h/2 + cropOffY*ratio;
+  octx.drawImage(cropImg, x, y, w, h);
+  octx.restore();
+
+  out.toBlob(async (blob) => {
+    const i = cropTarget;
+    const previewId = `lbavatar-${i}`;
+    document.getElementById(previewId).textContent = 'Uploading…';
+    try{
+      const buf = await blob.arrayBuffer();
+      const b64 = arrayBufferToBase64(buf);
+      const path = `avatars/${slug(leaderboard[i].player)}-${i}.jpg`;
+      const existing = await ghGetFile(path);
+      await ghPutFile(path, b64, `Update avatar: ${leaderboard[i].player}`, existing ? existing.sha : undefined);
+      leaderboard[i].avatar = path;
+      document.getElementById(previewId).innerHTML = `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+    }catch(err){
+      console.error(err);
+      document.getElementById(previewId).textContent = 'Upload failed';
+    }
+    $('cropOverlay').classList.remove('open');
+    cropTarget = null; cropImg = null;
+  }, 'image/jpeg', 0.92);
+});
+
+// --- save ---
+$('saveBtn').addEventListener('click', async () => {
+  setStatus(saveStatus, 'Saving…', 'busy');
+  try{
+    const freshGames = await ghGetFile('games.json');
+    const freshApps = await ghGetFile('apps.json');
+    const freshLb = await ghGetFile('leaderboard.json');
+    const gRes = await ghPutFile('games.json', utf8ToBase64(JSON.stringify(games, null, 2)), 'Update games.json via admin panel', freshGames.sha);
+    const aRes = await ghPutFile('apps.json', utf8ToBase64(JSON.stringify(apps, null, 2)), 'Update apps.json via admin panel', freshApps.sha);
+    const lRes = await ghPutFile('leaderboard.json', utf8ToBase64(JSON.stringify(leaderboard, null, 2)), 'Update leaderboard.json via admin panel', freshLb ? freshLb.sha : undefined);
+    gamesSha = gRes.content.sha;
+    appsSha = aRes.content.sha;
+    leaderboardSha = lRes.content.sha;
+    setStatus(saveStatus, 'Saved! Changes are live on your site (may take a minute to update).', 'ok');
+  }catch(err){
+    console.error(err);
+    setStatus(saveStatus, 'Error saving: ' + err.message, 'err');
+  }
+});
+</script>
+</body>
+</html>
