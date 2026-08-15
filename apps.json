@@ -33,5 +33,10 @@
     "name": "OBS Studio",
     "poster": "posters/obs-studio.jpg",
     "dl": "https://abrehamrahi.ir/o/public/hlWTbkhv/"
+  },
+  {
+    "name": "Aether-GUI",
+    "poster": "posters/aether-gui.jpg",
+    "dl": "https://github.com/MatinSenPai/Aether-GUI/releases/download/v0.7.0/Aether-GUI_0.7.0_x64-setup.exe"
   }
 ]
