@@ -2,26 +2,31 @@
   {
     "player": "Parsapoxo",
     "score": 60,
-    "avatar": "avatars/parsapoxo-0.jpg"
+    "avatar": "avatars/parsapoxo-0.jpg",
+    "password": "P68BSccGZ8nT"
   },
   {
     "player": "Sobhan Jackson",
     "score": 120,
-    "avatar": "avatars/sobhan-jackson-1.jpg"
+    "avatar": "avatars/sobhan-jackson-1.jpg",
+    "password": "D8uXffJAgTHu"
   },
   {
     "player": "Amir-M-R",
     "score": 60,
-    "avatar": "avatars/amir-m-r-2.jpg"
+    "avatar": "avatars/amir-m-r-2.jpg",
+    "password": "9EFSuua4C5Jx"
   },
   {
     "player": "Imani",
     "score": 0,
-    "avatar": null
+    "avatar": null,
+    "password": "DBPYMWQ35tNt"
   },
   {
     "player": "M2",
     "score": 0,
-    "avatar": "avatars/m2-4.jpg"
+    "avatar": "avatars/m2-4.jpg",
+    "password": "mxHVQTxPNhR7"
   }
 ]
