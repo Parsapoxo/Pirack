@@ -1,1 +1,74 @@
-[]
+{
+  "categories": [
+    {
+      "id": "cat-1787399510191",
+      "name": "Summer"
+    }
+  ],
+  "items": [
+    {
+      "id": "bn-1787399511459",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-0.gif"
+    },
+    {
+      "id": "bn-1787399543090",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-1.gif"
+    },
+    {
+      "id": "bn-1787399543512",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-2.gif"
+    },
+    {
+      "id": "bn-1787399551735",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-3.gif"
+    },
+    {
+      "id": "bn-1787399623211",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-4.gif"
+    },
+    {
+      "id": "bn-1787399640270",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-5.gif"
+    },
+    {
+      "id": "bn-1787399653294",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-6.gif"
+    },
+    {
+      "id": "bn-1787399671020",
+      "name": "New Banner",
+      "categoryId": "cat-1787399510191",
+      "color": null,
+      "price": 5000,
+      "file": "banners/new-banner-7.gif"
+    }
+  ]
+}
