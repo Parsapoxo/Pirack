@@ -2,73 +2,169 @@
   "categories": [
     {
       "id": "cat-1787399510191",
-      "name": "Summer"
+      "name": "Marvel Rivals Summer"
+    },
+    {
+      "id": "cat-1787403061365",
+      "name": "Overwatch Halloween"
+    },
+    {
+      "id": "cat-1787403113993",
+      "name": "Greece Gods"
     }
   ],
   "items": [
     {
       "id": "bn-1787399511459",
-      "name": "New Banner",
+      "name": "Jeff the Land Shark",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "rare",
+      "price": 900,
       "file": "banners/new-banner-0.gif"
     },
     {
       "id": "bn-1787399543090",
-      "name": "New Banner",
+      "name": "Doctor Strange",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "rare",
+      "price": 900,
       "file": "banners/new-banner-1.gif"
     },
     {
       "id": "bn-1787399543512",
-      "name": "New Banner",
+      "name": "Cloak Dagger",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "epic",
+      "price": 1100,
       "file": "banners/new-banner-2.gif"
     },
     {
       "id": "bn-1787399551735",
-      "name": "New Banner",
+      "name": "Emma Frost",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "legendary",
+      "price": 1300,
       "file": "banners/new-banner-3.gif"
     },
     {
       "id": "bn-1787399623211",
-      "name": "New Banner",
+      "name": "Black Widow",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "champion",
+      "price": 1500,
       "file": "banners/new-banner-4.gif"
     },
     {
       "id": "bn-1787399640270",
-      "name": "New Banner",
+      "name": "Daredevil",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "epic",
+      "price": 1100,
       "file": "banners/new-banner-5.gif"
     },
     {
       "id": "bn-1787399653294",
-      "name": "New Banner",
+      "name": "Hela",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "epic",
+      "price": 1100,
       "file": "banners/new-banner-6.gif"
     },
     {
       "id": "bn-1787399671020",
-      "name": "New Banner",
+      "name": "White Fox",
       "categoryId": "cat-1787399510191",
-      "color": null,
-      "price": 5000,
+      "color": "rare",
+      "price": 900,
       "file": "banners/new-banner-7.gif"
+    },
+    {
+      "id": "bn-1787403063537",
+      "name": "Spellbinder's Study",
+      "categoryId": "cat-1787403061365",
+      "color": "epic",
+      "price": 800,
+      "file": "banners/new-banner-8.png"
+    },
+    {
+      "id": "bn-1787403065269",
+      "name": "Sour-Spewing Swine",
+      "categoryId": "cat-1787403061365",
+      "color": "legendary",
+      "price": 1000,
+      "file": "banners/new-banner-9.png"
+    },
+    {
+      "id": "bn-1787403065636",
+      "name": "Queen of Necrosis",
+      "categoryId": "cat-1787403061365",
+      "color": "legendary",
+      "price": 1000,
+      "file": "banners/new-banner-10.png"
+    },
+    {
+      "id": "bn-1787403065844",
+      "name": "Pachipotion",
+      "categoryId": "cat-1787403061365",
+      "color": "legendary",
+      "price": 1000,
+      "file": "banners/new-banner-11.png"
+    },
+    {
+      "id": "bn-1787403176201",
+      "name": "Magical Moonlit Ride",
+      "categoryId": "cat-1787403061365",
+      "color": "epic",
+      "price": 800,
+      "file": "banners/new-banner-12.png"
+    },
+    {
+      "id": "bn-1787403176681",
+      "name": "Moonlit Estate",
+      "categoryId": "cat-1787403061365",
+      "color": "rare",
+      "price": 600,
+      "file": "banners/new-banner-13.png"
+    },
+    {
+      "id": "bn-1787403189529",
+      "name": "Black Cat Illari",
+      "categoryId": "cat-1787403061365",
+      "color": "rare",
+      "price": 600,
+      "file": "banners/new-banner-14.png"
+    },
+    {
+      "id": "bn-1787403189895",
+      "name": "Black Cat Mercy",
+      "categoryId": "cat-1787403061365",
+      "color": "epic",
+      "price": 800,
+      "file": "banners/new-banner-15.png"
+    },
+    {
+      "id": "bn-1787403419832",
+      "name": "Zeus",
+      "categoryId": "cat-1787403113993",
+      "color": "rare",
+      "price": 600,
+      "file": "banners/zeus-16.png"
+    },
+    {
+      "id": "bn-1787403423693",
+      "name": "Cerberus",
+      "categoryId": "cat-1787403113993",
+      "color": "legendary",
+      "price": 1000,
+      "file": "banners/cerberus-17.png"
+    },
+    {
+      "id": "bn-1787403424215",
+      "name": "Trident",
+      "categoryId": "cat-1787403113993",
+      "color": "epic",
+      "price": 800,
+      "file": "banners/trident-18.png"
     }
   ]
 }
