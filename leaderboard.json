@@ -28,5 +28,12 @@
     "score": 0,
     "avatar": "avatars/m2-4.jpg",
     "password": "mxHVQTxPNhR7"
+  },
+  {
+    "player": "This is Test",
+    "score": 0,
+    "avatar": "avatars/this-is-test-5.jpg",
+    "prize": 10000,
+    "password": "12345678"
   }
 ]
