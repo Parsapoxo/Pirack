@@ -10,7 +10,11 @@
     },
     {
       "id": "cat-1787403113993",
-      "name": "Greece Gods"
+      "name": "Overwatch Greece Gods"
+    },
+    {
+      "id": "cat-1787418282082",
+      "name": "Black Ops 6"
     }
   ],
   "items": [
@@ -165,6 +169,70 @@
       "color": "epic",
       "price": 800,
       "file": "banners/trident-18.png"
+    },
+    {
+      "id": "bn-1787418286052",
+      "name": "Highly Productive",
+      "categoryId": "cat-1787418282082",
+      "color": "legendary",
+      "price": 1300,
+      "file": "banners/new-banner-19.gif"
+    },
+    {
+      "id": "bn-1787418307992",
+      "name": "Let's Dance",
+      "categoryId": "cat-1787418282082",
+      "color": "champion",
+      "price": 1500,
+      "file": "banners/new-banner-20.gif"
+    },
+    {
+      "id": "bn-1787418308892",
+      "name": "Rock in The Couch",
+      "categoryId": "cat-1787418282082",
+      "color": "legendary",
+      "price": 1300,
+      "file": "banners/new-banner-21.gif"
+    },
+    {
+      "id": "bn-1787418309481",
+      "name": "It's My Town Now",
+      "categoryId": "cat-1787418282082",
+      "color": "legendary",
+      "price": 1300,
+      "file": "banners/new-banner-22.gif"
+    },
+    {
+      "id": "bn-1787418310110",
+      "name": "Space Walk",
+      "categoryId": "cat-1787418282082",
+      "color": "epic",
+      "price": 1100,
+      "file": "banners/new-banner-23.gif"
+    },
+    {
+      "id": "bn-1787418310723",
+      "name": "Nuclear Killer",
+      "categoryId": "cat-1787418282082",
+      "color": "epic",
+      "price": 1100,
+      "file": "banners/new-banner-24.gif"
+    },
+    {
+      "id": "bn-1787418424253",
+      "name": "Pensive",
+      "categoryId": "cat-1787418282082",
+      "color": "epic",
+      "price": 800,
+      "file": "banners/new-banner-25.png"
+    },
+    {
+      "id": "bn-1787418427021",
+      "name": "On Target",
+      "categoryId": "cat-1787418282082",
+      "color": "rare",
+      "price": 600,
+      "file": "banners/new-banner-26.png"
     }
   ]
 }
