@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pirack — Admin</title>
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --surface:#121213;
+    --surface-2:#18181a;
+    --line:#26262a;
+    --text:#f2f2f3;
+    --muted:#8f8f96;
+    --red:#e21f3d;
+    --gold:#f2b705;
+    --ok:#2ecc71;
+    --err:#ff4d4d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    min-height:100vh;
+    padding:32px 20px 100px;
+  }
+  h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:26px;
+    color:var(--red);
+    text-align:center;
+    margin-bottom:4px;
+  }
+  .subhead{ text-align:center; color:var(--muted); font-size:13px; margin-bottom:28px; }
+
+  .panel{
+    max-width:1000px;
+    margin:0 auto 22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+  .panel h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:14px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  label{ display:block; font-size:12px; color:var(--muted); margin-bottom:4px; }
+  input[type=text], input[type=password], input[type=number], textarea{
+    width:100%;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--text);
+    padding:9px 11px;
+    font-family:'Rajdhani',sans-serif;
+    font-size:14px;
+    outline:none;
+  }
+  input:focus, textarea:focus{ border-color:var(--red); }
+  .row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+  .row > div{ flex:1; min-width:180px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--red);
+    color:#fff;
+    border:none;
+    border-radius:9px;
+    padding:10px 18px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    transition:filter .15s;
+  }
+  .btn:hover{ filter:brightness(1.1); }
+  .btn.secondary{ background:var(--surface-2); border:1px solid var(--line); color:var(--text); }
+  .btn.danger{ background:#3a1116; border:1px solid rgba(226,31,61,0.4); color:#ff8b96; }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .btn.small{ padding:6px 12px; font-size:11px; }
+
+  .status{ font-size:13px; margin-top:10px; min-height:18px; }
+  .status.ok{ color:var(--ok); }
+  .status.err{ color:var(--err); }
+  .status.busy{ color:var(--gold); }
+
+  .tabs{ display:flex; gap:8px; max-width:1000px; margin:0 auto 18px; }
+  .tabs button{
+    flex:1;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--muted);
+    padding:12px;
+    border-radius:10px;
+    font-family:'Orbitron',sans-serif;
+    font-size:13px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .tabs button.active{ background:var(--red); color:#fff; border-color:var(--red); }
+
+  .entries{ display:flex; flex-direction:column; gap:14px; }
+  .entry{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    display:flex;
+    gap:16px;
+  }
+  .entry .poster-col{ width:130px; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
+  .move-col{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; flex-shrink:0; width:36px;
+  }
+  .move-col button{
+    width:30px; height:26px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--text);
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    line-height:1;
+  }
+  .move-col button:hover{ border-color:var(--red); }
+  .move-col button:disabled{ opacity:.3; cursor:not-allowed; }
+  .move-col .pos{ font-size:11px; color:var(--muted); font-family:'Orbitron',sans-serif; }
+  .entry .poster-preview{
+    width:130px; aspect-ratio:16/9;
+    background:#000;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; color:var(--muted); text-align:center; padding:4px;
+  }
+  .entry .poster-preview img{ width:100%; height:100%; object-fit:cover; }
+  .entry .poster-preview video{ width:100%; height:100%; object-fit:cover; }
+  .banner-preview{
+    width:220px; aspect-ratio:5/1;
+    background:#000;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; color:var(--muted);
+  }
+  .banner-preview img{ width:100%; height:100%; object-fit:cover; }
+  .bn-category{ margin-bottom:28px; border:1px solid var(--line); border-radius:12px; padding:16px; background:rgba(255,255,255,0.015); }
+  .bn-category-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:10px; }
+  .bn-category-head input{ font-size:15px; font-weight:700; max-width:260px; }
+  .entry .fields{ flex:1; display:flex; flex-direction:column; gap:10px; }
+  .entry .fields-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .entry .fields-row > div{ flex:1; min-width:130px; }
+  .checks{ display:flex; gap:16px; align-items:center; }
+  .checks label{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text); margin:0; }
+  .entry-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:4px; }
+  .file-input{ font-size:11px; color:var(--muted); }
+
+  .hidden{ display:none !important; }
+  .save-bar{
+    max-width:1000px; margin:18px auto 0;
+    display:flex; gap:10px; justify-content:flex-end;
+  }
+
+  .modal-overlay{
+    position:fixed; inset:0; z-index:60;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .crop-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    width:100%; max-width:380px;
+    overflow:hidden;
+  }
+  .crop-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 16px; border-bottom:1px solid var(--line);
+    font-weight:700; font-size:14px;
+  }
+  .crop-head .modal-close{
+    background:none; border:none; color:var(--muted);
+    font-size:18px; cursor:pointer;
+  }
+  .crop-stage{
+    background:#000;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px;
+    touch-action:none;
+  }
+  #cropCanvas{
+    border-radius:16px;
+    cursor:grab;
+    background:#111;
+  }
+  .crop-controls{ padding:0 16px 12px; display:flex; align-items:center; gap:10px; }
+  .crop-controls label{ margin:0; }
+  .crop-controls input[type=range]{ flex:1; }
+  .crop-actions{ display:flex; gap:10px; padding:14px 16px; border-top:1px solid var(--line); justify-content:flex-end; }
+</style>
+</head>
+<body>
+
+<h1>Pirack Admin</h1>
+<p class="subhead">Edit your games &amp; apps directly — changes are committed straight to GitHub</p>
+
+<div class="panel" id="authPanel">
+  <h2>Connect to GitHub</h2>
+  <div class="row">
+    <div>
+      <label>Repository owner</label>
+      <input type="text" id="owner" value="Parsa1081">
+    </div>
+    <div>
+      <label>Repository name</label>
+      <input type="text" id="repo" value="Pirack">
+    </div>
+    <div>
+      <label>Branch</label>
+      <input type="text" id="branch" value="main">
+    </div>
+  </div>
+  <div class="row">
+    <div style="flex:2;">
+      <label>Personal Access Token (fine-grained, Contents: Read & Write)</label>
+      <input type="password" id="token" placeholder="ghp_...">
+    </div>
+  </div>
+  <button class="btn" id="connectBtn">Connect &amp; Load</button>
+  <button class="btn secondary" id="forgetBtn">Forget saved token</button>
+  <div class="status" id="authStatus"></div>
+</div>
+
+<div id="workArea" class="hidden">
+  <div class="tabs">
+    <button class="active" id="tabGamesAdmin" data-tab="games">Games (<span id="gamesCount">0</span>)</button>
+    <button id="tabAppsAdmin" data-tab="apps">Apps (<span id="appsCount">0</span>)</button>
+    <button id="tabLeaderboardAdmin" data-tab="leaderboard">Leaderboard (<span id="lbCount">0</span>)</button>
+    <button id="tabWallpapersAdmin" data-tab="wallpapers">Wallpapers (<span id="wpCount">0</span>)</button>
+    <button id="tabBannersAdmin" data-tab="banners">Banners (<span id="bnCount">0</span>)</button>
+    <button id="tabRequestsAdmin" data-tab="requests">Avatar Requests (<span id="reqCount">0</span>)</button>
+  </div>
+
+  <div class="panel" id="gamesPanel">
+    <h2>Games</h2>
+    <div class="entries" id="gamesEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addGameBtn">+ Add game</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="appsPanel">
+    <h2>Apps</h2>
+    <div class="entries" id="appsEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addAppBtn">+ Add app</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="leaderboardPanel">
+    <h2>Leaderboard</h2>
+    <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">⚠️ Sign-in passwords are stored in plain text in leaderboard.json since this is a static site with no server — anyone technical can see them via browser dev tools. Don't reuse a real password here.</p>
+    <div class="entries" id="lbEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addLbBtn">+ Add player</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="wallpapersPanel">
+    <h2>Wallpapers</h2>
+    <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">Upload an image or short looping video. It'll show up as an option for everyone in the site's wallpaper menu.</p>
+    <div class="entries" id="wpEntries"></div>
+    <div style="margin-top:16px;">
+      <button class="btn secondary" id="addWpBtn">+ Add wallpaper</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="bannersPanel">
+    <h2>Banners</h2>
+    <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">Create a category (e.g. "Halloween"), then add banners inside it. Each banner is a PNG or GIF, always shown at a 5:1 ratio on the site regardless of the source shape. Color picks are limited to the same 5 tiers used for Player Titles.</p>
+    <div style="margin-bottom:16px;">
+      <button class="btn secondary" id="addBnCategoryBtn">+ New category</button>
+    </div>
+    <div id="bnCategories"></div>
+  </div>
+
+  <div class="panel hidden" id="requestsPanel">
+    <h2>Avatar Requests</h2>
+    <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">When a signed-in player changes their profile picture on the site, it shows up here as a request instead of being applied automatically. Approve it to actually push it live, or reject it to discard.</p>
+    <div style="margin-bottom:14px;">
+      <button class="btn secondary" id="refreshRequestsBtn">↻ Refresh requests</button>
+    </div>
+    <div class="entries" id="reqEntries"></div>
+  </div>
+
+  <div class="save-bar">
+    <div class="status" id="saveStatus" style="align-self:center; margin-right:auto;"></div>
+    <button class="btn" id="saveBtn">Save changes to GitHub</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cropOverlay">
+  <div class="crop-box">
+    <div class="crop-head">
+      <span>Crop avatar</span>
+      <button class="modal-close" id="cropClose">✕</button>
+    </div>
+    <div class="crop-stage" id="cropStage">
+      <canvas id="cropCanvas" width="320" height="320"></canvas>
+    </div>
+    <div class="crop-controls">
+      <label>Zoom</label>
+      <input type="range" id="zoomSlider" min="1" max="4" step="0.01" value="1">
+    </div>
+    <div class="crop-actions">
+      <button class="btn secondary" id="cropCancel">Cancel</button>
+      <button class="btn" id="cropApply">Apply crop</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const authStatus = $('authStatus');
+const saveStatus = $('saveStatus');
+
+function setStatus(el, msg, cls){
+  el.textContent = msg;
+  el.className = 'status' + (cls ? ' ' + cls : '');
+}
+
+// --- token persistence (local only) ---
+const savedToken = localStorage.getItem('pirack_admin_token');
+const savedOwner = localStorage.getItem('pirack_admin_owner');
+const savedRepo = localStorage.getItem('pirack_admin_repo');
+const savedBranch = localStorage.getItem('pirack_admin_branch');
+if(savedToken) $('token').value = savedToken;
+if(savedOwner) $('owner').value = savedOwner;
+if(savedRepo) $('repo').value = savedRepo;
+if(savedBranch) $('branch').value = savedBranch;
+
+$('forgetBtn').addEventListener('click', () => {
+  localStorage.removeItem('pirack_admin_token');
+  $('token').value = '';
+  setStatus(authStatus, 'Token forgotten.', 'ok');
+});
+
+// --- GitHub API helpers ---
+function api(){
+  return {
+    owner: $('owner').value.trim(),
+    repo: $('repo').value.trim(),
+    branch: $('branch').value.trim() || 'main',
+    token: $('token').value.trim(),
+  };
+}
+function ghHeaders(){
+  return {
+    'Authorization': `Bearer ${api().token}`,
+    'Accept': 'application/vnd.github+json',
+  };
+}
+async function ghGetFile(path){
+  const {owner, repo, branch} = api();
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`, {headers: ghHeaders(), cache:'no-store'});
+  if(res.status === 404) return null;
+  if(!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
+  return res.json();
+}
+function utf8ToBase64(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+async function ghPutFile(path, contentBase64, message, sha){
+  const {owner, repo, branch} = api();
+  const body = { message, content: contentBase64, branch };
+  if(sha) body.sha = sha;
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: {...ghHeaders(), 'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if(!res.ok){
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.message || `PUT ${path} failed: ${res.status}`);
+  }
+  return res.json();
+}
+// Fetches the current sha right before writing, and retries once more if a
+// sha-mismatch conflict still happens (e.g. the file changed a moment earlier).
+async function ghPutFileSafe(path, contentBase64, message, attemptsLeft=3){
+  const existing = await ghGetFile(path);
+  try{
+    return await ghPutFile(path, contentBase64, message, existing ? existing.sha : undefined);
+  }catch(err){
+    const isConflict = /does not match|sha|409|422/i.test(err.message);
+    if(isConflict && attemptsLeft > 0){
+      await new Promise(r => setTimeout(r, 400));
+      return ghPutFileSafe(path, contentBase64, message, attemptsLeft - 1);
+    }
+    throw err;
+  }
+}
+async function ghListIssues(label){
+  const {owner, repo} = api();
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues?labels=${encodeURIComponent(label)}&state=open&per_page=100`, {headers: ghHeaders(), cache:'no-store'});
+  if(!res.ok) throw new Error(`List issues failed: ${res.status}`);
+  return res.json();
+}
+async function ghCloseIssue(number){
+  const {owner, repo} = api();
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues/${number}`, {
+    method:'PATCH',
+    headers: {...ghHeaders(), 'Content-Type':'application/json'},
+    body: JSON.stringify({state:'closed'})
+  });
+  if(!res.ok) throw new Error(`Close issue failed: ${res.status}`);
+  return res.json();
+}
+
+// Fast, native base64 encoding (much quicker than a manual byte loop for large files)
+function blobToBase64(blob){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+// --- state ---
+let games = [];
+let apps = [];
+let leaderboard = [];
+let wallpapers = [];
+let banners = [];
+let bannerCategories = [];
+let gamesSha = null;
+let appsSha = null;
+let leaderboardSha = null;
+let wallpapersSha = null;
+let bannersSha = null;
+
+function slug(name){
+  return (name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+function decodeB64Json(content){
+  return JSON.parse(decodeURIComponent(escape(atob(content.replace(/\n/g,'')))));
+}
+
+$('connectBtn').addEventListener('click', async () => {
+  const {owner, repo, branch, token} = api();
+  if(!owner || !repo || !token){
+    setStatus(authStatus, 'Fill in owner, repo, and token.', 'err');
+    return;
+  }
+  localStorage.setItem('pirack_admin_token', token);
+  localStorage.setItem('pirack_admin_owner', owner);
+  localStorage.setItem('pirack_admin_repo', repo);
+  localStorage.setItem('pirack_admin_branch', branch);
+
+  setStatus(authStatus, 'Loading games.json, apps.json, leaderboard.json, wallpapers.json, and banners.json…', 'busy');
+  try{
+    const [gFile, aFile, lFile, wFile, bFile] = await Promise.all([
+      ghGetFile('games.json'), ghGetFile('apps.json'), ghGetFile('leaderboard.json'), ghGetFile('wallpapers.json'), ghGetFile('banners.json')
+    ]);
+    if(!gFile || !aFile) throw new Error('games.json or apps.json not found in repo root.');
+    games = decodeB64Json(gFile.content);
+    apps  = decodeB64Json(aFile.content);
+    leaderboard = lFile ? decodeB64Json(lFile.content) : [];
+    wallpapers = wFile ? decodeB64Json(wFile.content) : [];
+    {
+      const bData = bFile ? decodeB64Json(bFile.content) : { categories: [], items: [] };
+      if(Array.isArray(bData)){
+        // legacy flat-array format
+        bannerCategories = [];
+        banners = bData;
+      }else{
+        bannerCategories = bData.categories || [];
+        banners = bData.items || [];
+      }
+    }
+    gamesSha = gFile.sha;
+    appsSha = aFile.sha;
+    leaderboardSha = lFile ? lFile.sha : null;
+    wallpapersSha = wFile ? wFile.sha : null;
+    bannersSha = bFile ? bFile.sha : null;
+    setStatus(authStatus, `Loaded ${games.length} games, ${apps.length} apps, ${leaderboard.length} leaderboard entries, ${wallpapers.length} wallpapers, ${banners.length} banners.`, 'ok');
+    $('workArea').classList.remove('hidden');
+    renderGamesAdmin();
+    renderAppsAdmin();
+    renderLeaderboardAdmin();
+    renderWallpapersAdmin();
+    renderBannersAdmin();
+  }catch(err){
+    console.error(err);
+    setStatus(authStatus, 'Error: ' + err.message, 'err');
+  }
+});
+
+// --- tabs ---
+$('tabGamesAdmin').addEventListener('click', () => switchTab('games'));
+$('tabAppsAdmin').addEventListener('click', () => switchTab('apps'));
+$('tabLeaderboardAdmin').addEventListener('click', () => switchTab('leaderboard'));
+$('tabWallpapersAdmin').addEventListener('click', () => switchTab('wallpapers'));
+$('tabRequestsAdmin').addEventListener('click', () => { switchTab('requests'); loadAvatarRequests(); });
+function switchTab(tab){
+  $('tabGamesAdmin').classList.toggle('active', tab==='games');
+  $('tabAppsAdmin').classList.toggle('active', tab==='apps');
+  $('tabLeaderboardAdmin').classList.toggle('active', tab==='leaderboard');
+  $('tabWallpapersAdmin').classList.toggle('active', tab==='wallpapers');
+  $('tabBannersAdmin').classList.toggle('active', tab==='banners');
+  $('tabRequestsAdmin').classList.toggle('active', tab==='requests');
+  $('gamesPanel').classList.toggle('hidden', tab!=='games');
+  $('appsPanel').classList.toggle('hidden', tab!=='apps');
+  $('leaderboardPanel').classList.toggle('hidden', tab!=='leaderboard');
+  $('wallpapersPanel').classList.toggle('hidden', tab!=='wallpapers');
+  $('bannersPanel').classList.toggle('hidden', tab!=='banners');
+  $('requestsPanel').classList.toggle('hidden', tab!=='requests');
+}
+$('tabBannersAdmin').addEventListener('click', () => switchTab('banners'));
+
+// --- rendering games ---
+function renderGamesAdmin(){
+  $('gamesCount').textContent = games.length;
+  const wrap = $('gamesEntries');
+  wrap.innerHTML = '';
+  games.forEach((g, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="move-col">
+        <button onclick="moveEntry('games', ${i}, -1)" ${i===0?'disabled':''} title="Move up">▲</button>
+        <span class="pos">${i+1}</span>
+        <button onclick="moveEntry('games', ${i}, 1)" ${i===games.length-1?'disabled':''} title="Move down">▼</button>
+      </div>
+      <div class="poster-col">
+        <div class="poster-preview" id="gposter-${i}">${g.poster ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${g.poster}">` : 'No poster'}</div>
+        <input type="file" accept="image/*" class="file-input" onchange="uploadPoster('games', ${i}, this)">
+        <button class="btn small secondary" onclick="clearPoster('games', ${i})">Remove poster</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Name</label><input type="text" value="${esc(g.name)}" oninput="games[${i}].name=this.value"></div>
+          <div><label>Size</label><input type="text" value="${esc(g.size||'')}" oninput="games[${i}].size=this.value"></div>
+          <div><label>Players</label><input type="text" value="${esc(g.players||'')}" oninput="games[${i}].players=this.value"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Genres (comma-separated)</label><input type="text" value="${esc((g.genres||[]).join(', '))}" oninput="games[${i}].genres=this.value.split(',').map(s=>s.trim()).filter(Boolean)"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Steam / store URL</label><input type="text" value="${esc(g.steam||'')}" oninput="games[${i}].steam=this.value"></div>
+          <div><label>PirateGames URL (blank = disabled)</label><input type="text" value="${esc(g.dl||'')}" oninput="games[${i}].dl=this.value||null"></div>
+          <div><label>Download (⬇) URL (blank = disabled)</label><input type="text" value="${esc(g.dl2||'')}" oninput="games[${i}].dl2=this.value||null"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Steam App ID (for trailer/CDN, optional)</label><input type="text" value="${g.appid ?? ''}" oninput="games[${i}].appid=this.value?parseInt(this.value):null"></div>
+          <div><label>Store label (optional, e.g. Epic Games)</label><input type="text" value="${esc(g.storeLabel||'')}" oninput="games[${i}].storeLabel=this.value||undefined"></div>
+        </div>
+        <div class="entry-foot">
+          <div class="checks">
+            <label><input type="checkbox" ${g.free?'checked':''} onchange="games[${i}].free=this.checked"> Free</label>
+            <label><input type="checkbox" ${g.comingSoon?'checked':''} onchange="games[${i}].comingSoon=this.checked"> Coming soon</label>
+            <label><input type="checkbox" ${g.isNew?'checked':''} onchange="games[${i}].isNew=this.checked"> New</label>
+          </div>
+          <button class="btn small danger" onclick="removeEntry('games', ${i})">Delete game</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+// --- rendering apps ---
+function renderAppsAdmin(){
+  $('appsCount').textContent = apps.length;
+  const wrap = $('appsEntries');
+  wrap.innerHTML = '';
+  apps.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="move-col">
+        <button onclick="moveEntry('apps', ${i}, -1)" ${i===0?'disabled':''} title="Move up">▲</button>
+        <span class="pos">${i+1}</span>
+        <button onclick="moveEntry('apps', ${i}, 1)" ${i===apps.length-1?'disabled':''} title="Move down">▼</button>
+      </div>
+      <div class="poster-col">
+        <div class="poster-preview" id="aposter-${i}">${a.poster ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${a.poster}">` : 'No poster'}</div>
+        <input type="file" accept="image/*" class="file-input" onchange="uploadPoster('apps', ${i}, this)">
+        <button class="btn small secondary" onclick="clearPoster('apps', ${i})">Remove poster</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Name</label><input type="text" value="${esc(a.name)}" oninput="apps[${i}].name=this.value"></div>
+          <div><label>Download URL</label><input type="text" value="${esc(a.dl||'')}" oninput="apps[${i}].dl=this.value||null"></div>
+        </div>
+        <div class="entry-foot">
+          <div></div>
+          <button class="btn small danger" onclick="removeEntry('apps', ${i})">Delete app</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+function esc(str){
+  return String(str).replace(/"/g,'&quot;');
+}
+
+function removeEntry(kind, i){
+  if(!confirm('Delete this entry? This only removes it from the list (uploaded files stay in the repo).')) return;
+  if(kind==='games'){ games.splice(i,1); renderGamesAdmin(); }
+  else if(kind==='apps'){ apps.splice(i,1); renderAppsAdmin(); }
+  else if(kind==='leaderboard'){ leaderboard.splice(i,1); renderLeaderboardAdmin(); }
+  else if(kind==='wallpapers'){ wallpapers.splice(i,1); renderWallpapersAdmin(); }
+  else { banners.splice(i,1); renderBannersAdmin(); }
+}
+
+function moveEntry(kind, i, dir){
+  const list = kind==='games' ? games : apps;
+  const j = i + dir;
+  if(j < 0 || j >= list.length) return;
+  [list[i], list[j]] = [list[j], list[i]];
+  if(kind==='games') renderGamesAdmin(); else renderAppsAdmin();
+}
+
+$('addGameBtn').addEventListener('click', () => {
+  games.push({name:'New Game', poster:null, steam:'', dl:null, genres:[], players:'', size:'', appid:null});
+  renderGamesAdmin();
+});
+$('addAppBtn').addEventListener('click', () => {
+  apps.push({name:'New App', poster:null, dl:null});
+  renderAppsAdmin();
+});
+
+// --- poster upload/remove ---
+async function uploadPoster(kind, i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  const list = kind==='games' ? games : apps;
+  const item = list[i];
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `posters/${slug(item.name)}.${ext}`;
+  const previewId = (kind==='games'?'gposter-':'aposter-') + i;
+  document.getElementById(previewId).textContent = 'Uploading…';
+  try{
+    if(file.size > 20*1024*1024) throw new Error('File is too large (max ~20MB).');
+    const b64 = await blobToBase64(file);
+    await ghPutFileSafe(path, b64, `Update poster: ${item.name}`);
+    item.poster = path;
+    document.getElementById(previewId).innerHTML = `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+  }catch(err){
+    console.error(err);
+    document.getElementById(previewId).textContent = 'Upload failed: ' + err.message;
+  }
+}
+function clearPoster(kind, i){
+  const list = kind==='games' ? games : apps;
+  list[i].poster = null;
+  const previewId = (kind==='games'?'gposter-':'aposter-') + i;
+  document.getElementById(previewId).innerHTML = 'No poster';
+}
+
+// --- rendering leaderboard ---
+function renderLeaderboardAdmin(){
+  $('lbCount').textContent = leaderboard.length;
+  const wrap = $('lbEntries');
+  wrap.innerHTML = '';
+  leaderboard.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="poster-col" style="width:100px;">
+        <div class="poster-preview" id="lbavatar-${i}" style="aspect-ratio:1; border-radius:16px; width:100px; height:100px;">
+          ${p.avatar ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${p.avatar}">` : 'No avatar'}
+        </div>
+        <input type="file" accept="image/*" class="file-input" onchange="startCrop(${i}, this)">
+        <button class="btn small secondary" onclick="clearAvatar(${i})">Remove avatar</button>
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Player name (username)</label><input type="text" value="${esc(p.player||'')}" oninput="leaderboard[${i}].player=this.value"></div>
+          <div><label>Score</label><input type="number" value="${p.score ?? 0}" oninput="updateScore(${i}, this)"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>Sign-in password (they cannot change this themselves)</label><input type="text" value="${esc(p.password||'')}" placeholder="leave blank = sign-in disabled for this player" oninput="leaderboard[${i}].password=this.value||undefined"></div>
+        </div>
+        <div class="entry-foot">
+          <div style="font-size:12px; color:var(--muted);">Prize (auto): 💎 <span id="lbprize-${i}">${(p.score||0)*5}</span></div>
+          <button class="btn small danger" onclick="removeEntry('leaderboard', ${i})">Delete player</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+$('addLbBtn').addEventListener('click', () => {
+  leaderboard.push({player:'New Player', score:0, avatar:null});
+  renderLeaderboardAdmin();
+});
+
+function updateScore(i, inputEl){
+  const val = inputEl.valueAsNumber;
+  const score = Number.isFinite(val) ? val : 0;
+  leaderboard[i].score = score;
+  const prizeEl = document.getElementById(`lbprize-${i}`);
+  if(prizeEl) prizeEl.textContent = score * 5;
+}
+
+// --- rendering wallpapers ---
+function renderWallpapersAdmin(){
+  $('wpCount').textContent = wallpapers.length;
+  const wrap = $('wpEntries');
+  wrap.innerHTML = '';
+  wallpapers.forEach((w, i) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    const isVideo = /\.(mp4|webm|mov)$/i.test(w.file||'');
+    el.innerHTML = `
+      <div class="poster-col">
+        <div class="poster-preview" id="wpthumb-${i}">
+          ${w.file
+            ? (isVideo
+                ? `<video src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${w.file}" muted loop autoplay playsinline></video>`
+                : `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${w.file}">`)
+            : 'No file'}
+        </div>
+        <input type="file" accept="image/*,video/*" class="file-input" onchange="uploadWallpaper(${i}, this)">
+      </div>
+      <div class="fields">
+        <div class="fields-row">
+          <div><label>Name</label><input type="text" value="${esc(w.name||'')}" oninput="wallpapers[${i}].name=this.value"></div>
+        </div>
+        <div class="fields-row">
+          <div><label>File path (fill in manually if you uploaded directly on GitHub, e.g. wallpapers/myvideo.mp4)</label><input type="text" value="${esc(w.file||'')}" oninput="setWallpaperPath(${i}, this)"></div>
+        </div>
+        <div class="entry-foot">
+          <div style="font-size:11px; color:var(--muted);">Or use the file picker above to upload directly from here</div>
+          <button class="btn small danger" onclick="removeEntry('wallpapers', ${i})">Delete wallpaper</button>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+$('addWpBtn').addEventListener('click', () => {
+  wallpapers.push({id: 'wp-' + Date.now(), name:'New Wallpaper', file:null});
+  renderWallpapersAdmin();
+});
+
+function setWallpaperPath(i, inputEl){
+  const path = inputEl.value.trim();
+  wallpapers[i].file = path || null;
+  const previewId = `wpthumb-${i}`;
+  const preview = document.getElementById(previewId);
+  if(!path){ preview.textContent = 'No file'; return; }
+  const isVideo = /\.(mp4|webm|mov)$/i.test(path);
+  const url = `https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}`;
+  preview.innerHTML = isVideo
+    ? `<video src="${url}" muted loop autoplay playsinline></video>`
+    : `<img src="${url}">`;
+}
+
+async function uploadWallpaper(i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  const w = wallpapers[i];
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `wallpapers/${slug(w.name)}-${i}.${ext}`;
+  const previewId = `wpthumb-${i}`;
+  document.getElementById(previewId).textContent = 'Uploading…';
+  try{
+    if(file.size > 20*1024*1024) throw new Error('File is too large (max ~20MB).');
+    const b64 = await blobToBase64(file);
+    await ghPutFileSafe(path, b64, `Update wallpaper: ${w.name}`);
+    w.file = path;
+    const isVideo = /\.(mp4|webm|mov)$/i.test(path);
+    document.getElementById(previewId).innerHTML = isVideo
+      ? `<video src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}" muted loop autoplay playsinline></video>`
+      : `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+  }catch(err){
+    console.error(err);
+    document.getElementById(previewId).textContent = 'Upload failed: ' + err.message;
+  }
+}
+
+// --- rendering banners (grouped by category) ---
+const TIER_COLOR_OPTIONS = [
+  {value:'', label:'No color (white)'},
+  {value:'common', label:'Common (light blue)'},
+  {value:'rare', label:'Rare (strong blue)'},
+  {value:'epic', label:'Epic (purple)'},
+  {value:'legendary', label:'Legendary (gold)'},
+  {value:'champion', label:'Champion (animated)'}
+];
+
+function renderBannersAdmin(){
+  $('bnCount').textContent = banners.length;
+  const wrap = $('bnCategories');
+  wrap.innerHTML = '';
+
+  bannerCategories.forEach((cat, ci) => {
+    const catEl = document.createElement('div');
+    catEl.className = 'bn-category';
+    const catBanners = banners.filter(b => b.categoryId === cat.id);
+    catEl.innerHTML = `
+      <div class="bn-category-head">
+        <input type="text" value="${esc(cat.name)}" oninput="bannerCategories[${ci}].name=this.value">
+        <div style="display:flex; gap:8px;">
+          <button class="btn small secondary" onclick="addBannerToCategory('${cat.id}')">+ Add banner</button>
+          <button class="btn small danger" onclick="removeCategory(${ci})">Delete category</button>
+        </div>
+      </div>
+      <div class="entries" id="bnCatEntries-${cat.id}"></div>
+    `;
+    wrap.appendChild(catEl);
+
+    const entriesWrap = catEl.querySelector(`#bnCatEntries-${cat.id}`);
+    catBanners.forEach(b => {
+      const i = banners.indexOf(b);
+      const el = document.createElement('div');
+      el.className = 'entry';
+      el.innerHTML = `
+        <div class="poster-col" style="width:220px;">
+          <div class="banner-preview" id="bnthumb-${i}">
+            ${b.file ? `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${b.file}">` : 'No file'}
+          </div>
+          <input type="file" accept="image/png,image/gif,image/jpeg,image/webp" class="file-input" onchange="uploadBanner(${i}, this)">
+        </div>
+        <div class="fields">
+          <div class="fields-row">
+            <div><label>Name</label><input type="text" value="${esc(b.name||'')}" oninput="banners[${i}].name=this.value"></div>
+            <div><label>Price (💎 Prize)</label><input type="number" value="${b.price ?? 0}" oninput="banners[${i}].price=parseInt(this.value)||0"></div>
+            <div>
+              <label>Color</label>
+              <select onchange="banners[${i}].color=this.value||null">
+                ${TIER_COLOR_OPTIONS.map(o => `<option value="${o.value}" ${((b.color||'')===o.value)?'selected':''}>${o.label}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+          <div class="fields-row">
+            <div><label>File path (fill in manually if you uploaded directly on GitHub)</label><input type="text" value="${esc(b.file||'')}" oninput="setBannerPath(${i}, this)"></div>
+          </div>
+          <div class="entry-foot">
+            <div style="font-size:11px; color:var(--muted);">Always shown at a 5:1 ratio on the site, whatever the source shape.</div>
+            <button class="btn small danger" onclick="removeEntry('banners', ${i})">Delete banner</button>
+          </div>
+        </div>
+      `;
+      entriesWrap.appendChild(el);
+    });
+    if(catBanners.length === 0){
+      entriesWrap.innerHTML = `<p style="font-size:12px; color:var(--muted);">No banners in this category yet.</p>`;
+    }
+  });
+
+  if(bannerCategories.length === 0){
+    wrap.innerHTML = `<p style="font-size:13px; color:var(--muted);">No categories yet — click "+ New category" to create one (e.g. "Halloween"), then add banners inside it.</p>`;
+  }
+}
+
+$('addBnCategoryBtn').addEventListener('click', () => {
+  const name = prompt('Category name (e.g. Halloween):');
+  if(!name) return;
+  bannerCategories.push({ id: 'cat-' + Date.now(), name });
+  renderBannersAdmin();
+});
+
+function addBannerToCategory(categoryId){
+  banners.push({id: 'bn-' + Date.now(), name:'New Banner', categoryId, color:null, price:0, file:null});
+  renderBannersAdmin();
+}
+
+function removeCategory(ci){
+  const cat = bannerCategories[ci];
+  const inUse = banners.some(b => b.categoryId === cat.id);
+  if(inUse && !confirm(`This category still has banners in it. Delete "${cat.name}" and all its banners?`)) return;
+  banners = banners.filter(b => b.categoryId !== cat.id);
+  bannerCategories.splice(ci, 1);
+  renderBannersAdmin();
+}
+
+async function uploadBanner(i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  const b = banners[i];
+  const ext = (file.name.split('.').pop() || 'png').toLowerCase();
+  const path = `banners/${slug(b.name)}-${i}.${ext}`;
+  const previewId = `bnthumb-${i}`;
+  document.getElementById(previewId).textContent = 'Uploading…';
+  try{
+    if(file.size > 20*1024*1024) throw new Error('File is too large (max ~20MB).');
+    const b64 = await blobToBase64(file);
+    await ghPutFileSafe(path, b64, `Update banner: ${b.name}`);
+    b.file = path;
+    document.getElementById(previewId).innerHTML = `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+  }catch(err){
+    console.error(err);
+    document.getElementById(previewId).textContent = 'Upload failed: ' + err.message;
+  }
+}
+
+function setBannerPath(i, inputEl){
+  const path = inputEl.value.trim();
+  banners[i].file = path || null;
+  const preview = document.getElementById(`bnthumb-${i}`);
+  if(!path){ preview.textContent = 'No file'; return; }
+  const url = `https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}`;
+  preview.innerHTML = `<img src="${url}">`;
+}
+
+// --- avatar requests (from signed-in players on the site) ---
+let currentRequests = [];
+
+function parseAvatarIssue(issue){
+  const match = issue.body.match(/---BEGIN AVATAR---([\s\S]*?)---END AVATAR---/);
+  const dataUrl = match ? match[1].trim() : null;
+  const playerMatch = issue.body.match(/Player:\s*(.+)/);
+  const player = playerMatch ? playerMatch[1].trim() : issue.title.replace(/^Avatar request:\s*/i, '');
+  return { number: issue.number, player, dataUrl };
+}
+
+async function loadAvatarRequests(){
+  const wrap = $('reqEntries');
+  wrap.innerHTML = '<p style="color:var(--muted); font-size:13px;">Loading…</p>';
+  try{
+    const issues = await ghListIssues('avatar-request');
+    currentRequests = issues.map(parseAvatarIssue).filter(r => r.dataUrl);
+    $('reqCount').textContent = currentRequests.length;
+    renderAvatarRequests();
+  }catch(err){
+    console.error(err);
+    wrap.innerHTML = `<p style="color:var(--err); font-size:13px;">Error loading requests: ${err.message}</p>`;
+  }
+}
+
+function renderAvatarRequests(){
+  const wrap = $('reqEntries');
+  if(currentRequests.length === 0){
+    wrap.innerHTML = '<p style="color:var(--muted); font-size:13px;">No pending requests.</p>';
+    return;
+  }
+  wrap.innerHTML = '';
+  currentRequests.forEach((r, idx) => {
+    const el = document.createElement('div');
+    el.className = 'entry';
+    el.innerHTML = `
+      <div class="poster-col" style="width:100px;">
+        <div class="poster-preview" style="aspect-ratio:1; border-radius:16px; width:100px; height:100px;">
+          <img src="${r.dataUrl}">
+        </div>
+      </div>
+      <div class="fields">
+        <div style="font-weight:700; font-size:14px;">${esc(r.player)}</div>
+        <div class="entry-foot">
+          <div style="font-size:12px; color:var(--muted);">Issue #${r.number}</div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn small secondary" onclick="rejectAvatarRequest(${idx})">Reject</button>
+            <button class="btn small" onclick="approveAvatarRequest(${idx})">Approve</button>
+          </div>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(el);
+  });
+}
+
+async function approveAvatarRequest(idx){
+  const r = currentRequests[idx];
+  const gi = leaderboard.findIndex(p => p.player === r.player);
+  if(gi === -1){
+    alert(`No leaderboard player named "${r.player}" found — reject this request or rename the player first.`);
+    return;
+  }
+  try{
+    const base64 = r.dataUrl.split(',')[1];
+    const path = `avatars/${slug(r.player)}-${gi}.jpg`;
+    await ghPutFileSafe(path, base64, `Approve avatar request: ${r.player}`);
+    leaderboard[gi].avatar = path;
+    await ghCloseIssue(r.number);
+    renderLeaderboardAdmin();
+    currentRequests.splice(idx, 1);
+    $('reqCount').textContent = currentRequests.length;
+    renderAvatarRequests();
+    setStatus(saveStatus, `Approved avatar for ${r.player}. Don't forget to click "Save changes to GitHub" to publish it.`, 'ok');
+  }catch(err){
+    console.error(err);
+    alert('Failed to approve: ' + err.message);
+  }
+}
+
+async function rejectAvatarRequest(idx){
+  const r = currentRequests[idx];
+  if(!confirm(`Reject avatar request from ${r.player}?`)) return;
+  try{
+    await ghCloseIssue(r.number);
+    currentRequests.splice(idx, 1);
+    $('reqCount').textContent = currentRequests.length;
+    renderAvatarRequests();
+  }catch(err){
+    console.error(err);
+    alert('Failed to reject: ' + err.message);
+  }
+}
+
+$('refreshRequestsBtn').addEventListener('click', loadAvatarRequests);
+
+function clearAvatar(i){
+  leaderboard[i].avatar = null;
+  document.getElementById(`lbavatar-${i}`).innerHTML = 'No avatar';
+}
+
+// --- avatar crop tool ---
+let cropTarget = null;
+let cropImg = null;
+let cropScale = 1, cropMinScale = 1, cropOffX = 0, cropOffY = 0;
+let cropDragging = false, cropLastX = 0, cropLastY = 0;
+const cropCanvas = () => $('cropCanvas');
+
+function startCrop(i, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  cropTarget = i;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      cropImg = img;
+      const size = 320;
+      cropMinScale = Math.max(size / img.width, size / img.height);
+      cropScale = cropMinScale;
+      cropOffX = 0; cropOffY = 0;
+      $('zoomSlider').min = cropMinScale;
+      $('zoomSlider').max = cropMinScale * 4;
+      $('zoomSlider').step = (cropMinScale*4 - cropMinScale)/100;
+      $('zoomSlider').value = cropMinScale;
+      drawCrop();
+      $('cropOverlay').classList.add('open');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+  inputEl.value = '';
+}
+
+function drawCrop(){
+  const canvas = cropCanvas();
+  const ctx = canvas.getContext('2d');
+  const size = canvas.width;
+  ctx.clearRect(0,0,size,size);
+  if(!cropImg) return;
+  const w = cropImg.width * cropScale;
+  const h = cropImg.height * cropScale;
+  const x = size/2 - w/2 + cropOffX;
+  const y = size/2 - h/2 + cropOffY;
+  ctx.drawImage(cropImg, x, y, w, h);
+}
+
+cropCanvas().addEventListener('pointerdown', e => {
+  cropDragging = true;
+  cropLastX = e.clientX; cropLastY = e.clientY;
+  cropCanvas().setPointerCapture(e.pointerId);
+});
+cropCanvas().addEventListener('pointermove', e => {
+  if(!cropDragging) return;
+  const dx = e.clientX - cropLastX;
+  const dy = e.clientY - cropLastY;
+  cropLastX = e.clientX; cropLastY = e.clientY;
+  cropOffX += dx; cropOffY += dy;
+  drawCrop();
+});
+cropCanvas().addEventListener('pointerup', () => cropDragging = false);
+cropCanvas().addEventListener('pointerleave', () => cropDragging = false);
+
+$('zoomSlider').addEventListener('input', e => {
+  cropScale = parseFloat(e.target.value);
+  drawCrop();
+});
+
+$('cropClose').addEventListener('click', () => $('cropOverlay').classList.remove('open'));
+$('cropCancel').addEventListener('click', () => $('cropOverlay').classList.remove('open'));
+
+$('cropApply').addEventListener('click', async () => {
+  if(cropTarget === null || !cropImg) return;
+  const outSize = 400;
+  const out = document.createElement('canvas');
+  out.width = outSize; out.height = outSize;
+  const octx = out.getContext('2d');
+  const ratio = outSize / cropCanvas().width;
+  const w = cropImg.width * cropScale * ratio;
+  const h = cropImg.height * cropScale * ratio;
+  const x = outSize/2 - w/2 + cropOffX*ratio;
+  const y = outSize/2 - h/2 + cropOffY*ratio;
+  octx.drawImage(cropImg, x, y, w, h);
+
+  out.toBlob(async (blob) => {
+    const i = cropTarget;
+    const previewId = `lbavatar-${i}`;
+    document.getElementById(previewId).textContent = 'Uploading…';
+    try{
+      if(!blob) throw new Error('Could not generate image from crop.');
+      const b64 = await blobToBase64(blob);
+      const path = `avatars/${slug(leaderboard[i].player)}-${i}.jpg`;
+      await ghPutFileSafe(path, b64, `Update avatar: ${leaderboard[i].player}`);
+      leaderboard[i].avatar = path;
+      document.getElementById(previewId).innerHTML = `<img src="https://raw.githubusercontent.com/${api().owner}/${api().repo}/${api().branch}/${path}?t=${Date.now()}">`;
+    }catch(err){
+      console.error(err);
+      document.getElementById(previewId).textContent = 'Upload failed: ' + err.message;
+    }
+    $('cropOverlay').classList.remove('open');
+    cropTarget = null; cropImg = null;
+  }, 'image/jpeg', 0.92);
+});
+
+// --- save ---
+$('saveBtn').addEventListener('click', async () => {
+  setStatus(saveStatus, 'Saving…', 'busy');
+  try{
+    const gRes = await ghPutFileSafe('games.json', utf8ToBase64(JSON.stringify(games, null, 2)), 'Update games.json via admin panel');
+    const aRes = await ghPutFileSafe('apps.json', utf8ToBase64(JSON.stringify(apps, null, 2)), 'Update apps.json via admin panel');
+    const lRes = await ghPutFileSafe('leaderboard.json', utf8ToBase64(JSON.stringify(leaderboard, null, 2)), 'Update leaderboard.json via admin panel');
+    const wRes = await ghPutFileSafe('wallpapers.json', utf8ToBase64(JSON.stringify(wallpapers, null, 2)), 'Update wallpapers.json via admin panel');
+    const bRes = await ghPutFileSafe('banners.json', utf8ToBase64(JSON.stringify({categories: bannerCategories, items: banners}, null, 2)), 'Update banners.json via admin panel');
+    gamesSha = gRes.content.sha;
+    appsSha = aRes.content.sha;
+    leaderboardSha = lRes.content.sha;
+    wallpapersSha = wRes.content.sha;
+    bannersSha = bRes.content.sha;
+    setStatus(saveStatus, 'Saved! Changes are live on your site (may take a minute to update).', 'ok');
+  }catch(err){
+    console.error(err);
+    setStatus(saveStatus, 'Error saving: ' + err.message, 'err');
+  }
+});
+</script>
+</body>
+</html>
