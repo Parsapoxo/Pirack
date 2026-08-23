@@ -488,9 +488,45 @@
     margin-bottom:8px;
   }
   .equipped-banner-wrap img{ width:100%; height:100%; object-fit:cover; }
-  .lb-row-banner{ display:flex; flex-direction:column; }
-  .lb-row-banner .equipped-banner-wrap{ margin-bottom:0; border-radius:12px 12px 0 0; }
-  .lb-row-banner .lb-row{ border-radius:0 0 12px 12px; border-top:none; }
+
+  .lb-banner-strip{
+    display:flex;
+    align-items:stretch;
+    aspect-ratio:6/1;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    margin-bottom:10px;
+  }
+  .lb-banner-img{
+    position:relative;
+    flex:5 1 0;
+    min-width:0;
+    background:var(--surface-2);
+  }
+  .lb-banner-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .lb-banner-overlay{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 4%;
+    background:linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.55) 100%);
+  }
+  .lb-banner-namecol{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .lb-banner-namecol .lb-player{ color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6); }
+  .lb-banner-namecol .lb-title{ text-shadow:0 1px 3px rgba(0,0,0,0.6); }
+  .lb-banner-statcol{ text-align:right; flex-shrink:0; }
+  .lb-banner-statcol .bscore{ color:#fff; font-family:'Orbitron',sans-serif; font-weight:800; font-size:13px; text-shadow:0 1px 3px rgba(0,0,0,0.6); }
+  .lb-banner-statcol .bprize{ color:var(--gold); font-family:'Orbitron',sans-serif; font-weight:800; font-size:12px; text-shadow:0 1px 3px rgba(0,0,0,0.6); }
+  .lb-banner-avatar{
+    flex:1 1 0;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Orbitron',sans-serif; font-weight:700; color:var(--muted);
+  }
+  .lb-banner-avatar img{ width:100%; height:100%; object-fit:cover; }
+
   .coming-soon-panel .icon{ font-size:32px; margin-bottom:12px; }
   .coming-soon-panel .label{ font-family:'Orbitron',sans-serif; font-weight:800; letter-spacing:.05em; color:var(--gold); font-size:13px; text-transform:uppercase; }
   .view-tabs .thumb{
@@ -994,7 +1030,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v8.4</div>
+<div class="version-tag">v8.5</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1174,11 +1210,10 @@ async function renderLeaderboard(){
     if(!selected) return '';
     return `<div class="lb-title tier-${selected.tier}"><span class="tname">${esc(selected.name)}</span></div>`;
   }
-  function playerBannerHTML(p){
+  function getPlayerBanner(p){
     const data = allPlayerData[slug(p.player)];
     const selected = data && data.selectedBanner ? findBannerById(data.selectedBanner) : null;
-    if(!selected || !selected.file) return '';
-    return `<div class="equipped-banner-wrap"><img src="${selected.file}" alt="${esc(selected.name)}"></div>`;
+    return selected && selected.file ? selected : null;
   }
 
   const podiumOrder = [top3[1], top3[0], top3[2]]; // rank2, rank1, rank3 (missing ones skipped)
@@ -1198,6 +1233,43 @@ async function renderLeaderboard(){
     `;
   }).join('');
 
+  function rowHTML(p, i){
+    const banner = getPlayerBanner(p);
+    const prize = p.prize ?? (p.score||0)*5;
+    if(banner){
+      return `
+        <div class="lb-banner-strip">
+          <div class="lb-banner-img">
+            <img src="${banner.file}" alt="${esc(banner.name)}">
+            <div class="lb-banner-overlay">
+              <div class="lb-banner-namecol">
+                <div class="lb-player">${esc(p.player)}</div>
+                ${playerTitleHTML(p)}
+              </div>
+              <div class="lb-banner-statcol">
+                <div class="bscore">🏆 ${p.score} Score</div>
+                <div class="bprize">💎 ${prize} Prize</div>
+              </div>
+            </div>
+          </div>
+          <div class="lb-banner-avatar">${avatarHTML(p)}</div>
+        </div>
+      `;
+    }
+    return `
+      <div class="lb-row">
+        <div class="lb-rank">🏆 ${i+4}</div>
+        <div class="lb-avatar">${avatarHTML(p)}</div>
+        <div class="lb-player-col">
+          <div class="lb-player">${esc(p.player)}</div>
+          ${playerTitleHTML(p)}
+        </div>
+        <div class="lb-col-score">${p.score}</div>
+        <div class="lb-col-prize">💎 ${prize}</div>
+      </div>
+    `;
+  }
+
   const listHTML = rest.length ? `
     <div class="lb-head">
       <div style="width:26px;"></div>
@@ -1207,21 +1279,7 @@ async function renderLeaderboard(){
       <div style="width:90px; text-align:right;">Prize</div>
     </div>
     <div class="lb-table">
-      ${rest.map((p, i) => `
-        <div class="lb-row-banner">
-          ${playerBannerHTML(p)}
-          <div class="lb-row">
-            <div class="lb-rank">🏆 ${i+4}</div>
-            <div class="lb-avatar">${avatarHTML(p)}</div>
-            <div class="lb-player-col">
-              <div class="lb-player">${esc(p.player)}</div>
-              ${playerTitleHTML(p)}
-            </div>
-            <div class="lb-col-score">${p.score}</div>
-            <div class="lb-col-prize">💎 ${p.prize ?? (p.score||0)*5}</div>
-          </div>
-        </div>
-      `).join('')}
+      ${rest.map((p, i) => rowHTML(p, i)).join('')}
     </div>
   ` : '';
 
