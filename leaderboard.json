@@ -30,9 +30,23 @@
     "password": "mxHVQTxPNhR7"
   },
   {
-    "player": "This is Test",
+    "player": "HeHeHe",
     "score": 0,
     "avatar": "avatars/this-is-test-5.jpg",
+    "prize": 10000,
+    "password": "12345678"
+  },
+  {
+    "player": "I'm Batman",
+    "score": 0,
+    "avatar": "avatars/new-player-6.jpg",
+    "prize": 10000,
+    "password": "12345678"
+  },
+  {
+    "player": "Nigger Eleven",
+    "score": 0,
+    "avatar": "avatars/new-player-7.jpg",
     "prize": 10000,
     "password": "12345678"
   }
