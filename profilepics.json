@@ -1,1 +1,82 @@
-{"categories":[],"items":[]}
+{
+  "categories": [
+    {
+      "id": "avcat-1787830510570",
+      "name": "Overwatch Halloween"
+    }
+  ],
+  "items": [
+    {
+      "id": "av-1787830512403",
+      "name": "Halloween Terror 2017",
+      "categoryId": "avcat-1787830510570",
+      "color": "champion",
+      "price": 1100,
+      "file": "avatars-shop/new-avatar-0.png"
+    },
+    {
+      "id": "av-1787830665052",
+      "name": "Halloween Terror 2016",
+      "categoryId": "avcat-1787830510570",
+      "color": "legendary",
+      "price": 900,
+      "file": "avatars-shop/new-avatar-1.png"
+    },
+    {
+      "id": "av-1787830687901",
+      "name": "Halloween Terror 2023",
+      "categoryId": "avcat-1787830510570",
+      "color": "legendary",
+      "price": 900,
+      "file": "avatars-shop/new-avatar-2.png"
+    },
+    {
+      "id": "av-1787830721608",
+      "name": "Halloween Terror 2022",
+      "categoryId": "avcat-1787830510570",
+      "color": "legendary",
+      "price": 900,
+      "file": "avatars-shop/new-avatar-3.png"
+    },
+    {
+      "id": "av-1787830737688",
+      "name": "Clown",
+      "categoryId": "avcat-1787830510570",
+      "color": "epic",
+      "price": 700,
+      "file": "avatars-shop/new-avatar-4.png"
+    },
+    {
+      "id": "av-1787830759811",
+      "name": "Toxic",
+      "categoryId": "avcat-1787830510570",
+      "color": "epic",
+      "price": 700,
+      "file": "avatars-shop/militia-5.png"
+    },
+    {
+      "id": "av-1787830760120",
+      "name": "Skeleton",
+      "categoryId": "avcat-1787830510570",
+      "color": "epic",
+      "price": 700,
+      "file": "avatars-shop/new-avatar-6.png"
+    },
+    {
+      "id": "av-1787830760556",
+      "name": "Ragdoll",
+      "categoryId": "avcat-1787830510570",
+      "color": "epic",
+      "price": 700,
+      "file": "avatars-shop/new-avatar-7.png"
+    },
+    {
+      "id": "av-1787830760905",
+      "name": "Militia",
+      "categoryId": "avcat-1787830510570",
+      "color": "rare",
+      "price": 500,
+      "file": "avatars-shop/new-avatar-8.png"
+    }
+  ]
+}
