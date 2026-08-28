@@ -1,21 +1,24 @@
 [
   {
     "player": "Parsapoxo",
-    "score": 60,
+    "score": 128,
     "avatar": "avatars/parsapoxo-0.jpg",
-    "password": "P68BSccGZ8nT"
+    "password": "P68BSccGZ8nT",
+    "prize": 640
   },
   {
     "player": "Sobhan Jackson",
-    "score": 120,
+    "score": 154,
     "avatar": "avatars/sobhan-jackson-1.jpg",
-    "password": "D8uXffJAgTHu"
+    "password": "D8uXffJAgTHu",
+    "prize": 769
   },
   {
     "player": "Amir-M-R",
-    "score": 60,
+    "score": 86,
     "avatar": "avatars/amir-m-r-2.jpg",
-    "password": "9EFSuua4C5Jx"
+    "password": "9EFSuua4C5Jx",
+    "prize": 430
   },
   {
     "player": "Imani",
