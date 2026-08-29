@@ -10,7 +10,18 @@
     ],
     "players": "1–8 Online Co-op",
     "size": "25 GB",
-    "appid": 1943950
+    "appid": 1943950,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part01.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part02.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part03.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part04.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part05.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part06.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part07.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part08.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part09.rar"
+    ]
   },
   {
     "name": "Outbound",
@@ -23,7 +34,11 @@
     ],
     "players": "1–4 Online Co-op",
     "size": "5 GB",
-    "appid": 2681030
+    "appid": 2681030,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Outbound.v1.0.2.797/Outbound.v1.0.2.797.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Outbound.v1.0.2.797/Outbound.v1.0.2.797.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "Raft",
@@ -52,7 +67,11 @@
     ],
     "players": "1–4 Online Co-op",
     "size": "4 GB",
-    "appid": 2567870
+    "appid": 2567870,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Chained.Together.v1.8.2/Chained.Together.v1.8.2.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Chained.Together.v1.8.2/Chained.Together.v1.8.2.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "Buckshot Roulette",
@@ -110,7 +129,12 @@
     ],
     "players": "1–4 Online Co-op",
     "size": "7.2 GB",
-    "appid": 2968420
+    "appid": 2968420,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part3.rar"
+    ]
   },
   {
     "name": "Counter-Strike 2",
@@ -183,7 +207,11 @@
     ],
     "players": "Online",
     "size": "2.75 GB",
-    "appid": 1167630
+    "appid": 1167630,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Teardown.Build.03122026/Teardown.Build.03122026.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Teardown.Build.03122026/Teardown.Build.03122026.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "ARC Raiders",
@@ -226,7 +254,11 @@
     ],
     "players": "1–4 Online Co-op",
     "size": "3.4 GB",
-    "appid": 548430
+    "appid": 548430,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Deep.Rock.Galactic.v1.40.134249.0/Deep.Rock.Galactic.v1.40.134249.0.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Deep.Rock.Galactic.v1.40.134249.0/Deep.Rock.Galactic.v1.40.134249.0.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "Overcooked! All You Can Eat",
@@ -240,7 +272,12 @@
     ],
     "players": "1–4 Online & Local Co-op",
     "size": "~15 GB",
-    "appid": 1243830
+    "appid": 1243830,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Overcooked.All.You.Can.Eat.v1277/Overcooked.All.You.Can.Eat.v1277.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Overcooked.All.You.Can.Eat.v1277/Overcooked.All.You.Can.Eat.v1277.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Overcooked.All.You.Can.Eat.v1277/Overcooked.All.You.Can.Eat.v1277.PirateGames.ir.part3.rar"
+    ]
   },
   {
     "name": "Sons of the Forest",
@@ -254,7 +291,13 @@
     ],
     "players": "1–8 Online Co-op",
     "size": "10.8 GB",
-    "appid": 1326470
+    "appid": 1326470,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Sons.Of.The.Forest.Build.03102025/Sons.Of.The.Forest.Build.03102025.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Sons.Of.The.Forest.Build.03102025/Sons.Of.The.Forest.Build.03102025.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Sons.Of.The.Forest.Build.03102025/Sons.Of.The.Forest.Build.03102025.PirateGames.ir.part3.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Sons.Of.The.Forest.Build.03102025/Sons.Of.The.Forest.Build.03102025.PirateGames.ir.part4.rar"
+    ]
   },
   {
     "name": "Liar's Bar",
@@ -269,7 +312,11 @@
     "players": "1–4 Online Multiplayer",
     "size": "4.8 GB",
     "appid": 3097560,
-    "isNew": true
+    "isNew": false,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Liars.Bar.v0.98/Liars.Bar.v0.98.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Liars.Bar.v0.98/Liars.Bar.v0.98.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "Big Walk",
@@ -284,7 +331,11 @@
     "players": "2–12 Online Co-op",
     "size": "3 GB",
     "appid": 1478500,
-    "isNew": true
+    "isNew": false,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.4.8.2608070648/Big.Walk.v1.4.8.2608070648.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.4.8.2608070648/Big.Walk.v1.4.8.2608070648.PirateGames.ir.part2.rar"
+    ]
   },
   {
     "name": "Gang Beasts",
@@ -395,7 +446,15 @@
     ],
     "players": "1–4 Online Co-op",
     "size": "~15 GB",
-    "appid": 8980
+    "appid": 8980,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part3.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part4.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part5.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part6.rar"
+    ]
   },
   {
     "name": "Borderlands: The Pre-Sequel",
