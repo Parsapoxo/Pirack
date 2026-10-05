@@ -280,6 +280,24 @@
     ]
   },
   {
+    "name": "The Forest",
+    "poster": "posters/the-forest.jpg",
+    "steam": "https://store.steampowered.com/app/242760/",
+    "dl": "https://www.pirategames.ir/online/the-forest/",
+    "genres": [
+      "Survival",
+      "Horror",
+      "Open World"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "2.5 GB",
+    "appid": 242760,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/The%20Forest%20v1.12/The%20Forest%20v1.12.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/The%20Forest%20v1.12/The%20Forest%20v1.12.part2.rar"
+    ]
+  },
+  {
     "name": "Sons of the Forest",
     "poster": "posters/sons-of-the-forest.jpg",
     "steam": "https://store.steampowered.com/app/1326470/",
@@ -549,23 +567,5 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
-  },
-  {
-    "name": "The Forest",
-    "poster": "posters/the-forest.jpg",
-    "steam": "https://store.steampowered.com/app/242760/",
-    "dl": "https://www.pirategames.ir/online/the-forest/",
-    "genres": [
-      "Survival",
-      "Horror",
-      "Open World"
-    ],
-    "players": "1–4 Online Co-op",
-    "size": "2.5 GB",
-    "appid": 242760,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/The%20Forest%20v1.12/The%20Forest%20v1.12.part1.rar",
-      "https://dl2.pirategames.ir/dl2/Online/The%20Forest%20v1.12/The%20Forest%20v1.12.part2.rar"
-    ]
   }
 ]
