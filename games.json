@@ -103,7 +103,10 @@
     "size": "446 MB",
     "appid": 4108000,
     "isNew": false,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Machine.Party.v1.0.6/Machine.Party.v1.0.6.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Machine.Party.v1.0.6/Machine.Party.v1.0.6.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Machine.Party.B24734326/Machine.Party.B24734326.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Party Animals",
