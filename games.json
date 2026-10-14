@@ -86,7 +86,10 @@
     "players": "1–4 Online Multiplayer",
     "size": "340 MB",
     "appid": 2835570,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Buckshot.Roulette.Build.16736575/Buckshot.Roulette.Build.16736575.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Buckshot.Roulette.Build.16736575/Buckshot.Roulette.Build.16736575.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Buckshot.Roulette.Build.16736575/Buckshot.Roulette.Build.16736575.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Machine Party",
@@ -134,9 +137,10 @@
     "size": "7.2 GB",
     "appid": 2968420,
     "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part1.rar",
-      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part2.rar",
-      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.1.059/PowerWash.Simulator.2.v1.1.059.PirateGames.ir.part3.rar"
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.3.0.50/PowerWash.Simulator.2.v1.3.0.50.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.3.0.50/PowerWash.Simulator.2.v1.3.0.50.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.3.0.50/PowerWash.Simulator.2.v1.3.0.50.PirateGames.ir.part3.rar",
+      "https://dl2.pirategames.ir/dl2/Online/PowerWash.Simulator.2.v1.3.0.50/PowerWash.Simulator.2.v1.3.0.50.PirateGames.ir.part4.rar"
     ]
   },
   {
@@ -149,7 +153,7 @@
       "Competitive"
     ],
     "players": "Online Multiplayer",
-    "size": "35 GB",
+    "size": "60 GB",
     "appid": 730,
     "free": false
   },
@@ -166,7 +170,10 @@
     "players": "1–4 Online Co-op",
     "size": "600 MB",
     "appid": 1966720,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Lethal.Company.v81/Lethal.Company.v81.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Lethal.Company.v81/Lethal.Company.v81.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Lethal.Company.v81/Lethal.Company.v81.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Fortnite",
@@ -178,7 +185,7 @@
       "Shooter"
     ],
     "players": "Online Multiplayer",
-    "size": "~60 GB",
+    "size": "~80 GB",
     "appid": null,
     "free": false,
     "storeLabel": "Epic Games"
@@ -194,9 +201,12 @@
       "Physics"
     ],
     "players": "1–4 Online Co-op",
-    "size": "1.7 GB",
+    "size": "2.8 GB",
     "appid": 3902800,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/RV.There.Yet.v1.2.17120/RV.There.Yet.v1.2.17120.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/RV.There.Yet.v1.2.17120/RV.There.Yet.v1.2.17120.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/RV.There.Yet.v1.3.20488/RV.There.Yet.v1.3.20488.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Teardown",
@@ -209,7 +219,7 @@
       "Puzzle"
     ],
     "players": "Online",
-    "size": "2.75 GB",
+    "size": "3.3 GB",
     "appid": 1167630,
     "dl2Parts": [
       "https://dl2.pirategames.ir/dl2/Online/Teardown.Build.03122026/Teardown.Build.03122026.PirateGames.ir.part1.rar",
@@ -244,7 +254,10 @@
     "players": "1–6 Online Co-op",
     "size": "572 MB",
     "appid": 3241660,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/R.E.P.O.v0.4.4.3/R.E.P.O.v0.4.4.3.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/R.E.P.O.v0.4.4.3/R.E.P.O.v0.4.4.3.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/R.E.P.O.v0.4.4.3/R.E.P.O.v0.4.4.3.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Deep Rock Galactic",
@@ -354,8 +367,8 @@
     "appid": 1478500,
     "isNew": false,
     "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.4.8.2608070648/Big.Walk.v1.4.8.2608070648.PirateGames.ir.part1.rar",
-      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.4.8.2608070648/Big.Walk.v1.4.8.2608070648.PirateGames.ir.part2.rar"
+      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.5.1.2608271531/Big.Walk.v1.5.1.2608271531.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Big.Walk.v1.5.1.2608271531/Big.Walk.v1.5.1.2608271531.PirateGames.ir.part2.rar"
     ]
   },
   {
@@ -372,7 +385,10 @@
     "size": "832 MB",
     "appid": 285900,
     "isNew": false,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Gang.Beasts.v1.28.1687.0/Gang.Beasts.v1.28.1687.0.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Gang.Beasts.v1.28.1687.0/Gang.Beasts.v1.28.1687.0.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Gang.Beasts.v1.28.1687.0/Gang.Beasts.v1.28.1687.0.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Make Way",
@@ -388,7 +404,10 @@
     "size": "437 MB",
     "appid": 1445790,
     "isNew": false,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Make.Way.Build.04.08.2025/Make.Way.Build.04.08.2025.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Make.Way.Build.04.08.2025/Make.Way.Build.04.08.2025.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Make.Way.Build.04.08.2025/Make.Way.Build.04.08.2025.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "Human: Fall Flat",
@@ -404,7 +423,10 @@
     "size": "1.8 GB",
     "appid": 477160,
     "isNew": false,
-    "dl2": "https://dl2.pirategames.ir/dl2/Online/Human.Fall.Flat.v1096141/Human.Fall.Flat.v1096141.PirateGames.ir.rar"
+    "dl2": "https://dl2.pirategames.ir/dl2/Online/Human.Fall.Flat.v1096141/Human.Fall.Flat.v1096141.PirateGames.ir.rar",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Human.Fall.Flat.v1096141/Human.Fall.Flat.v1096141.PirateGames.ir.rar"
+    ]
   },
   {
     "name": "PICO PARK",
