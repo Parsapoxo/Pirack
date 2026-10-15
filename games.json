@@ -592,5 +592,24 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
+  },
+  {
+    "name": "Dumb Ways to Build",
+    "poster": "posters/dumb-ways-to-build.jpg",
+    "steam": "https://store.steampowered.com/app/4412320/",
+    "dl": "https://www.pirategames.ir/online/dumb-ways-to-build-online/",
+    "genres": [
+      "Action",
+      "Comedy",
+      "Physics",
+      "Co-op"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "2.1 GB",
+    "appid": 4412320,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Dumb.Ways.to.Build.v1.2.70/Dumb.Ways.to.Build.v1.2.70.PirateGames.ir.rar"
+    ],
+    "isNew": true
   }
 ]
