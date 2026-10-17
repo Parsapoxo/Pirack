@@ -243,7 +243,7 @@
   },
   {
     "name": "R.E.P.O.",
-    "poster": "posters/repo.jpg",
+    "poster": "posters/r-e-p-o.jpg",
     "steam": "https://store.steampowered.com/app/3241660/",
     "dl": "https://www.pirategames.ir/online/r-e-p-o-online/",
     "genres": [
@@ -477,6 +477,25 @@
     "dl2": "https://dl2.pirategames.ir/dl2/Online/Rubber.Bandits.v107.0.22603.0/Rubber.Bandits.v107.0.22603.0.PirateGames.ir.rar"
   },
   {
+    "name": "Dumb Ways to Build",
+    "poster": "posters/dumb-ways-to-build.jpg",
+    "steam": "https://store.steampowered.com/app/4412320/",
+    "dl": "https://www.pirategames.ir/online/dumb-ways-to-build-online/",
+    "genres": [
+      "Action",
+      "Comedy",
+      "Physics",
+      "Co-op"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "2.1 GB",
+    "appid": 4412320,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Dumb.Ways.to.Build.v1.2.70/Dumb.Ways.to.Build.v1.2.70.PirateGames.ir.rar"
+    ],
+    "isNew": true
+  },
+  {
     "name": "Borderlands GOTY Enhanced",
     "poster": "posters/borderlands-goty-enhanced.jpg",
     "steam": "https://store.steampowered.com/app/8980/",
@@ -594,21 +613,20 @@
     "comingSoon": true
   },
   {
-    "name": "Dumb Ways to Build",
-    "poster": "posters/dumb-ways-to-build.jpg",
-    "steam": "https://store.steampowered.com/app/4412320/",
-    "dl": "https://www.pirategames.ir/online/dumb-ways-to-build-online/",
+    "name": "Over The Hill",
+    "poster": "posters/over-the-hill.jpg",
+    "steam": "https://store.steampowered.com/app/2929250/over_the_hill/",
+    "dl": "https://www.pirategames.ir/online/over-the-hill-online/",
     "genres": [
-      "Action",
-      "Comedy",
-      "Physics",
-      "Co-op"
+      "Driving",
+      "Open World",
+      "Exploration"
     ],
     "players": "1–4 Online Co-op",
-    "size": "2.1 GB",
-    "appid": 4412320,
+    "size": "2.5 GB",
+    "appid": 2929250,
     "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Dumb.Ways.to.Build.v1.2.70/Dumb.Ways.to.Build.v1.2.70.PirateGames.ir.rar"
+      "https://dl2.pirategames.ir/dl2/Online/over.the.hill.Build.14102026/over.the.hill.Build.14102026.PirateGames.ir.rar"
     ],
     "isNew": true
   }
