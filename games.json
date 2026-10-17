@@ -629,5 +629,23 @@
       "https://dl2.pirategames.ir/dl2/Online/over.the.hill.Build.14102026/over.the.hill.Build.14102026.PirateGames.ir.rar"
     ],
     "isNew": true
+  },
+  {
+    "name": "Twisted Party",
+    "poster": "posters/new-game.jpg",
+    "steam": "https://store.steampowered.com/app/4332910/",
+    "dl": "https://www.pirategames.ir/online/twisted-party-online/",
+    "genres": [
+      "Party",
+      "Horror",
+      "Action"
+    ],
+    "players": "2–8 Online Multiplayer",
+    "size": "255 MB",
+    "appid": 4332910,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Twisted.Party.v1.0.7/Twisted.Party.v1.0.7.PirateGames.ir.rar"
+    ],
+    "isNew": true
   }
 ]
