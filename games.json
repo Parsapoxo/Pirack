@@ -647,5 +647,23 @@
       "https://dl2.pirategames.ir/dl2/Online/Twisted.Party.v1.0.7/Twisted.Party.v1.0.7.PirateGames.ir.rar"
     ],
     "isNew": true
+  },
+  {
+    "name": "Stick Fight: The Game",
+    "poster": "posters/stick-fight-the-game.jpg",
+    "steam": "https://store.steampowered.com/app/674940/",
+    "dl": "https://www.pirategames.ir/online/download-stick-fight-game-for-pc/",
+    "genres": [
+      "Fighting",
+      "Party",
+      "Physics"
+    ],
+    "players": "2–4 Online & Local Multiplayer",
+    "size": "400 MB",
+    "appid": 674940,
+    "trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256694999/movie480.webm?t=1506615966#t=2",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Stick.Fight.build.01182021/Stick.Fight.build.01182021.rar"
+    ]
   }
 ]
