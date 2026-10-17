@@ -667,7 +667,8 @@
     "trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256694999/movie480.webm?t=1506615966#t=2",
     "dl2Parts": [
       "https://dl2.pirategames.ir/dl2/Online/Stick.Fight.build.01182021/Stick.Fight.build.01182021.rar"
-    ]
+    ],
+    "isNew": true
   },
   {
     "name": "Moving Out 2",
@@ -686,6 +687,7 @@
     "dl2Parts": [
       "https://dl2.pirategames.ir/dl2/Online/Moving.Out.2.v1.3.311/Moving.Out.2.v1.3.311.PirateGames.ir.rar"
     ],
-    "trailer": "https://video.akamai.steamstatic.com/store_trailers/256961287/movie480_vp9.webm?t=1692194237#t=2"
+    "trailer": "https://video.akamai.steamstatic.com/store_trailers/256961287/movie480_vp9.webm?t=1692194237#t=2",
+    "isNew": true
   }
 ]
