@@ -233,6 +233,78 @@
       "color": "rare",
       "price": 600,
       "file": "banners/new-banner-26.png"
+    },
+    {
+      "id": "bn-1792407906083",
+      "name": "Allegiances",
+      "categoryId": "cat-1787418282082",
+      "color": "champion",
+      "price": 1200,
+      "file": "banners/new-banner-27.png"
+    },
+    {
+      "id": "bn-1792407906808",
+      "name": "Injection",
+      "categoryId": "cat-1787418282082",
+      "color": "legendary",
+      "price": 1000,
+      "file": "banners/new-banner-28.png"
+    },
+    {
+      "id": "bn-1792407907381",
+      "name": "Tools Of The Trade",
+      "categoryId": "cat-1787418282082",
+      "color": "rare",
+      "price": 600,
+      "file": "banners/new-banner-29.png"
+    },
+    {
+      "id": "bn-1792407907908",
+      "name": "Bacon Sizzle",
+      "categoryId": "cat-1787418282082",
+      "color": "rare",
+      "price": 900,
+      "file": "banners/new-banner-30.webm"
+    },
+    {
+      "id": "bn-1792407908425",
+      "name": "Burnin Cash",
+      "categoryId": "cat-1787418282082",
+      "color": "epic",
+      "price": 1100,
+      "file": "banners/new-banner-31.webm"
+    },
+    {
+      "id": "bn-1792407908807",
+      "name": "Field Research Master",
+      "categoryId": "cat-1787418282082",
+      "color": "rare",
+      "price": 900,
+      "file": "banners/new-banner-32.webm"
+    },
+    {
+      "id": "bn-1792408166168",
+      "name": "In Sync",
+      "categoryId": "cat-1787418282082",
+      "color": null,
+      "price": 1100,
+      "file": "banners/new-banner-33.webm"
+    },
+    {
+      "id": "bn-1792408166321",
+      "name": "Overclocked",
+      "categoryId": "cat-1787418282082",
+      "color": "epic",
+      "price": 1100,
+      "file": "banners/in-sync-34.webm"
+    },
+    {
+      "id": "bn-1792408166815",
+      "name": "Prison Tat",
+      "categoryId": "cat-1787418282082",
+      "color": "legendary",
+      "price": 1300,
+      "file": "banners/new-banner-35.webm"
     }
   ]
 }
