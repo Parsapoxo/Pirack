@@ -1223,7 +1223,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v4.9.0</div>
+<div class="version-tag">v4.9.1</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1570,7 +1570,8 @@ function isVideoFile(f){ return /\.(mp4|webm)(\?.*)?$/i.test(f || ''); }
 function bannerMediaHTML(file, alt, eager){
   const f = esc(file);
   if(isVideoFile(file)){
-    return `<video class="bm" src="${f}#t=0.001" muted loop autoplay playsinline disablepictureinpicture preload="${eager ? 'auto' : 'metadata'}" aria-label="${esc(alt)}" onloadeddata="this.parentElement.classList.add('loaded')" onerror="bmFailed(this)"></video>`;
+    // No src yet: the loading queue below starts each video only when it is near the screen.
+    return `<video class="bm" data-src="${f}" muted loop playsinline disablepictureinpicture preload="none" aria-label="${esc(alt)}" onloadeddata="this.parentElement.classList.add('loaded')" onerror="bmFailed(this)"></video>`;
   }
   const gif = /\.gif(\?.*)?$/i.test(file);
   return `<img class="bm${gif ? ' bm-gif' : ''}" src="${f}" data-full="${f}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" onload="bmLoaded(this)">`;
@@ -1595,13 +1596,50 @@ function bmLoaded(img){
     if(img.dataset.vis === '0'){ img.dataset.live = '0'; img.src = img.dataset.still; }
   }catch(e){ /* no still frame; GIF just keeps playing */ }
 }
+// Video banners load a few at a time, top of the page first, instead of all at once.
+const VIDEO_MAX_PARALLEL = 3;
+const _videoQueue = [];
+let _videoActive = 0;
+function startVideo(v, onDone){
+  let finished = false;
+  const done = () => {
+    if(finished) return;
+    finished = true;
+    onDone();
+  };
+  v.addEventListener('loadeddata', () => {
+    if(v.dataset.vis === '1'){ const p = v.play(); if(p && p.catch) p.catch(() => {}); }
+    done();
+  }, { once:true });
+  v.addEventListener('error', done, { once:true });
+  setTimeout(done, 90000);            // a stuck video never blocks the queue
+  v.dataset.started = '1';
+  v.preload = 'auto';
+  v.src = v.dataset.src;
+  v.load();
+}
+function pumpVideoQueue(){
+  while(_videoActive < VIDEO_MAX_PARALLEL && _videoQueue.length){
+    const v = _videoQueue.shift();
+    if(!v.isConnected || v.dataset.vis !== '1'){ v.dataset.queued = ''; continue; }   // scrolled away while waiting
+    _videoActive++;
+    startVideo(v, () => { _videoActive--; pumpVideoQueue(); });
+  }
+}
+
 const bmObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(entries => {
   entries.forEach(en => {
     const el = en.target;
     el.dataset.vis = en.isIntersecting ? '1' : '0';
     if(el.tagName === 'VIDEO'){
-      if(en.isIntersecting){ const p = el.play(); if(p && p.catch) p.catch(() => {}); }
-      else el.pause();
+      if(en.isIntersecting){
+        if(!el.dataset.started){
+          if(!el.dataset.queued){ el.dataset.queued = '1'; _videoQueue.push(el); }
+          pumpVideoQueue();
+        } else if(el.readyState >= 2){
+          const p = el.play(); if(p && p.catch) p.catch(() => {});
+        }
+      } else el.pause();
     } else if(el.classList.contains('bm-gif')){
       if(en.isIntersecting){
         if(el.dataset.live === '0'){ el.dataset.live = '1'; el.src = el.dataset.full; }
@@ -1614,7 +1652,7 @@ const bmObserver = ('IntersectionObserver' in window) ? new IntersectionObserver
 function observeBannerMedia(root){
   root.querySelectorAll('.bm').forEach(el => {
     if(bmObserver) bmObserver.observe(el);
-    else if(el.tagName === 'VIDEO'){ el.autoplay = true; const p = el.play(); if(p && p.catch) p.catch(() => {}); }
+    else if(el.tagName === 'VIDEO'){ el.src = el.dataset.src; el.autoplay = true; const p = el.play(); if(p && p.catch) p.catch(() => {}); }
   });
 }
 const _bannerPreloaded = [];

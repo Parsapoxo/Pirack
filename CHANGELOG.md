@@ -19,6 +19,16 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [4.9.1] - 2026-10-19
+
+### Fixed
+- Video banners (`.webm` / `.mp4`) took up to a minute or more to appear, because every video
+  in the shop started downloading at the same time and shared the connection. Videos now
+  start loading only when they are near the screen, at most three at a time, from the top of
+  the page down. Videos that were scrolled past while waiting are skipped.
+- Removed the `#t=0.001` start-time hint and the `autoplay` attribute added in 4.6.1; playback
+  is now started once a video's first frame is ready and it is on screen.
+
 ## [4.9.0] - 2026-10-19
 
 ### Added
