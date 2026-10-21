@@ -21,7 +21,9 @@
       "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part07.rar",
       "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part08.rar",
       "https://dl2.pirategames.ir/dl2/Online/Escape.The.Backrooms.v1.3.2/Escape.The.Backrooms.v1.3.2.PirateGames.ir.part09.rar"
-    ]
+    ],
+    "free": false,
+    "comingSoon": false
   },
   {
     "name": "Outbound",
@@ -494,7 +496,8 @@
       "https://dl2.pirategames.ir/dl2/Online/Dumb.Ways.to.Build.v1.2.70/Dumb.Ways.to.Build.v1.2.70.PirateGames.ir.rar"
     ],
     "isNew": true,
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Dumb.Ways.to.Build.mp4#t=2"
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Dumb.Ways.to.Build.mp4#t=2",
+    "newAt": 1792602758620
   },
   {
     "name": "Borderlands GOTY Enhanced",
@@ -517,7 +520,9 @@
       "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part4.rar",
       "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part5.rar",
       "https://dl2.pirategames.ir/dl2/Online/Borderlands.GOTY.Enhanced.v1.0/Borderlands.GOTY.Enhanced.v1.0.PirateGames.ir.part6.rar"
-    ]
+    ],
+    "released": true,
+    "releasedAt": 1792603019700
   },
   {
     "name": "Borderlands: The Pre-Sequel",
@@ -630,7 +635,8 @@
       "https://dl2.pirategames.ir/dl2/Online/over.the.hill.Build.14102026/over.the.hill.Build.14102026.PirateGames.ir.rar"
     ],
     "isNew": true,
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/over.the.hill.mp4#t=2"
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/over.the.hill.mp4#t=2",
+    "newAt": 1792602758620
   },
   {
     "name": "Twisted Party",
@@ -649,7 +655,8 @@
       "https://dl2.pirategames.ir/dl2/Online/Twisted.Party.v1.0.7/Twisted.Party.v1.0.7.PirateGames.ir.rar"
     ],
     "isNew": true,
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Twisted.Party.mp4#t=2"
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Twisted.Party.mp4#t=2",
+    "newAt": 1792602758620
   },
   {
     "name": "Stick Fight: The Game",
@@ -668,7 +675,8 @@
     "dl2Parts": [
       "https://dl2.pirategames.ir/dl2/Online/Stick.Fight.build.01182021/Stick.Fight.build.01182021.rar"
     ],
-    "isNew": true
+    "isNew": true,
+    "newAt": 1792602758620
   },
   {
     "name": "Moving Out 2",
@@ -688,6 +696,50 @@
       "https://dl2.pirategames.ir/dl2/Online/Moving.Out.2.v1.3.311/Moving.Out.2.v1.3.311.PirateGames.ir.rar"
     ],
     "trailer": "https://video.akamai.steamstatic.com/store_trailers/256961287/movie480_vp9.webm?t=1692194237#t=2",
-    "isNew": true
+    "isNew": true,
+    "newAt": 1792602758620
+  },
+  {
+    "name": "Party Animals",
+    "poster": "posters/party-animals.jpg",
+    "steam": "https://store.steampowered.com/app//",
+    "dl": "https://www.pirategames.ir/online/party-animals-online/",
+    "genres": [
+      "Party",
+      "Fighting",
+      "Physics"
+    ],
+    "players": "1–8 Online & Local Multiplayer",
+    "size": "11.2 GB",
+    "appid": 1260320,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part3.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part4.rar"
+    ],
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Party.Animals.mp4#t=2",
+    "isNew": true,
+    "newAt": 1792602987206
+  },
+  {
+    "name": "PEAK",
+    "poster": "posters/peak.jpg",
+    "steam": "https://store.steampowered.com/app//",
+    "dl": "https://www.pirategames.ir/online/peak-online/",
+    "genres": [
+      "Adventure",
+      "Physics",
+      "Climbing"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "1.3 GB",
+    "appid": 3527290,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/PEAK.v2.6.b/PEAK.v2.6.b.PirateGames.ir.rar"
+    ],
+    "trailer": "https://video.akamai.steamstatic.com/store_trailers/257155585/movie480_vp9.webm?t=1750093233#t=2",
+    "isNew": true,
+    "newAt": 1792603352521
   }
 ]
