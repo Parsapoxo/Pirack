@@ -114,19 +114,6 @@
     ]
   },
   {
-    "name": "Party Animals",
-    "steam": "https://store.steampowered.com/app/1260320/",
-    "dl": "https://www.pirategames.ir/online/party-animals-online/",
-    "genres": [
-      "Party",
-      "Fighting",
-      "Physics"
-    ],
-    "players": "1–8 Online Multiplayer",
-    "size": "4.3 GB",
-    "appid": 1260320
-  },
-  {
     "name": "PowerWash Simulator 2",
     "poster": "posters/powerwash-simulator-2.jpg",
     "steam": "https://store.steampowered.com/app/2968420/",
