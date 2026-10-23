@@ -19,6 +19,32 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.1] - 2026-10-23
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Changed
+- **Redesigned main page.** A new top bar holds the logo, the main navigation (Games, Apps,
+  Leaderboard, Item Shop), and the bell, account, and menu buttons. The old centered logo,
+  the sliding tab bar, and the Item Shop card on the Leaderboard tab are gone.
+- Games tab: an announcement strip with the latest announcement, a featured game (the first
+  game with an active New, Updated, or Released badge, otherwise the first game), a Top 3
+  card, and an Item Shop shortcut. The File Password line moved under the top bar.
+- Search is joined by filter chips: All, Free, New, Updated, and the most common genres. A
+  chip is shown only if at least one game matches it. The featured area hides while
+  searching or filtering.
+- **Item Shop redesigned.** A "Your card" preview (banner, avatar, name, title) and a "Your
+  prize" card (available, earned, spent, with a progress bar) sit above the shop. The tabs
+  (Avatars, Player Titles, Banners) now show item counts and sit directly above the items,
+  with category chips on the right. Banners use the full width in three columns, and the old
+  Prize status bar and Main Menu pill were replaced.
+- Click a banner in the shop to preview it on "Your card"; Reset puts it back.
+- The game grid fills the page width instead of a fixed three columns.
+
+### Removed
+- The old sliding tab bar and its label swapping, the Main Menu pill, and the Item Shop card.
+  Their CSS is still in the file and will be cleaned up later.
+
 ## [4.9.1] - 2026-10-19
 
 ### Fixed

@@ -1124,9 +1124,129 @@
     .lb-col-score{ width:44px; }
     .lb-col-prize{ width:64px; font-size:11px; }
   }
+
+  /* ===== v5 redesign ===== */
+  .site-header{ max-width:1320px; margin:0 auto; padding:16px 32px 0; text-align:left; }
+  .site-header-in{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--violet); font-weight:900; font-size:22px; letter-spacing:.12em; }
+  .brand img{ width:40px; height:40px; border-radius:11px; object-fit:cover; border:1px solid var(--line); display:block; }
+  .main-nav{ display:flex; gap:4px; flex:1; flex-wrap:wrap; }
+  .main-nav button{ background:transparent; border:0; color:var(--muted); font:600 14px 'Inter',sans-serif; padding:0 14px; min-height:44px; border-radius:10px; cursor:pointer; transition:color .2s, background .2s; }
+  .main-nav button:hover{ color:var(--text); }
+  .main-nav button.active{ color:#fff; background:#1d1d22; }
+  .header-actions{ display:flex; align-items:center; gap:10px; }
+  .header-actions .menu-btn, .header-actions .bell-btn, .header-actions .profile-btn{ position:relative; top:auto; right:auto; width:44px; height:44px; flex:none; }
+  .pw-line{ max-width:1320px; margin:0 auto; padding:12px 32px 0; }
+  .pw-line .sub{ margin:0; font-size:12.5px; justify-content:flex-start; }
+  .page{ max-width:1320px; margin:0 auto; padding:22px 32px 60px; display:flex; flex-direction:column; gap:24px; }
+  .page .toolbar{ max-width:none; margin:0; padding:0; justify-content:flex-start; gap:14px; }
+  .page .search-wrap{ flex:1 1 280px; max-width:none; }
+  .page .count{ text-align:left; margin:0; }
+  .page .grid{ max-width:none; margin:0; padding:0; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:20px; }
+  .page .lb-wrap{ margin:0 auto; width:100%; }
+  .chips{ display:flex; gap:8px; flex-wrap:wrap; }
+  .chip, .shop-chip{ min-height:44px; padding:0 16px; border-radius:999px; border:1px solid #33333b; background:transparent; color:var(--text); font:600 13px 'Inter',sans-serif; cursor:pointer; transition:background .2s, border-color .2s; }
+  .chip:hover, .shop-chip:hover{ border-color:#55555f; }
+  .chip.active, .shop-chip.active{ background:var(--violet); border-color:var(--violet); color:#fff; }
+  .shop-chip{ min-height:36px; padding:0 14px; font-size:12px; }
+  .chips.hidden{ display:none; }
+
+  /* announcement strip + hero: Games view only */
+  .ann-strip{ display:none; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; border:1px solid #3a2a05; background:rgba(242,183,5,.07); font-size:14px; cursor:pointer; text-align:left; }
+  .ann-strip .a-new{ color:var(--gold); font-weight:800; font-size:11px; letter-spacing:.08em; }
+  .ann-strip .a-msg{ color:var(--muted); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .ann-strip .a-time{ color:var(--muted); font-size:12px; white-space:nowrap; }
+  body[data-view="games"] .ann-strip.has{ display:flex; }
+  .hero-row{ display:none; gap:20px; flex-wrap:wrap; }
+  body[data-view="games"] .hero-row{ display:flex; }
+  .hero-row.off{ display:none !important; }
+  .hero-main{ flex:2 1 600px; min-width:0; min-height:380px; border-radius:20px; border:1px solid var(--line); overflow:hidden; position:relative; display:flex; flex-direction:column; justify-content:flex-end; padding:36px; gap:14px; background:linear-gradient(135deg,#7a1020,#e21f3d 55%,#f2b705); text-align:left; }
+  .hero-bg{ position:absolute; inset:0; background-size:cover; background-position:center; }
+  .hero-shade{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,8,10,.92) 12%, rgba(8,8,10,.4) 70%), linear-gradient(0deg, rgba(8,8,10,.75), transparent 55%); }
+  .hero-in{ position:relative; z-index:2; display:flex; flex-direction:column; gap:14px; }
+  .hero-badges{ display:flex; gap:8px; flex-wrap:wrap; }
+  .hero-badges .badge{ position:static; }
+  .hero-main h2{ font-size:clamp(30px,5vw,48px); line-height:1.05; font-weight:800; max-width:560px; overflow-wrap:anywhere; }
+  .hero-meta{ font-size:14px; color:#d4d4d8; }
+  .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+  .hbtn{ display:inline-flex; align-items:center; min-height:44px; padding:0 22px; border-radius:12px; border:1px solid rgba(255,255,255,.3); background:rgba(0,0,0,.25); color:#fff; font:700 14px 'Inter',sans-serif; text-decoration:none; cursor:pointer; }
+  .hbtn:hover{ border-color:rgba(255,255,255,.6); }
+  .hbtn.primary{ background:var(--violet); border-color:var(--violet); }
+  .hbtn.disabled{ opacity:.5; pointer-events:none; }
+  .hero-aside{ flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:20px; }
+  .top3-card{ background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:20px 22px; text-align:left; }
+  .top3-head{ display:flex; justify-content:space-between; align-items:baseline; }
+  .top3-head h3{ font-size:16px; font-weight:800; }
+  .top3-head button{ background:none; border:0; color:var(--gold); font:600 12px 'Inter',sans-serif; cursor:pointer; min-height:32px; }
+  .top3-list{ list-style:none; margin:12px 0 0; }
+  .top3-list li{ display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14px; }
+  .top3-rank{ width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:#111; flex:none; }
+  .top3-name{ flex:1; min-width:0; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .top3-score{ color:var(--muted); font-size:13px; white-space:nowrap; }
+  .shop-promo{ flex:1; min-height:110px; border-radius:20px; border:1px solid #3a2a05; background:linear-gradient(135deg, rgba(242,183,5,.16), rgba(226,31,61,.12)); padding:20px 22px; color:var(--text); text-align:left; cursor:pointer; display:flex; flex-direction:column; justify-content:center; gap:6px; font-family:'Inter',sans-serif; }
+  .shop-promo small{ font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--gold); }
+  .shop-promo b{ font-size:18px; }
+  .shop-promo span{ font-size:13px; color:var(--muted); }
+
+  /* Item Shop v2 */
+  .shop-view{ display:flex; flex-direction:column; gap:28px; text-align:left; }
+  .shop-view.hidden{ display:none; }
+  .shop-head{ display:flex; align-items:center; gap:16px; }
+  .shop-head h2{ font-size:30px; font-weight:800; }
+  .back-btn{ min-height:44px; padding:0 16px; border-radius:12px; border:1px solid #2a2a31; background:var(--surface); color:var(--text); font:700 13px 'Inter',sans-serif; cursor:pointer; }
+  .back-btn:hover{ border-color:rgba(255,255,255,.3); }
+  .shop-account{ display:flex; gap:20px; flex-wrap:wrap; align-items:stretch; }
+  .yc-card{ flex:1.4 1 520px; min-width:0; background:var(--surface); border:1px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; }
+  .yc-head{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding:14px 20px; }
+  .yc-label{ font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--muted); }
+  .yc-hint{ font-size:12px; color:var(--muted); }
+  .yc-hint button{ background:none; border:0; color:var(--gold); font:600 12px 'Inter',sans-serif; cursor:pointer; margin-left:8px; }
+  .yc-banner{ aspect-ratio:5/1; background:linear-gradient(120deg,#1b1b22,#2a2a33); overflow:hidden; position:relative; }
+  .yc-banner img, .yc-banner video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .yc-body{ display:flex; align-items:flex-start; gap:16px; padding:0 20px 20px; }
+  .yc-avatar{ flex:none; width:72px; height:72px; margin-top:-36px; border-radius:18px; border:3px solid rgba(255,255,255,.28); box-shadow:0 0 0 4px var(--surface); background:var(--surface-2); overflow:hidden; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:24px; color:var(--muted); position:relative; z-index:1; }
+  .yc-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .yc-info{ display:flex; flex-direction:column; gap:8px; padding-top:10px; min-width:0; }
+  .yc-name{ font-size:19px; font-weight:800; overflow-wrap:anywhere; }
+  .yc-sub{ font-size:12px; color:var(--muted); }
+  .yc-signin{ padding:28px 20px 32px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; color:var(--muted); font-size:14px; }
+  .prize-card{ flex:1 1 340px; min-width:0; background:linear-gradient(135deg, rgba(226,31,61,.08), rgba(242,183,5,.1)), var(--surface); border:1px solid #5c4308; border-radius:18px; padding:20px 24px; display:flex; flex-direction:column; gap:16px; }
+  .prize-sub{ font-size:13px; color:#d4d4d8; }
+  .prize-big{ font-size:44px; line-height:1; font-weight:800; color:var(--gold); margin-top:4px; }
+  .prize-bar{ height:8px; border-radius:999px; background:#26262c; overflow:hidden; }
+  .prize-bar > i{ display:block; height:100%; background:var(--gold); border-radius:999px; }
+  .prize-row{ display:flex; justify-content:space-between; gap:12px; font-size:13px; color:var(--muted); }
+  .prize-row b{ color:var(--text); }
+  .prize-who{ font-size:12px; color:var(--muted); margin-top:auto; }
+  .shop-bar{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--line); }
+  .shop-bar .view-tabs{ position:static; display:flex; flex-wrap:wrap; width:auto; max-width:none; margin:0; padding:0; background:none; border:0; border-radius:0; backdrop-filter:none; transition:none; }
+  .shop-bar .view-tab{ position:relative; flex:none; background:transparent; border:0; border-bottom:3px solid transparent; border-radius:0; margin-bottom:-1px; min-height:48px; padding:0 22px; color:var(--muted); font:700 13px 'Inter',sans-serif; letter-spacing:.05em; text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:8px; }
+  .shop-bar .view-tab:hover{ color:var(--text); }
+  .shop-bar .view-tab.active{ color:#fff; border-bottom-color:var(--violet); background:none; }
+  .tab-count{ font-size:11px; padding:2px 8px; border-radius:999px; background:#1b1b21; color:var(--muted); letter-spacing:0; }
+  .tab-count:empty{ display:none; }
+  .shop-chips{ display:flex; gap:8px; flex-wrap:wrap; padding-bottom:10px; }
+  .shop-view .shop-wrap{ max-width:none; margin:0; padding:0; }
+  .shop-wrap .shop-status-bar{ display:none; }
+  .shop-wrap .banner-grid{ grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); }
+  .banner-card .bimg-wrap{ cursor:pointer; }
+
+  @media (max-width:820px){
+    .site-header{ padding:12px 16px 0; }
+    .site-header-in{ gap:12px; }
+    .brand{ flex:1; font-size:20px; }
+    .main-nav{ order:3; flex:1 0 100%; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
+    .main-nav::-webkit-scrollbar{ display:none; }
+    .main-nav button{ flex:none; }
+    .pw-line{ padding:10px 16px 0; }
+    .page{ padding:16px 16px 48px; gap:20px; }
+    .hero-main{ padding:22px; min-height:300px; }
+    .shop-bar .view-tab{ padding:0 14px; }
+  }
+  @media (prefers-reduced-motion:reduce){ .chip, .shop-chip{ transition:none; } }
 </style>
 </head>
-<body>
+<body data-view="games">
 
 <canvas id="bg"></canvas>
 <div class="gridlines"></div>
@@ -1134,15 +1254,6 @@
 <div class="custom-wallpaper" id="customWallpaper"></div>
 
 <div class="content">
-  <button id="menuBtn" class="menu-btn" aria-label="Open menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-  </button>
-
-  <button id="bellBtn" class="bell-btn" aria-label="Announcements">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-    <span class="bell-dot" id="bellDot"></span>
-  </button>
-
   <div class="modal-overlay" id="annOverlay">
     <div class="modal-box">
       <div class="modal-head">
@@ -1152,10 +1263,6 @@
       <div id="annBody"></div>
     </div>
   </div>
-
-  <button id="profileBtn" class="profile-btn" aria-label="Account">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-  </button>
 
   <div class="drawer-overlay" id="drawerOverlay"></div>
   <div class="drawer" id="drawer">
@@ -1176,43 +1283,73 @@
     </div>
   </div>
 
-  <header>
-    <div class="brand-logo"><img src="favicon.jpg" alt="Pirack logo"></div>
-    <h1>Pirack</h1>
+  <header class="site-header">
+    <div class="site-header-in">
+      <a class="brand" href="#" id="brandHome" aria-label="Pirack home"><img src="favicon.jpg" alt=""><span>PIRACK</span></a>
+      <nav class="main-nav" id="mainNav" aria-label="Main">
+        <button type="button" data-nav="games" class="active" aria-current="page">Games</button>
+        <button type="button" data-nav="apps">Apps</button>
+        <button type="button" data-nav="leaderboard">Leaderboard</button>
+        <button type="button" data-nav="shop">Item Shop</button>
+      </nav>
+      <div class="header-actions">
+        <button id="bellBtn" class="bell-btn" aria-label="Announcements">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="bell-dot" id="bellDot"></span>
+        </button>
+        <button id="profileBtn" class="profile-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </button>
+        <button id="menuBtn" class="menu-btn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="pw-line">
     <div class="sub file-password">
       <span>File Password: <strong>www.pirategames.ir</strong></span>
       <button id="copyPassword" class="copy-btn" aria-label="Copy password" title="Copy">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
       </button>
     </div>
-  </header>
-
-  <div class="toolbar">
-    <div class="search-wrap" id="searchWrap">
-      <input id="search" type="text" placeholder="Search a game, genre...">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    </div>
-    <div class="item-shop-card hidden" id="itemShopCard" role="button" tabindex="0">
-      <span class="shop-icon">🛒</span>
-      <span class="shop-text">Item Shop</span>
-    </div>
   </div>
 
-  <button class="main-menu-pill" id="mainMenuBtn">🏠 Main Menu</button>
-  <div class="view-tabs" id="viewTabs" role="tablist">
-    <div class="thumb"></div>
-    <button class="view-tab active" id="tabGames" data-view="games" role="tab" aria-selected="true">Games</button>
-    <button class="view-tab" id="tabApps" data-view="apps" role="tab" aria-selected="false">Apps</button>
-    <button class="view-tab" id="tabLeaderboard" data-view="leaderboard" role="tab" aria-selected="false">Leaderboard</button>
-  </div>
+  <main class="page">
+    <div class="ann-strip" id="annStrip" role="button" tabindex="0"></div>
+    <section class="hero-row" id="homeHero" aria-label="Featured"></section>
 
-  <div class="count" id="count"></div>
+    <div class="toolbar">
+      <div class="search-wrap" id="searchWrap">
+        <input id="search" type="text" placeholder="Search a game, genre...">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
 
-  <div class="grid" id="grid"></div>
-  <div class="empty" id="empty">Nothing found 👀</div>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">Nothing found 👀</div>
+    <div class="lb-wrap hidden" id="lbWrap"></div>
 
-  <div class="lb-wrap hidden" id="lbWrap"></div>
-  <div class="shop-wrap hidden" id="shopWrap"></div>
+    <section class="shop-view hidden" id="shopView" aria-label="Item Shop">
+      <div class="shop-head">
+        <button type="button" class="back-btn" id="mainMenuBtn">← Main Menu</button>
+        <h2>Item Shop</h2>
+      </div>
+      <section class="shop-account" id="shopAccount" aria-label="Your account"></section>
+      <div class="shop-bar">
+        <div class="view-tabs" id="viewTabs" role="tablist">
+          <button type="button" class="view-tab" data-view="profiles" role="tab" aria-selected="false">Avatars <span class="tab-count" data-count="profiles"></span></button>
+          <button type="button" class="view-tab active" data-view="titles" role="tab" aria-selected="true">Player Titles <span class="tab-count" data-count="titles"></span></button>
+          <button type="button" class="view-tab" data-view="banners" role="tab" aria-selected="false">Banners <span class="tab-count" data-count="banners"></span></button>
+        </div>
+        <div class="shop-chips" id="shopChips"></div>
+      </div>
+      <div class="shop-wrap" id="shopWrap"></div>
+    </section>
+  </main>
+
   <div class="hidden" id="comingSoonWrap">
     <div class="coming-soon-panel">
       <div class="icon">✨</div>
@@ -1223,7 +1360,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v4.9.1</div>
+<div class="version-tag">v5.0.0-beta.1</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1406,9 +1543,13 @@ function applyFilter(){
   const q = document.getElementById('search').value.trim().toLowerCase();
   if(currentView === 'games'){
     const filtered = games.filter(g =>
-      g.name.toLowerCase().includes(q) ||
-      g.genres.some(t=>t.toLowerCase().includes(q))
+      chipMatch(g) && (
+        g.name.toLowerCase().includes(q) ||
+        g.genres.some(t=>t.toLowerCase().includes(q))
+      )
     );
+    homeHeroEl.classList.toggle('off', !!q || activeChip !== 'all');
+    if(!homeHeroEl.firstChild) renderHome();
     render(filtered);
   } else if(currentView === 'apps') {
     const filtered = apps.filter(a => a.name.toLowerCase().includes(q));
@@ -1523,45 +1664,43 @@ async function renderLeaderboard(){
 document.getElementById('search').addEventListener('input', applyFilter);
 
 const viewTabs = document.getElementById('viewTabs');
-const tabGames = document.getElementById('tabGames');
-const tabApps = document.getElementById('tabApps');
-const tabLeaderboard = document.getElementById('tabLeaderboard');
 const searchInput = document.getElementById('search');
 const toolbarEl = document.querySelector('.toolbar');
 const gridEl = document.getElementById('grid');
 const lbWrapEl = document.getElementById('lbWrap');
 const searchWrapEl = document.getElementById('searchWrap');
-const itemShopEl = document.getElementById('itemShopCard');
 const mainMenuBtn = document.getElementById('mainMenuBtn');
+const shopViewEl = document.getElementById('shopView');
 const shopWrapEl = document.getElementById('shopWrap');
+const shopAccountEl = document.getElementById('shopAccount');
 const comingSoonWrapEl = document.getElementById('comingSoonWrap');
-const tabEls = () => [tabGames, tabApps, tabLeaderboard];
+const homeHeroEl = document.getElementById('homeHero');
+const mainNavEl = document.getElementById('mainNav');
+const chipsEl = document.getElementById('chips');
+const h = (v) => String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-const MAIN_TABS = [
-  {view:'games', label:'Games'},
-  {view:'apps', label:'Apps'},
-  {view:'leaderboard', label:'Leaderboard'}
-];
+const NAV_ORDER = ['games', 'apps', 'leaderboard', 'shop'];
 const SHOP_TABS = [
   {view:'profiles', label:'Avatars'},
   {view:'titles', label:'Player Titles'},
   {view:'banners', label:'Banners'}
 ];
+let activeChip = 'all';
+let activeShopTab = 'titles';
 
-function applyTabLabels(tabs){
-  tabEls().forEach((el, i) => {
-    el.textContent = tabs[i].label;
-    el.dataset.view = tabs[i].view;
-    el.dataset.comingSoon = tabs[i].comingSoon ? '1' : '';
+function setNavActive(name){
+  document.body.dataset.view = name;
+  mainNavEl.querySelectorAll('button').forEach(btn => {
+    const on = btn.dataset.nav === name;
+    btn.classList.toggle('active', on);
+    if(on) btn.setAttribute('aria-current', 'page'); else btn.removeAttribute('aria-current');
   });
 }
-function setActiveSlot(idx){
-  viewTabs.classList.remove('apps-active','leaderboard-active');
-  if(idx === 1) viewTabs.classList.add('apps-active');
-  if(idx === 2) viewTabs.classList.add('leaderboard-active');
-  tabEls().forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
-    el.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+function setShopTabActive(view){
+  viewTabs.querySelectorAll('.view-tab').forEach(btn => {
+    const on = btn.dataset.view === view;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-selected', on ? 'true' : 'false');
   });
 }
 
@@ -1688,101 +1827,263 @@ function animateViewEnter(dir){
 }
 
 function switchView(view){
-  const prevView = currentView;
+  const prevKey = shopMode ? 'shop' : currentView;
   currentView = view;
-  const order = MAIN_TABS.map(t => t.view);
-  const dir = Math.sign(order.indexOf(view) - order.indexOf(prevView)) || 0;
-  const idx = MAIN_TABS.findIndex(t => t.view === view);
-  setActiveSlot(idx);
+  shopMode = false;
+  const dir = Math.sign(NAV_ORDER.indexOf(view) - NAV_ORDER.indexOf(prevKey)) || 0;
+  setNavActive(view);
   searchInput.value = '';
+  activeChip = 'all';
 
-  shopWrapEl.classList.add('hidden');
+  shopViewEl.classList.add('hidden');
   comingSoonWrapEl.classList.add('hidden');
 
   if(view === 'leaderboard'){
-    searchWrapEl.classList.add('hidden');
-    itemShopEl.classList.remove('hidden');
+    toolbarEl.classList.add('hidden');
     document.getElementById('count').classList.add('hidden');
     gridEl.classList.add('hidden');
     emptyEl.classList.add('hidden');
     lbWrapEl.classList.remove('hidden');
     renderLeaderboard();
   } else {
-    searchWrapEl.classList.remove('hidden');
-    itemShopEl.classList.add('hidden');
+    toolbarEl.classList.remove('hidden');
     document.getElementById('count').classList.remove('hidden');
     gridEl.classList.remove('hidden');
     lbWrapEl.classList.add('hidden');
     searchInput.placeholder = view === 'games' ? 'Search a game, genre...' : 'Search an app...';
+    renderChips();
     applyFilter();
   }
   animateViewEnter(dir);
 }
 
-function switchShopTab(view){
-  const idx = SHOP_TABS.findIndex(t => t.view === view);
-  const tab = SHOP_TABS[idx];
-  setActiveSlot(idx);
-
-  gridEl.classList.add('hidden');
-  emptyEl.classList.add('hidden');
-  lbWrapEl.classList.add('hidden');
-  document.getElementById('count').classList.add('hidden');
-
-  if(tab.comingSoon){
-    shopWrapEl.classList.add('hidden');
-    comingSoonWrapEl.classList.remove('hidden');
-  } else {
-    comingSoonWrapEl.classList.add('hidden');
-    shopWrapEl.classList.remove('hidden');
-    if(view === 'banners') renderBannerShop();
-    else if(view === 'profiles') renderProfilesTab();
-    else renderShop();
-  }
+function updateShopTabCounts(){
+  const counts = {
+    titles: TITLE_TIERS.reduce((n, t) => n + t.names.length, 0),
+    banners: banners.filter(b => b.file).length,
+    profiles: profilePics.filter(p => p.file).length
+  };
+  viewTabs.querySelectorAll('.tab-count').forEach(el => { el.textContent = counts[el.dataset.count] || ''; });
 }
 
-function animatedTabSwap(fn){
-  viewTabs.classList.add('swapping');
-  setTimeout(() => {
-    fn();
-    viewTabs.classList.remove('swapping');
-  }, 180);
+function renderShopChips(){
+  const wrap = document.getElementById('shopChips');
+  const names = Array.from(shopWrapEl.querySelectorAll('.shop-tier .shop-tier-name')).map(el => el.textContent.trim());
+  if(names.length < 2){ wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `<button type="button" class="shop-chip active" data-cat="">All</button>` +
+    names.map(n => `<button type="button" class="shop-chip" data-cat="${h(n)}">${h(n)}</button>`).join('');
+}
+function applyShopChip(cat){
+  document.querySelectorAll('#shopChips .shop-chip').forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+  shopWrapEl.querySelectorAll('.shop-tier').forEach(sec => {
+    const nameEl = sec.querySelector('.shop-tier-name');
+    sec.style.display = (!cat || (nameEl && nameEl.textContent.trim() === cat)) ? '' : 'none';
+  });
+}
+
+async function switchShopTab(view){
+  activeShopTab = view;
+  setShopTabActive(view);
+  comingSoonWrapEl.classList.add('hidden');
+  shopWrapEl.classList.remove('hidden');
+  if(view === 'banners') await renderBannerShop();
+  else if(view === 'profiles') await renderProfilesTab();
+  else await renderShop();
+  renderShopChips();
 }
 
 function enterShopMode(){
+  if(shopMode) return;
+  const dir = Math.sign(NAV_ORDER.indexOf('shop') - NAV_ORDER.indexOf(currentView)) || 0;
   shopMode = true;
   preloadBanners();
+  setNavActive('shop');
   toolbarEl.classList.add('hidden');
-  mainMenuBtn.classList.add('visible');
-  animatedTabSwap(() => {
-    applyTabLabels(SHOP_TABS);
-    switchShopTab('titles');
-  });
+  document.getElementById('count').classList.add('hidden');
+  gridEl.classList.add('hidden');
+  emptyEl.classList.add('hidden');
+  lbWrapEl.classList.add('hidden');
+  shopViewEl.classList.remove('hidden');
+  updateShopTabCounts();
+  renderShopAccount();
+  switchShopTab(activeShopTab);
+  animateViewEnter(dir);
 }
-function exitShopMode(){
-  shopMode = false;
-  mainMenuBtn.classList.remove('visible');
-  animatedTabSwap(() => {
-    applyTabLabels(MAIN_TABS);
-    toolbarEl.classList.remove('hidden');
-    switchView('games');
-  });
+function exitShopMode(){ switchView('games'); }
+
+// ---- "Your card" + "Your prize" ----
+let shopPreviewBanner = null;
+async function renderShopAccount(){
+  const session = getSession();
+  if(!session){
+    shopAccountEl.innerHTML = `
+      <div class="yc-card"><div class="yc-head"><span class="yc-label">YOUR CARD</span></div>
+        <div class="yc-signin"><span>Sign in to buy items and customize your card.</span>
+        <button type="button" class="hbtn primary" onclick="renderSignInForm(); openAuth();">Sign In</button></div></div>`;
+    return;
+  }
+  const p = leaderboard.find(x => x.player === session.player);
+  const prize = p ? (p.prize ?? (p.score||0)*5) : 0;
+  let data = currentPlayerTitles;
+  if(window.pirackDB){
+    try{ data = await window.pirackDB.getPlayerData(slug(session.player)); currentPlayerTitles = data; }
+    catch(err){ console.error(err); }
+  }
+  const spent = totalOwnedSpend(data.ownedTitles, data.ownedBanners, data.ownedProfilePics, data.avatarSpend);
+  const available = prize - spent;
+  const pct = prize > 0 ? Math.max(0, Math.min(100, Math.round(spent * 100 / prize))) : 0;
+  const banner = data.selectedBanner ? findBannerById(data.selectedBanner) : null;
+  const title = data.selectedTitle ? findTitleById(data.selectedTitle) : null;
+  const pic = data.selectedProfilePic ? findProfilePicById(data.selectedProfilePic) : null;
+  const avatar = pic && pic.file ? `<img src="${h(pic.file)}" alt="">` : (p && p.avatar ? `<img src="${h(p.avatar)}" alt="">` : h(initials(session.player)));
+  shopPreviewBanner = null;
+  shopAccountEl.innerHTML = `
+    <div class="yc-card">
+      <div class="yc-head"><span class="yc-label">YOUR CARD</span><span class="yc-hint" id="ycHint">Click a banner below to preview it here</span></div>
+      <div class="yc-banner" id="ycBanner" data-default="${banner && banner.file ? h(banner.file) : ''}" data-default-name="${banner ? h(banner.name) : ''}">${banner && banner.file ? bannerMediaHTML(banner.file, banner.name, true) : ''}</div>
+      <div class="yc-body">
+        <div class="yc-avatar">${avatar}</div>
+        <div class="yc-info">
+          <div class="yc-name">${h(session.player)}</div>
+          ${title ? `<div class="lb-title tier-${title.tier}"><span class="tname">${h(title.name)}</span></div>` : '<div class="yc-sub">No title equipped</div>'}
+          <div class="yc-sub" id="ycBannerName">${banner ? 'Banner: ' + h(banner.name) : 'No banner equipped'}</div>
+        </div>
+      </div>
+    </div>
+    <div class="prize-card">
+      <span class="yc-label">YOUR PRIZE</span>
+      <div><div class="prize-sub">Available to spend</div><div class="prize-big">💎 ${available}</div></div>
+      <div class="prize-bar"><i style="width:${pct}%"></i></div>
+      <div class="prize-row"><span>Earned <b>${prize}</b></span><span>Spent <b>${spent}</b></span></div>
+      <div class="prize-who">Signed in as <b style="color:var(--text)">${h(session.player)}</b></div>
+    </div>`;
+  observeBannerMedia(shopAccountEl);
+}
+function previewBanner(file, name){
+  const box = document.getElementById('ycBanner');
+  if(!box) return;
+  box.innerHTML = bannerMediaHTML(file, name, true);
+  observeBannerMedia(box);
+  document.getElementById('ycBannerName').textContent = 'Previewing: ' + name;
+  document.getElementById('ycHint').innerHTML = `Previewing <b>${h(name)}</b><button type="button" id="ycReset">Reset</button>`;
+  document.getElementById('ycReset').addEventListener('click', resetBannerPreview);
+}
+function resetBannerPreview(){
+  const box = document.getElementById('ycBanner');
+  if(!box) return;
+  const f = box.dataset.default, n = box.dataset.defaultName;
+  box.innerHTML = f ? bannerMediaHTML(f, n, true) : '';
+  observeBannerMedia(box);
+  document.getElementById('ycBannerName').textContent = n ? 'Banner: ' + n : 'No banner equipped';
+  document.getElementById('ycHint').textContent = 'Click a banner below to preview it here';
 }
 
-function unifiedTabClick(idx){
-  const view = tabEls()[idx].dataset.view;
-  if(shopMode) switchShopTab(view);
-  else if(view !== currentView) switchView(view);
-}
-tabGames.addEventListener('click', () => unifiedTabClick(0));
-tabApps.addEventListener('click', () => unifiedTabClick(1));
-tabLeaderboard.addEventListener('click', () => unifiedTabClick(2));
+// ---- navigation wiring ----
+mainNavEl.addEventListener('click', e => {
+  const btn = e.target.closest('button[data-nav]');
+  if(!btn) return;
+  const v = btn.dataset.nav;
+  if(v === 'shop') enterShopMode();
+  else if(shopMode || v !== currentView) switchView(v);
+});
+const shopNavBtn = mainNavEl.querySelector('[data-nav="shop"]');
+['pointerenter','touchstart','focus'].forEach(ev => shopNavBtn.addEventListener(ev, () => preloadBanners(), { passive:true, once:true }));
+document.getElementById('brandHome').addEventListener('click', e => { e.preventDefault(); if(shopMode || currentView !== 'games') switchView('games'); });
 mainMenuBtn.addEventListener('click', exitShopMode);
-itemShopEl.addEventListener('click', enterShopMode);
-['pointerenter','touchstart','focus'].forEach(ev => itemShopEl.addEventListener(ev, () => preloadBanners(), { passive:true, once:true }));
-itemShopEl.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') enterShopMode(); });
+viewTabs.addEventListener('click', e => {
+  const btn = e.target.closest('.view-tab');
+  if(btn && btn.dataset.view !== activeShopTab) switchShopTab(btn.dataset.view);
+});
+document.getElementById('shopChips').addEventListener('click', e => {
+  const c = e.target.closest('.shop-chip');
+  if(c) applyShopChip(c.dataset.cat);
+});
+shopWrapEl.addEventListener('click', e => {
+  const wrap = e.target.closest('.bimg-wrap');
+  if(!wrap) return;
+  const media = wrap.querySelector('img, video');
+  const file = media && (media.dataset.full || media.dataset.src || media.getAttribute('src'));
+  const card = wrap.closest('.banner-card');
+  const nameEl = card && card.querySelector('.bname');
+  if(file) previewBanner(file, nameEl ? nameEl.textContent : 'Banner');
+});
+
+// ---- home: featured game, top 3, filter chips ----
+function featuredGame(){
+  return games.find(g => isPinned(g)) || games.find(g => !g.comingSoon) || games[0];
+}
+function renderHome(){
+  if(!games.length){ homeHeroEl.innerHTML = ''; return; }
+  const g = featuredGame();
+  const t = gameTags(g);
+  const poster = g.poster || (g.appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg` : '');
+  const parts = getDlParts(g);
+  const dlHref = g.dl || parts[0] || '';
+  const top = [...leaderboard].sort((a,b) => (b.score||0) - (a.score||0)).slice(0, 3);
+  const rankColors = ['#f2b705', '#c9d2da', '#cd7f32'];
+  const badges = `${t.isNew ? '<div class="badge new">New</div>' : ''}${t.updated ? '<div class="badge updated">Updated</div>' : ''}${t.released ? '<div class="badge released">Released</div>' : ''}${g.free ? '<div class="badge free">Free</div>' : ''}${g.comingSoon ? '<div class="badge soon">Coming Soon</div>' : ''}`;
+  homeHeroEl.innerHTML = `
+    <div class="hero-main">
+      ${poster ? `<div class="hero-bg" style="background-image:url('${h(poster)}')"></div>` : ''}
+      <div class="hero-shade"></div>
+      <div class="hero-in">
+        ${badges ? `<div class="hero-badges">${badges}</div>` : ''}
+        <h2>${h(g.name)}</h2>
+        <div class="hero-meta">${(g.genres || []).map(h).join(' · ')}${g.players ? ` · 👥 ${h(g.players)}` : ''}${g.size ? ` · 💾 ${h(g.size)}` : ''}</div>
+        <div class="hero-actions">
+          ${g.comingSoon ? '<span class="hbtn disabled">Coming soon</span>' : (dlHref ? `<a class="hbtn primary" href="${h(dlHref)}" target="_blank" rel="noopener">${g.free ? 'Free download' : 'Download'}</a>` : '')}
+          <button type="button" class="hbtn" onclick="openTrailer('${g.slug}')">▶ Trailer</button>
+          ${g.steam ? `<a class="hbtn" href="${h(g.steam)}" target="_blank" rel="noopener">${h(g.storeLabel || 'Steam page')}</a>` : ''}
+        </div>
+      </div>
+    </div>
+    <aside class="hero-aside">
+      <div class="top3-card">
+        <div class="top3-head"><h3>Top 3</h3><button type="button" data-act="lb">Full leaderboard</button></div>
+        <ul class="top3-list">${top.length ? top.map((pl, i) => `<li><span class="top3-rank" style="background:${rankColors[i]}">${i+1}</span><span class="top3-name">${h(pl.player)}</span><span class="top3-score">Score ${pl.score || 0}</span></li>`).join('') : '<li><span class="top3-name">No scores yet</span></li>'}</ul>
+      </div>
+      <button type="button" class="shop-promo" data-act="shop"><small>ITEM SHOP</small><b>Titles, banners &amp; avatars</b><span>Spend your Prize on your look.</span></button>
+    </aside>`;
+}
+homeHeroEl.addEventListener('click', e => {
+  const act = e.target.closest('[data-act]');
+  if(!act) return;
+  if(act.dataset.act === 'shop') enterShopMode();
+  else if(act.dataset.act === 'lb') switchView('leaderboard');
+});
+
+function renderChips(){
+  if(currentView !== 'games'){ chipsEl.innerHTML = ''; chipsEl.classList.add('hidden'); return; }
+  chipsEl.classList.remove('hidden');
+  const counts = {};
+  games.forEach(g => (g.genres || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
+  const topGenres = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(x => x[0]);
+  const has = pred => games.some(pred);
+  const list = [['all','All']];
+  if(has(g => g.free)) list.push(['free','Free']);
+  if(has(g => gameTags(g).isNew)) list.push(['new','New']);
+  if(has(g => gameTags(g).updated)) list.push(['updated','Updated']);
+  topGenres.forEach(t => list.push(['g:' + t, t]));
+  chipsEl.innerHTML = list.map(([k, l]) => `<button type="button" class="chip${k === activeChip ? ' active' : ''}" data-chip="${h(k)}">${h(l)}</button>`).join('');
+}
+chipsEl.addEventListener('click', e => {
+  const c = e.target.closest('.chip');
+  if(!c) return;
+  activeChip = c.dataset.chip;
+  chipsEl.querySelectorAll('.chip').forEach(x => x.classList.toggle('active', x.dataset.chip === activeChip));
+  applyFilter();
+});
+function chipMatch(g){
+  if(activeChip === 'all') return true;
+  if(activeChip === 'free') return !!g.free;
+  if(activeChip === 'new') return gameTags(g).isNew;
+  if(activeChip === 'updated') return gameTags(g).updated;
+  if(activeChip.startsWith('g:')) return (g.genres || []).includes(activeChip.slice(2));
+  return true;
+}
 
 async function renderProfilesTab(){
+  if(shopMode) renderShopAccount();
   const session = getSession();
   if(!session){
     shopWrapEl.innerHTML = `
@@ -1902,6 +2203,7 @@ async function _buyProfilePic(id, price){
 }
 
 async function renderShop(){
+  if(shopMode) renderShopAccount();
   const session = getSession();
   let playerPrize = 0, ownedTitles = [], ownedBanners = [];
   if(session){
@@ -1978,6 +2280,7 @@ async function _buyTitle(id, price){
 }
 
 async function renderBannerShop(){
+  if(shopMode) renderShopAccount();
   preloadBanners(8);
   const session = getSession();
   let playerPrize = 0, ownedTitles = [], ownedBanners = [];
@@ -2125,6 +2428,8 @@ async function loadData(){
   games.forEach(g => g.slug = slug(g.name));
   apps.forEach(a => a.slug = slug(a.name));
   render(games);
+  renderChips();
+  renderHome();
   initWallpapers();
   initAuth();
 }
@@ -2249,6 +2554,19 @@ menuBtn.addEventListener('click', openDrawer);
     const seen = getSeen();
     btn.classList.toggle('alert', items.some(x => x.mode === 'blink' && !seen.includes(x.id)));
   }
+  function renderStrip(){
+    const strip = document.getElementById('annStrip');
+    if(!strip) return;
+    const x = items[0];
+    strip.classList.toggle('has', !!x);
+    strip.innerHTML = '';
+    if(!x) return;
+    const unseen = x.mode === 'blink' && !getSeen().includes(x.id);
+    if(unseen){ const n = document.createElement('span'); n.className = 'a-new'; n.textContent = 'NEW'; strip.appendChild(n); }
+    const t = document.createElement('b'); t.textContent = x.title.trim() || 'Announcement'; strip.appendChild(t);
+    const m = document.createElement('span'); m.className = 'a-msg'; m.textContent = x.message.replace(/\s+/g, ' ').slice(0, 140); strip.appendChild(m);
+    if(x.createdAt){ const a = document.createElement('span'); a.className = 'a-time'; a.textContent = timeAgo(x.createdAt); strip.appendChild(a); }
+  }
   function openAnn(){
     const seen = getSeen();
     bodyEl.innerHTML = '';
@@ -2279,6 +2597,7 @@ menuBtn.addEventListener('click', openDrawer);
       const e = document.createElement('div'); e.className = 'ann-empty'; e.textContent = 'No announcements right now.'; bodyEl.appendChild(e);
     }
     refreshBell();
+    renderStrip();
     bodyEl.scrollTop = 0;
     overlay.classList.add('open');
   }
@@ -2290,8 +2609,12 @@ menuBtn.addEventListener('click', openDrawer);
       items = r.ok ? normalize(await r.json()) : [];
     }catch(e){ items = []; }
     refreshBell();
+    renderStrip();
   }
   btn.addEventListener('click', openAnn);
+  const stripEl = document.getElementById('annStrip');
+  stripEl.addEventListener('click', openAnn);
+  stripEl.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openAnn(); } });
   document.getElementById('annClose').addEventListener('click', closeAnn);
   overlay.addEventListener('click', e => { if(e.target === overlay) closeAnn(); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') closeAnn(); });
