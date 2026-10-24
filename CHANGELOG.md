@@ -19,6 +19,23 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.2] - 2026-10-23
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Added
+- **Avatars can now be equipped from the profile window.** Until now a purchased avatar could
+  be bought but not chosen anywhere. The header account button shows the equipped avatar too.
+
+### Changed
+- **Redesigned profile window.** A wide two-column window: on the left, a card with your
+  banner, avatar, name, and title, your available Prize with an Item Shop shortcut, and the
+  personal photo upload (still 1500 Prize, with owner approval). On the right, three sections in
+  this order: Avatars, Player Titles, Banners. Items are shown as tiles and chips (banners with
+  their picture) with a check on the equipped one, and "No title", "None", and "Your photo"
+  options to unequip. Tapping an item applies it right away and updates the card; the window
+  keeps its scroll position. On phones the two columns stack.
+
 ## [5.0.0-beta.1] - 2026-10-23
 
 Pre-release for the `redesign` branch. It is not on `main` yet.

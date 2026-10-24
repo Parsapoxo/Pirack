@@ -1244,6 +1244,64 @@
     .shop-bar .view-tab{ padding:0 14px; }
   }
   @media (prefers-reduced-motion:reduce){ .chip, .shop-chip{ transition:none; } }
+
+  /* ===== profile modal v2 ===== */
+  .modal-box.profile-wide{ max-width:1000px; border-radius:22px; background:#0f0f12; border-color:#2a2a31; display:flex; flex-direction:column; max-height:calc(100vh - 48px); }
+  .modal-box.profile-wide #authBody{ overflow-y:auto; }
+  .pf-layout{ display:flex; gap:28px; flex-wrap:wrap; align-items:flex-start; padding:28px; text-align:left; }
+  .pf-side{ flex:0 0 320px; width:320px; max-width:100%; display:flex; flex-direction:column; gap:16px; }
+  .pf-main{ flex:1 1 520px; min-width:0; display:flex; flex-direction:column; gap:26px; }
+  .pf-card{ background:#131317; border:1px solid #26262c; border-radius:18px; overflow:hidden; padding-bottom:20px; }
+  .pf-banner{ aspect-ratio:5/1; background:linear-gradient(120deg,#1b1b22,#2a2a33); overflow:hidden; position:relative; }
+  .pf-banner img, .pf-banner video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .pf-card-body{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 16px; text-align:center; }
+  .pf-avatar{ width:84px; height:84px; margin-top:-42px; border-radius:20px; border:3px solid var(--violet); box-shadow:0 0 0 4px #131317; background:var(--surface-2); overflow:hidden; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:28px; color:var(--muted); position:relative; z-index:1; }
+  .pf-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .pf-name{ font-size:20px; font-weight:800; overflow-wrap:anywhere; }
+  .pf-sub{ font-size:12px; color:var(--muted); }
+  .pf-label{ font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--muted); }
+  .pf-prize{ background:#131317; border:1px solid #5c4308; border-radius:16px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .pf-prize b{ display:block; font-size:22px; color:var(--gold); margin-top:2px; }
+  .pf-link{ background:none; border:0; color:var(--gold); font:700 13px 'Inter',sans-serif; cursor:pointer; min-height:44px; }
+  .pf-photo{ background:#131317; border:1px solid #26262c; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .pf-photo p{ font-size:12.5px; line-height:1.6; color:var(--muted); }
+  .pf-btn{ display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border-radius:10px; border:1px solid #3a3a43; background:#1b1b21; color:var(--text); font:700 13px 'Inter',sans-serif; cursor:pointer; }
+  .pf-btn:hover{ border-color:#5a5a65; }
+  .pf-btn.primary{ background:var(--violet); border-color:var(--violet); color:#fff; }
+  .pf-btn.danger{ border-color:#5a2a31; background:rgba(226,31,61,.1); color:#ff7a86; }
+  .pf-file{ position:absolute; width:1px; height:1px; opacity:0; overflow:hidden; }
+  .pf-file:focus-visible + .pf-btn{ outline:2px solid var(--text); outline-offset:2px; }
+  .pf-hint{ font-size:12.5px; color:var(--muted); }
+  .pf-photo .profile-status:empty{ display:none; }
+  .pf-sec{ display:flex; flex-direction:column; gap:12px; }
+  .pf-sec-head{ display:flex; align-items:baseline; gap:10px; }
+  .pf-sec-head h3{ font-size:15px; font-weight:800; margin:0; }
+  .pf-sec-head span{ font-size:12px; color:var(--muted); }
+  .pf-empty{ font-size:12.5px; color:var(--muted); padding:4px 0; }
+  .pf-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pf-chip{ min-height:44px; padding:0 18px; border-radius:999px; border:1px solid #33333b; background:#15151a; color:var(--text); font:700 13px 'Inter',sans-serif; cursor:pointer; }
+  .pf-chip.sel{ border:2px solid var(--violet); background:rgba(226,31,61,.1); }
+  .pf-chip .tname{ font-weight:700; }
+  .pf-banners{ display:grid; grid-template-columns:repeat(auto-fill, minmax(210px, 1fr)); gap:12px; }
+  .pf-btile{ position:relative; display:flex; flex-direction:column; gap:10px; padding:10px; border-radius:14px; border:1px solid #26262c; background:#131317; cursor:pointer; text-align:left; color:var(--text); font:700 13px 'Inter',sans-serif; }
+  .pf-btile.sel{ border:2px solid var(--violet); padding:9px; }
+  .pf-bthumb{ aspect-ratio:5/1; border-radius:8px; background:#15151a; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--muted); }
+  .pf-bthumb img, .pf-bthumb video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .pf-btile .st{ display:flex; justify-content:space-between; gap:8px; padding:0 2px; }
+  .pf-btile .st small{ font-weight:600; font-size:11px; color:var(--muted); white-space:nowrap; }
+  .pf-btile.sel .st small{ color:#4ade80; }
+  .pf-avatars{ display:grid; grid-template-columns:repeat(auto-fill, minmax(84px, 1fr)); gap:12px; }
+  .pf-atile{ position:relative; aspect-ratio:1; border-radius:16px; border:1px solid #33333b; background:#1b1b21; cursor:pointer; overflow:hidden; display:flex; align-items:center; justify-content:center; color:var(--text); font:800 22px 'Inter',sans-serif; padding:0; }
+  .pf-atile img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .pf-atile.sel{ border:3px solid var(--violet); }
+  .pf-check{ position:absolute; top:6px; right:6px; width:22px; height:22px; border-radius:50%; background:var(--violet); color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .pf-foot{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:16px 28px; border-top:1px solid #1f1f25; background:#0c0c0e; }
+  .pf-foot span{ font-size:12px; color:var(--muted); max-width:560px; line-height:1.6; }
+  @media (max-width:820px){
+    .pf-layout{ padding:18px; gap:20px; }
+    .pf-side{ flex:1 1 100%; width:100%; }
+    .pf-foot{ padding:14px 18px; }
+  }
 </style>
 </head>
 <body data-view="games">
@@ -1360,7 +1418,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.0-beta.1</div>
+<div class="version-tag">v5.0.0-beta.2</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -2830,7 +2888,10 @@ function updateProfileBtn(){
     return;
   }
   const p = leaderboard.find(x => x.player === session.player);
-  if(p && p.avatar){
+  const equipped = currentPlayerTitles.selectedProfilePic ? findProfilePicById(currentPlayerTitles.selectedProfilePic) : null;
+  if(equipped && equipped.file){
+    profileBtn.innerHTML = `<img src="${equipped.file}" alt="${session.player}">`;
+  }else if(p && p.avatar){
     profileBtn.innerHTML = `<img src="${p.avatar}" alt="${p.player}">`;
   }else{
     profileBtn.innerHTML = `<span style="font-weight:800;">${(session.player||'?').slice(0,1).toUpperCase()}</span>`;
@@ -2839,6 +2900,7 @@ function updateProfileBtn(){
 
 function renderSignInForm(){
   authTitle.textContent = 'Sign In';
+  authOverlay.querySelector('.modal-box').classList.remove('profile-wide');
   const signable = leaderboard.filter(p => p.password);
   authBody.innerHTML = `
     <div class="auth-box">
@@ -2889,76 +2951,121 @@ function esc(str){
 
 let profileCropState = null;
 
-async function renderProfileView(){
+async function renderProfileView(useCache){
   const session = getSession();
   const p = leaderboard.find(x => x.player === session.player);
   authTitle.textContent = 'My Profile';
 
-  let ownedTitles = [], selectedTitle = null, ownedBanners = [], selectedBanner = null;
-  if(window.pirackDB){
+  authOverlay.querySelector('.modal-box').classList.add('profile-wide');
+  profileCropState = null;
+  const prevScroll = useCache ? authBody.scrollTop : 0;
+
+  if(!useCache && window.pirackDB){
     try{
       const data = await window.pirackDB.getPlayerData(slug(session.player));
-      ownedTitles = data.ownedTitles || [];
-      selectedTitle = data.selectedTitle || null;
-      ownedBanners = data.ownedBanners || [];
-      selectedBanner = data.selectedBanner || null;
       currentPlayerTitles = data;
     }catch(err){ console.error(err); }
   }
+  const data = currentPlayerTitles;
+  const ownedTitles = data.ownedTitles || [];
+  const ownedBanners = data.ownedBanners || [];
+  const ownedPics = data.ownedProfilePics || [];
+  const selectedTitle = data.selectedTitle || null;
+  const selectedBanner = data.selectedBanner || null;
+  const selectedPic = data.selectedProfilePic || null;
 
-  const titlePickerHTML = ownedTitles.length ? `
-    <div style="width:100%;">
-      <label style="display:block; font-size:12px; color:var(--muted); margin-bottom:8px; text-align:center;">Your Player Title</label>
-      <div id="titlePicker" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
-        ${ownedTitles.map(id => {
-          const t = findTitleById(id);
-          if(!t) return '';
-          const isSelected = selectedTitle === id;
-          return `<button class="tbuy tier-${t.tier}" style="width:auto; padding:7px 12px; ${isSelected ? 'border-color:var(--violet); box-shadow:0 0 0 1px var(--violet);' : ''}" onclick="pickTitle('${id}')"><span class="tname">${esc(t.name)}</span>${isSelected ? ' ✓' : ''}</button>`;
-        }).join('')}
-        ${selectedTitle ? `<button class="tbuy" style="width:auto; padding:7px 12px;" onclick="pickTitle(null)">No title</button>` : ''}
-      </div>
-    </div>
-  ` : `<div class="profile-hint">You don't own any player titles yet — visit the Item Shop to buy one.</div>`;
+  const prize = p ? (p.prize ?? (p.score||0)*5) : 0;
+  const spent = totalOwnedSpend(ownedTitles, ownedBanners, ownedPics, data.avatarSpend);
+  const available = prize - spent;
 
-  const bannerPickerHTML = ownedBanners.length ? `
-    <div style="width:100%;">
-      <label style="display:block; font-size:12px; color:var(--muted); margin-bottom:8px; text-align:center;">Your Banner</label>
-      ${selectedBanner ? (() => {
-        const b = findBannerById(selectedBanner);
-        return b && b.file ? `<div class="equipped-banner-wrap" style="margin-bottom:10px;"><img src="${b.file}" alt="${esc(b.name)}"></div>` : '';
-      })() : ''}
-      <div id="bannerPicker" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
-        ${ownedBanners.map(id => {
-          const b = findBannerById(id);
-          if(!b) return '';
-          const isSelected = selectedBanner === id;
-          return `<button class="tbuy" style="width:auto; padding:7px 12px; ${isSelected ? 'border-color:var(--violet); box-shadow:0 0 0 1px var(--violet);' : ''}" onclick="pickBanner('${id}')">${esc(b.name)}${isSelected ? ' ✓' : ''}</button>`;
-        }).join('')}
-        ${selectedBanner ? `<button class="tbuy" style="width:auto; padding:7px 12px;" onclick="pickBanner(null)">No banner</button>` : ''}
-      </div>
+  const eqBanner = selectedBanner ? findBannerById(selectedBanner) : null;
+  const eqTitle = selectedTitle ? findTitleById(selectedTitle) : null;
+  const eqPic = selectedPic ? findProfilePicById(selectedPic) : null;
+  const ownPhoto = p && p.avatar ? `<img src="${h(p.avatar)}" alt="">` : h(initials(session.player));
+  const eqAvatarHTML = eqPic && eqPic.file ? `<img src="${h(eqPic.file)}" alt="">` : ownPhoto;
+
+  const picTiles = ownedPics.map(id => {
+    const pic = findProfilePicById(id);
+    if(!pic || !pic.file) return '';
+    const sel = selectedPic === id;
+    return `<button type="button" class="pf-atile${sel ? ' sel' : ''}" aria-pressed="${sel}" aria-label="${h(pic.name || 'Avatar')}" title="${h(pic.name || '')}" onclick="pickProfilePic('${id}')"><img src="${h(pic.file)}" alt="">${sel ? '<span class="pf-check">✓</span>' : ''}</button>`;
+  }).join('');
+  const avatarsHTML = `
+    <div class="pf-avatars">
+      <button type="button" class="pf-atile${!selectedPic ? ' sel' : ''}" aria-pressed="${!selectedPic}" aria-label="Use your own photo" title="Your photo" onclick="pickProfilePic(null)">${ownPhoto}${!selectedPic ? '<span class="pf-check">✓</span>' : ''}</button>
+      ${picTiles}
     </div>
-  ` : `<div class="profile-hint">You don't own any banners yet — visit the Item Shop to buy one.</div>`;
+    ${ownedPics.length ? '' : `<div class="pf-empty">You don't own any avatars yet — visit the Item Shop to buy one.</div>`}`;
+
+  const titleChips = ownedTitles.map(id => {
+    const t = findTitleById(id);
+    if(!t) return '';
+    const sel = selectedTitle === id;
+    return `<button type="button" class="pf-chip tier-${t.tier}${sel ? ' sel' : ''}" aria-pressed="${sel}" onclick="pickTitle('${id}')"><span class="tname">${h(t.name)}</span>${sel ? ' ✓' : ''}</button>`;
+  }).join('');
+  const titlesHTML = `
+    <div class="pf-chips">
+      <button type="button" class="pf-chip${!selectedTitle ? ' sel' : ''}" aria-pressed="${!selectedTitle}" onclick="pickTitle(null)">No title${!selectedTitle ? ' ✓' : ''}</button>
+      ${titleChips}
+    </div>
+    ${ownedTitles.length ? '' : `<div class="pf-empty">You don't own any player titles yet — visit the Item Shop to buy one.</div>`}`;
+
+  const bannerTiles = ownedBanners.map(id => {
+    const b = findBannerById(id);
+    if(!b || !b.file) return '';
+    const sel = selectedBanner === id;
+    return `<button type="button" class="pf-btile${sel ? ' sel' : ''}" aria-pressed="${sel}" onclick="pickBanner('${id}')"><div class="pf-bthumb">${bannerMediaHTML(b.file, b.name, true)}</div><span class="st"><span>${h(b.name)}</span><small>${sel ? 'Equipped' : 'Tap to equip'}</small></span></button>`;
+  }).join('');
+  const bannersHTML = `
+    <div class="pf-banners">
+      <button type="button" class="pf-btile${!selectedBanner ? ' sel' : ''}" aria-pressed="${!selectedBanner}" onclick="pickBanner(null)"><div class="pf-bthumb">No banner</div><span class="st"><span>None</span><small>${!selectedBanner ? 'Equipped' : 'Tap to equip'}</small></span></button>
+      ${bannerTiles}
+    </div>
+    ${ownedBanners.length ? '' : `<div class="pf-empty">You don't own any banners yet — visit the Item Shop to buy one.</div>`}`;
+
+  const sec = (title, count, body) => `<section class="pf-sec"><div class="pf-sec-head"><h3>${title}</h3><span>${count} owned</span></div>${body}</section>`;
 
   authBody.innerHTML = `
-    <div class="auth-box profile-view">
-      <div class="profile-avatar-wrap" id="profileAvatarPreview">
-        ${p && p.avatar ? `<img src="${p.avatar}">` : (session.player||'?').slice(0,1).toUpperCase()}
-      </div>
-      <div class="profile-username">${esc(session.player)}</div>
-      ${titlePickerHTML}
-      ${bannerPickerHTML}
-      <div class="profile-hint">Username and password can only be changed by the site owner. Uploading a new profile picture costs 💎 ${AVATAR_UPLOAD_COST} Prize and needs the site owner's approval.</div>
-      <input type="file" accept="image/*" id="profileFileInput" style="width:100%; font-size:12px; color:var(--muted);">
-      <canvas id="profileCropCanvas" width="220" height="220" style="display:none; border-radius:16px; cursor:grab; background:#000; margin:0 auto;"></canvas>
-      <input type="range" id="profileZoom" min="1" max="4" step="0.01" style="display:none; width:100%;">
-      <div class="profile-status" id="profileStatus"></div>
-      <div class="profile-actions">
-        <button class="btn" id="profileSubmit" style="display:none;">Send for approval</button>
-        <button class="btn" id="profileLogout">Log out</button>
+    <div class="pf-layout">
+      <aside class="pf-side">
+        <div class="pf-card">
+          <div class="pf-banner">${eqBanner && eqBanner.file ? bannerMediaHTML(eqBanner.file, eqBanner.name, true) : ''}</div>
+          <div class="pf-card-body">
+            <div class="pf-avatar" id="profileAvatarPreview">${eqAvatarHTML}</div>
+            <b class="pf-name">${h(session.player)}</b>
+            ${eqTitle ? `<div class="lb-title tier-${eqTitle.tier}"><span class="tname">${h(eqTitle.name)}</span></div>` : ''}
+            <span class="pf-sub">${eqBanner ? 'Banner: ' + h(eqBanner.name) : 'No banner equipped'}</span>
+          </div>
+        </div>
+        <div class="pf-prize">
+          <div><span class="pf-label">AVAILABLE PRIZE</span><b>💎 ${available}</b></div>
+          <button type="button" class="pf-link" onclick="closeAuth(); enterShopMode();">Item Shop →</button>
+        </div>
+        <div class="pf-photo">
+          <span class="pf-label">PERSONAL PHOTO</span>
+          <p>Upload your own picture. It costs 💎 ${AVATAR_UPLOAD_COST} and needs the site owner's approval. An avatar you equip overrides it.</p>
+          <input type="file" accept="image/*" id="profileFileInput" class="pf-file">
+          <label for="profileFileInput" class="pf-btn">Choose photo…</label>
+          <canvas id="profileCropCanvas" width="220" height="220" style="display:none; border-radius:16px; cursor:grab; background:#000; margin:0 auto; max-width:100%;"></canvas>
+          <input type="range" id="profileZoom" min="1" max="4" step="0.01" style="display:none; width:100%;">
+          <div class="profile-status" id="profileStatus"></div>
+          <button type="button" class="pf-btn primary" id="profileSubmit" style="display:none;">Send for approval</button>
+        </div>
+      </aside>
+      <div class="pf-main">
+        <div class="pf-hint">Tap an item to equip it. Changes apply right away and show on the card.</div>
+        ${sec('Avatars', ownedPics.length, avatarsHTML)}
+        ${sec('Player Titles', ownedTitles.length, titlesHTML)}
+        ${sec('Banners', ownedBanners.length, bannersHTML)}
       </div>
     </div>
+    <div class="pf-foot">
+      <span>Username and password can only be changed by the site owner.</span>
+      <button type="button" class="pf-btn danger" id="profileLogout">Log out</button>
+    </div>
   `;
+  authBody.scrollTop = prevScroll;
+  observeBannerMedia(authBody);
 
   document.getElementById('profileLogout').addEventListener('click', () => {
     clearSession();
@@ -3106,7 +3213,7 @@ async function pickTitle(id){
   try{
     await window.pirackDB.setSelectedTitle(slug(session.player), id);
     currentPlayerTitles.selectedTitle = id;
-    await renderProfileView();
+    await renderProfileView(true);
   }catch(err){
     console.error(err);
     alert('Failed to update title: ' + err.message);
@@ -3119,15 +3226,36 @@ async function pickBanner(id){
   try{
     await window.pirackDB.setSelectedBanner(slug(session.player), id);
     currentPlayerTitles.selectedBanner = id;
-    await renderProfileView();
+    await renderProfileView(true);
   }catch(err){
     console.error(err);
     alert('Failed to update banner: ' + err.message);
   }
 }
 
+async function pickProfilePic(id){
+  const session = getSession();
+  if(!session) return;
+  try{
+    await window.pirackDB.setSelectedProfilePic(slug(session.player), id);
+    currentPlayerTitles.selectedProfilePic = id;
+    updateProfileBtn();
+    await renderProfileView(true);
+  }catch(err){
+    console.error(err);
+    alert('Failed to update avatar: ' + err.message);
+  }
+}
+
 function initAuth(){
   updateProfileBtn();
+  // load the equipped avatar so the header button shows it right away
+  const session = getSession();
+  if(session && window.pirackDB){
+    window.pirackDB.getPlayerData(slug(session.player))
+      .then(d => { currentPlayerTitles = d; updateProfileBtn(); })
+      .catch(err => console.error(err));
+  }
 }
 </script>
 
