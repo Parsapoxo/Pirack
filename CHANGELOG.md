@@ -19,6 +19,20 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.4] - 2026-10-25
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Fixed
+- The button row on game cards (Steam, PirateGames, download, trailer) was wider than the
+  card on common screen sizes, so it ran 12 to 24 px past the right padding and looked
+  off-center. The row now fits inside the card at every width, with equal space on both sides.
+  The buttons shrink a little on narrower cards (smaller text and square buttons of 34 to
+  40 px) and wrap to a second line instead of overflowing if a label is unusually long.
+
+### Changed
+- The smallest game card width went from 270 px to 280 px.
+
 ## [5.0.0-beta.3] - 2026-10-25
 
 Pre-release for the `redesign` branch. It is not on `main` yet.

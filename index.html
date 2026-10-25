@@ -1142,7 +1142,7 @@
   .page .toolbar{ max-width:none; margin:0; padding:0; justify-content:flex-start; gap:14px; }
   .page .search-wrap{ flex:1 1 280px; max-width:none; }
   .page .count{ text-align:left; margin:0; }
-  .page .grid{ max-width:none; margin:0; padding:0; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:20px; }
+  .page .grid{ max-width:none; margin:0; padding:0; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px; }
   .page .lb-wrap{ margin:0 auto; width:100%; }
   .chips{ display:flex; gap:8px; flex-wrap:wrap; }
   .chip, .shop-chip{ min-height:44px; padding:0 16px; border-radius:999px; border:1px solid #33333b; background:transparent; color:var(--text); font:600 13px 'Inter',sans-serif; cursor:pointer; transition:background .2s, border-color .2s; }
@@ -1307,6 +1307,29 @@
   /* letters with tails (g j p q y) hang below the baseline, so lift those labels half a tail
      to make the visible text sit in the middle of the box (class is added by script) */
   .optical-d.optical-d{ padding-bottom:.25em; }
+
+  /* ===== v5: game card button row =====
+     The row used to be wider than the card on narrower cards, so it ran past the right padding.
+     Buttons now size to the card (container query) and wrap instead of overflowing. */
+  .card{ container-type:inline-size; container-name:card; }
+  .actions{ flex-wrap:wrap; align-items:stretch; width:100%; gap:6px; }
+  .actions .btn{ min-height:44px; padding:0 8px; min-width:0; white-space:nowrap; font-size:12.5px; letter-spacing:.01em; }
+  .actions .btn.steam, .actions .btn.dl{ flex:1 1 auto; }
+  .actions .btn.trailer{ flex:0 0 40px; width:40px; padding:0; }
+  .actions .dl-parts-wrap{ flex:0 0 40px; width:40px; display:flex; }
+  .actions .dl-parts-wrap .btn.trailer{ flex:1 1 auto; width:100%; }
+  @container card (max-width: 330px){
+    .actions .btn{ font-size:12px; padding:0 6px; letter-spacing:0; }
+    .actions .btn.trailer, .actions .dl-parts-wrap{ flex-basis:36px; width:36px; }
+    .actions .btn.trailer{ padding:0; }
+    .actions .dl-parts-wrap .btn.trailer{ width:100%; }
+  }
+  @container card (max-width: 290px){
+    .actions .btn{ padding:0 5px; }
+    .actions .btn.trailer, .actions .dl-parts-wrap{ flex-basis:34px; width:34px; }
+    .actions .btn.trailer{ padding:0; }
+    .actions .dl-parts-wrap .btn.trailer{ width:100%; }
+  }
 </style>
 </head>
 <body data-view="games">
@@ -1422,7 +1445,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.0-beta.3</div>
+<div class="version-tag">v5.0.0-beta.4</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
