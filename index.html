@@ -1151,12 +1151,7 @@
   .shop-chip{ min-height:36px; padding:0 14px; font-size:12px; }
   .chips.hidden{ display:none; }
 
-  /* announcement strip + hero: Games view only */
-  .ann-strip{ display:none; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; border:1px solid #3a2a05; background:rgba(242,183,5,.07); font-size:14px; cursor:pointer; text-align:left; }
-  .ann-strip .a-new{ color:var(--gold); font-weight:800; font-size:11px; letter-spacing:.08em; }
-  .ann-strip .a-msg{ color:var(--muted); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .ann-strip .a-time{ color:var(--muted); font-size:12px; white-space:nowrap; }
-  body[data-view="games"] .ann-strip.has{ display:flex; }
+  /* hero: Games view only */
   .hero-row{ display:none; gap:20px; flex-wrap:wrap; }
   body[data-view="games"] .hero-row{ display:flex; }
   .hero-row.off{ display:none !important; }
@@ -1302,6 +1297,16 @@
     .pf-side{ flex:1 1 100%; width:100%; }
     .pf-foot{ padding:14px 18px; }
   }
+
+  /* ===== v5: button label centring ===== */
+  .btn{ display:flex; align-items:center; justify-content:center; line-height:1.2; }
+  .hbtn, .chip, .shop-chip, .pf-btn, .pf-chip, .pf-link, .back-btn, .main-nav button, .top3-head button, .view-tab, .copy-btn{
+    display:inline-flex; align-items:center; justify-content:center; text-align:center; line-height:1.2;
+  }
+  .shop-bar .view-tab{ padding-top:3px; }  /* balances its 3px underline */
+  /* letters with tails (g j p q y) hang below the baseline, so lift those labels half a tail
+     to make the visible text sit in the middle of the box (class is added by script) */
+  .optical-d.optical-d{ padding-bottom:.25em; }
 </style>
 </head>
 <body data-view="games">
@@ -1374,7 +1379,6 @@
   </div>
 
   <main class="page">
-    <div class="ann-strip" id="annStrip" role="button" tabindex="0"></div>
     <section class="hero-row" id="homeHero" aria-label="Featured"></section>
 
     <div class="toolbar">
@@ -1418,7 +1422,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.0-beta.2</div>
+<div class="version-tag">v5.0.0-beta.3</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1606,7 +1610,7 @@ function applyFilter(){
         g.genres.some(t=>t.toLowerCase().includes(q))
       )
     );
-    homeHeroEl.classList.toggle('off', !!q || activeChip !== 'all');
+    homeHeroEl.classList.toggle('off', !!q);
     if(!homeHeroEl.firstChild) renderHome();
     render(filtered);
   } else if(currentView === 'apps') {
@@ -2612,19 +2616,6 @@ menuBtn.addEventListener('click', openDrawer);
     const seen = getSeen();
     btn.classList.toggle('alert', items.some(x => x.mode === 'blink' && !seen.includes(x.id)));
   }
-  function renderStrip(){
-    const strip = document.getElementById('annStrip');
-    if(!strip) return;
-    const x = items[0];
-    strip.classList.toggle('has', !!x);
-    strip.innerHTML = '';
-    if(!x) return;
-    const unseen = x.mode === 'blink' && !getSeen().includes(x.id);
-    if(unseen){ const n = document.createElement('span'); n.className = 'a-new'; n.textContent = 'NEW'; strip.appendChild(n); }
-    const t = document.createElement('b'); t.textContent = x.title.trim() || 'Announcement'; strip.appendChild(t);
-    const m = document.createElement('span'); m.className = 'a-msg'; m.textContent = x.message.replace(/\s+/g, ' ').slice(0, 140); strip.appendChild(m);
-    if(x.createdAt){ const a = document.createElement('span'); a.className = 'a-time'; a.textContent = timeAgo(x.createdAt); strip.appendChild(a); }
-  }
   function openAnn(){
     const seen = getSeen();
     bodyEl.innerHTML = '';
@@ -2655,7 +2646,6 @@ menuBtn.addEventListener('click', openDrawer);
       const e = document.createElement('div'); e.className = 'ann-empty'; e.textContent = 'No announcements right now.'; bodyEl.appendChild(e);
     }
     refreshBell();
-    renderStrip();
     bodyEl.scrollTop = 0;
     overlay.classList.add('open');
   }
@@ -2667,12 +2657,8 @@ menuBtn.addEventListener('click', openDrawer);
       items = r.ok ? normalize(await r.json()) : [];
     }catch(e){ items = []; }
     refreshBell();
-    renderStrip();
   }
   btn.addEventListener('click', openAnn);
-  const stripEl = document.getElementById('annStrip');
-  stripEl.addEventListener('click', openAnn);
-  stripEl.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openAnn(); } });
   document.getElementById('annClose').addEventListener('click', closeAnn);
   overlay.addEventListener('click', e => { if(e.target === overlay) closeAnn(); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') closeAnn(); });
@@ -3257,6 +3243,21 @@ function initAuth(){
       .catch(err => console.error(err));
   }
 }
+
+// ---- centre button labels optically: labels with tails (g j p q y) get a small lift ----
+(function(){
+  const SEL = '.hbtn,.chip,.shop-chip,.pf-btn,.pf-chip,.pf-link,.back-btn,.main-nav button,.top3-head button';
+  function mark(el){ el.classList.toggle('optical-d', /[gjpqy]/.test(el.textContent)); }
+  function scan(root){
+    if(root.nodeType === 3){ const el = root.parentElement && root.parentElement.closest(SEL); if(el) mark(el); return; }
+    if(root.nodeType !== 1) return;
+    if(root.matches(SEL)) mark(root);
+    root.querySelectorAll(SEL).forEach(mark);
+    const up = root.closest(SEL); if(up && up !== root) mark(up);
+  }
+  new MutationObserver(list => list.forEach(m => m.addedNodes.forEach(scan))).observe(document.body, { childList:true, subtree:true });
+  scan(document.body);
+})();
 </script>
 
 <script type="module">

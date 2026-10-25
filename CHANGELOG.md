@@ -19,7 +19,24 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
-## [5.0.0-beta.2] - 2026-10-23
+## [5.0.0-beta.3] - 2026-10-25
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Changed
+- The featured game and the Top 3 card now stay visible when a filter chip is selected. They
+  are hidden only while text is typed in the search box.
+- Button labels are now centered in their boxes everywhere. Labels were sitting 2 to 3.5 px low
+  when they contain letters with tails (g, j, p, q, y), for example "Steam page", "Apps", and
+  "Co-op"; these are lifted slightly so the visible letters look centered. Buttons also
+  center their text sideways, and the card buttons (PirateGames, Steam, and so on) center
+  vertically even when a taller button sits beside them. The Item Shop tab labels now
+  compensate for their underline.
+
+### Removed
+- The yellow announcement strip on the Games tab. Announcements are now only behind the bell.
+
+## [5.0.0-beta.2] - 2026-10-24
 
 Pre-release for the `redesign` branch. It is not on `main` yet.
 
