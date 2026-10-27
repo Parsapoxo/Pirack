@@ -19,6 +19,27 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.5] - 2026-10-27
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Changed
+- **Redesigned leaderboard.** The podium is gone: every player is one slim row with a square
+  avatar on the left and their banner attached to it, filling the rest of the row. The name and
+  title sit on the banner on the left, and the score is a small pill on the right. A player
+  without a banner gets a plain dark banner, so all rows look the same. Rows are spaced 18 px
+  apart.
+- Ranks 1 to 3 are marked by an outline and soft glow around the whole row in gold, silver, and
+  bronze (no sticker on the avatar). From rank 4 on, the avatar carries a small `#N` badge.
+- The leaderboard has a title with the player count, and a "Your rank" card (rank, score, and
+  how many points are needed to reach the next place) for signed-in players. Your own row has a
+  YOU tag.
+- Button labels are nudged up by one small fixed amount instead of a per-label adjustment, so
+  neighbouring buttons stay on one baseline and no label is more than about 1 px off center.
+
+### Removed
+- The old podium and its styles.
+
 ## [5.0.0-beta.4] - 2026-10-25
 
 Pre-release for the `redesign` branch. It is not on `main` yet.

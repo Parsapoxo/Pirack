@@ -707,62 +707,6 @@
 
   .lb-wrap{ max-width:760px; margin:32px auto 0; padding:0 6vw 60px; }
 
-  /* ---- top-3 podium: big card for #1, two smaller cards for #2 / #3 ---- */
-  .podium2{ display:flex; flex-direction:column; gap:12px; margin-bottom:34px; }
-  .pc-row{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
-  .pc-row > .pc:only-child{ grid-column:1 / -1; width:calc(50% - 6px); justify-self:center; }
-  .pc{
-    --rc:#c9d2da; --rc-soft:rgba(201,210,218,0.35); --av:68px;
-    position:relative;
-    display:flex; flex-direction:column; align-items:center;
-    background:linear-gradient(180deg,var(--surface),var(--surface-2));
-    border:1px solid var(--rc-soft);
-    border-radius:16px;
-    overflow:hidden;
-    padding-bottom:16px;
-    min-width:0;
-  }
-  .pc.rank-1{ --rc:#ffd700; --rc-soft:rgba(255,215,0,0.45); --av:96px; box-shadow:0 0 28px rgba(255,215,0,0.10); padding-bottom:20px; }
-  .pc.rank-3{ --rc:#cd7f32; --rc-soft:rgba(205,127,50,0.45); }
-  .pc-banner{
-    position:relative; width:100%; aspect-ratio:5 / 1;
-    background:
-      linear-gradient(135deg, var(--rc-soft), rgba(0,0,0,0) 70%),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 22px),
-      #0d0d0e;
-    overflow:hidden;
-  }
-  .pc-banner img, .pc-banner video{ width:100%; height:100%; object-fit:cover; display:block; }
-  .pc-medal{
-    position:absolute; top:8px; left:8px; z-index:3;
-    font-family:'Inter',sans-serif; font-weight:800; font-size:11px; letter-spacing:.04em;
-    padding:4px 9px; border-radius:999px;
-    background:rgba(10,10,11,0.72); backdrop-filter:blur(4px);
-    border:1px solid var(--rc-soft); color:var(--rc);
-  }
-  .pc.rank-1 .pc-medal{ font-size:12.5px; padding:5px 12px; top:10px; left:10px; }
-  .pc-avatar{
-    position:relative; z-index:2;
-    width:var(--av); height:var(--av);
-    margin-top:calc(var(--av) / -2);
-    border-radius:18px; overflow:hidden;
-    background:var(--surface-2);
-    border:3px solid var(--rc);
-    box-shadow:0 0 0 4px var(--surface), 0 6px 18px rgba(0,0,0,0.5);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Inter',sans-serif; font-weight:800; font-size:calc(var(--av) * 0.34); color:var(--muted);
-  }
-  .pc-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .pc-info{ display:flex; flex-direction:column; align-items:center; gap:7px; width:100%; padding:12px 12px 0; min-width:0; }
-  .pc-name{ font-weight:800; font-size:16px; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pc.rank-1 .pc-name{ font-size:22px; }
-  .pc-score{
-    font-family:'Inter',sans-serif; font-size:12px; font-weight:700;
-    padding:5px 12px; border-radius:999px;
-    background:var(--surface-2); border:1px solid var(--rc-soft); color:var(--rc);
-  }
-  .pc.rank-1 .pc-score{ font-size:13.5px; padding:6px 16px; }
-
   .lb-table{ display:flex; flex-direction:column; gap:8px; }
   .lb-head{
     display:flex; align-items:center; gap:14px;
@@ -1109,15 +1053,6 @@
     .brand-logo{width:110px; height:110px;}
 
     .lb-wrap{ padding:0 4vw 60px; }
-    .podium2, .pc-row{ gap:8px; }
-    .pc{ --av:56px; }
-    .pc.rank-1{ --av:76px; }
-    .pc-name{ font-size:14px; }
-    .pc.rank-1 .pc-name{ font-size:19px; }
-    .pc-medal{ font-size:10px; padding:3px 7px; top:5px; left:5px; }
-    .pc.rank-1 .pc-medal{ font-size:11px; padding:4px 9px; top:8px; left:8px; }
-    .pc-info{ padding:10px 8px 0; }
-    .pc-score{ font-size:11px; padding:4px 9px; }
 
     .lb-row{ padding:9px 10px; gap:8px; }
     .lb-player{ font-size:13.5px; }
@@ -1304,9 +1239,9 @@
     display:inline-flex; align-items:center; justify-content:center; text-align:center; line-height:1.2;
   }
   .shop-bar .view-tab{ padding-top:3px; }  /* balances its 3px underline */
-  /* letters with tails (g j p q y) hang below the baseline, so lift those labels half a tail
-     to make the visible text sit in the middle of the box (class is added by script) */
-  .optical-d.optical-d{ padding-bottom:.25em; }
+  /* Labels are nudged up by about a pixel: letters with tails (g j p q y) hang below the baseline, so the
+     plain line-box centre looks low. One small lift for every button keeps neighbours on one baseline. */
+  .hbtn, .chip, .shop-chip, .pf-btn, .pf-chip, .pf-link, .back-btn, .main-nav button{ padding-bottom:.08em; }
 
   /* ===== v5: game card button row =====
      The row used to be wider than the card on narrower cards, so it ran past the right padding.
@@ -1329,6 +1264,44 @@
     .actions .btn.trailer, .actions .dl-parts-wrap{ flex-basis:34px; width:34px; }
     .actions .btn.trailer{ padding:0; }
     .actions .dl-parts-wrap .btn.trailer{ width:100%; }
+  }
+
+  /* ===== leaderboard v5: one slim row per player ===== */
+  .lbr-wrap{ max-width:900px; margin:0 auto; width:100%; display:flex; flex-direction:column; gap:22px; text-align:left; }
+  .lbr-title{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .lbr-title h2{ font-size:30px; font-weight:800; }
+  .lbr-title span{ font-size:14px; color:var(--muted); }
+  .lbr-me{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:16px 22px; border-radius:16px; border:1px solid #5c4308; background:linear-gradient(90deg, rgba(226,31,61,.08), rgba(242,183,5,.1)); font-size:13px; color:#d4d4d8; }
+  .lbr-me-label{ display:block; font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--muted); margin-bottom:2px; }
+  .lbr-me b{ font-size:22px; color:var(--text); }
+  .lbr-me small{ font-size:14px; font-weight:600; color:var(--muted); }
+  .lbr-list{ display:flex; flex-direction:column; gap:18px; }
+  .lbr{ --rc:#ffd700; --rg:rgba(255,215,0,.22); position:relative; display:flex; align-items:stretch; height:92px; border-radius:14px; border:1px solid #2a2a31; overflow:hidden; background:#0e0e11; }
+  .lbr.rank-2{ --rc:#c9d2da; --rg:rgba(201,210,218,.2); }
+  .lbr.rank-3{ --rc:#cd7f32; --rg:rgba(205,127,50,.22); }
+  .lbr.top{ border:2px solid var(--rc); box-shadow:0 0 24px var(--rg); }
+  .lbr.me:not(.top){ border:2px solid var(--gold); }
+  .lbr-avatar{ position:relative; flex:none; width:90px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:30px; color:var(--muted); overflow:hidden; }
+  .lbr-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .lbr-badge{ position:absolute; top:6px; left:6px; z-index:2; min-width:24px; height:24px; padding:0 6px; box-sizing:border-box; border-radius:8px; background:rgba(8,8,10,.78); color:#e4e4e7; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .lbr-banner{ position:relative; flex:1; min-width:0; background:repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 24px), linear-gradient(120deg,#16161b,#26262e); overflow:hidden; }
+  .lbr-banner img, .lbr-banner video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .lbr-shade{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(6,6,8,.82) 0%, rgba(6,6,8,.55) 38%, rgba(6,6,8,0) 72%); pointer-events:none; }
+  .lbr-text{ position:absolute; left:20px; top:0; bottom:0; right:130px; display:flex; flex-direction:column; justify-content:center; gap:5px; min-width:0; }
+  .lbr-name{ font-size:18px; font-weight:800; line-height:1.15; text-shadow:0 1px 8px rgba(0,0,0,.8); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .lbr.top .lbr-name{ font-size:20px; }
+  .lbr-you{ margin-left:8px; font-size:11px; font-weight:800; letter-spacing:.06em; color:var(--gold); }
+  .lbr-text .lb-title{ font-size:13px; text-shadow:0 1px 6px rgba(0,0,0,.8); }
+  .lbr-score{ position:absolute; right:16px; top:50%; transform:translateY(-50%); padding:6px 14px; border-radius:999px; background:rgba(8,8,10,.74); border:1px solid #33333b; font-size:13.5px; font-weight:700; white-space:nowrap; }
+  @media (max-width:560px){
+    .lbr{ height:76px; }
+    .lbr-avatar{ width:74px; font-size:24px; }
+    .lbr-text{ left:14px; right:96px; }
+    .lbr-name{ font-size:16px; }
+    .lbr.top .lbr-name{ font-size:17px; }
+    .lbr-text .lb-title{ font-size:12px; }
+    .lbr-score{ right:10px; padding:5px 10px; font-size:12px; }
+    .lbr-title h2{ font-size:26px; }
   }
 </style>
 </head>
@@ -1445,7 +1418,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.0-beta.4</div>
+<div class="version-tag">v5.0.0-beta.5</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1660,9 +1633,6 @@ async function renderLeaderboard(){
     catch(err){ console.error(err); }
   }
 
-  const top3 = sorted.slice(0,3);
-  const rest = sorted.slice(3);
-
   const avatarHTML = (p, sizeClass) => {
     const data = allPlayerData[slug(p.player)];
     const selectedPic = data && data.selectedProfilePic ? findProfilePicById(data.selectedProfilePic) : null;
@@ -1683,66 +1653,49 @@ async function renderLeaderboard(){
     return selected && selected.file ? selected : null;
   }
 
-  const MEDALS = { 1:'🥇 1ST', 2:'🥈 2ND', 3:'🥉 3RD' };
-  function podiumCardHTML(p, rank){
-    const banner = getPlayerBanner(p);
-    return `
-      <div class="pc rank-${rank}">
-        <div class="pc-banner">
-          ${banner ? bannerMediaHTML(banner.file, banner.name, rank === 1) : ''}
-          <div class="pc-medal">${MEDALS[rank]}</div>
-        </div>
-        <div class="pc-avatar">${avatarHTML(p)}</div>
-        <div class="pc-info">
-          <div class="pc-name" title="${esc(p.player)}">${esc(p.player)}</div>
-          ${playerTitleHTML(p)}
-          <div class="pc-score">🏆 ${p.score} Score</div>
-        </div>
-      </div>
-    `;
-  }
-  const lowerCards = [top3[1], top3[2]].map((p, k) => p ? podiumCardHTML(p, k + 2) : '').join('');
-  const podiumHTML = podiumCardHTML(top3[0], 1) + (lowerCards.trim() ? `<div class="pc-row">${lowerCards}</div>` : '');
+  const session = getSession();
+  const meIdx = session ? sorted.findIndex(p => p.player === session.player) : -1;
 
   function rowHTML(p, i){
+    const rank = i + 1;
     const banner = getPlayerBanner(p);
-    if(banner){
-      return `
-        <div class="lb-banner-strip">
-          <div class="lb-banner-avatar">${avatarHTML(p)}</div>
-          <div class="lb-banner-img">
-            ${bannerMediaHTML(banner.file, banner.name, false)}
-            <div class="lb-banner-overlay">
-              <div class="lb-banner-namecol">
-                <div class="lb-player">${esc(p.player)}</div>
-                ${playerTitleHTML(p)}
-                <div class="lb-score">🏆 ${p.score} Score</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
+    const me = i === meIdx;
+    const cls = ['lbr'];
+    if(rank <= 3) cls.push('top', 'rank-' + rank);
+    if(me) cls.push('me');
     return `
-      <div class="lb-row">
-        <div class="lb-rank">🏆 ${i+4}</div>
-        <div class="lb-avatar">${avatarHTML(p)}</div>
-        <div class="lb-player-col">
-          <div class="lb-player">${esc(p.player)}</div>
-          ${playerTitleHTML(p)}
-          <div class="lb-score">${p.score} Score</div>
+      <div class="${cls.join(' ')}">
+        <div class="lbr-avatar">${rank > 3 ? `<span class="lbr-badge">#${rank}</span>` : ''}${avatarHTML(p)}</div>
+        <div class="lbr-banner">
+          ${banner ? bannerMediaHTML(banner.file, banner.name, rank <= 3) : ''}
+          <div class="lbr-shade"></div>
+          <div class="lbr-text">
+            <div class="lbr-name" title="${h(p.player)}">${h(p.player)}${me ? '<span class="lbr-you">YOU</span>' : ''}</div>
+            ${playerTitleHTML(p)}
+          </div>
+          <span class="lbr-score">🏆 ${p.score || 0}</span>
         </div>
-      </div>
-    `;
+      </div>`;
   }
 
-  const listHTML = rest.length ? `
-    <div class="lb-table">
-      ${rest.map((p, i) => rowHTML(p, i)).join('')}
-    </div>
-  ` : '';
+  let meHTML = '';
+  if(meIdx >= 0){
+    const mine = sorted[meIdx];
+    let hint;
+    if(meIdx === 0) hint = "You're in first place";
+    else {
+      const diff = (sorted[meIdx - 1].score || 0) - (mine.score || 0);
+      hint = diff > 0 ? `${diff} more point${diff === 1 ? '' : 's'} to reach <b style="color:var(--text)">#${meIdx}</b>` : `Tied with <b style="color:var(--text)">#${meIdx}</b>`;
+    }
+    meHTML = `<div class="lbr-me"><div><span class="lbr-me-label">YOUR RANK</span><b>#${meIdx + 1} <small>· Score ${mine.score || 0}</small></b></div><span>${hint}</span></div>`;
+  }
 
-  lbWrap.innerHTML = `<div class="podium2">${podiumHTML}</div>${listHTML}`;
+  lbWrap.innerHTML = `
+    <div class="lbr-wrap">
+      <div class="lbr-title"><h2>Leaderboard</h2><span>${sorted.length} player${sorted.length === 1 ? '' : 's'}</span></div>
+      ${meHTML}
+      <div class="lbr-list">${sorted.map((p, i) => rowHTML(p, i)).join('')}</div>
+    </div>`;
   observeBannerMedia(lbWrap);
 }
 
@@ -3267,20 +3220,6 @@ function initAuth(){
   }
 }
 
-// ---- centre button labels optically: labels with tails (g j p q y) get a small lift ----
-(function(){
-  const SEL = '.hbtn,.chip,.shop-chip,.pf-btn,.pf-chip,.pf-link,.back-btn,.main-nav button,.top3-head button';
-  function mark(el){ el.classList.toggle('optical-d', /[gjpqy]/.test(el.textContent)); }
-  function scan(root){
-    if(root.nodeType === 3){ const el = root.parentElement && root.parentElement.closest(SEL); if(el) mark(el); return; }
-    if(root.nodeType !== 1) return;
-    if(root.matches(SEL)) mark(root);
-    root.querySelectorAll(SEL).forEach(mark);
-    const up = root.closest(SEL); if(up && up !== root) mark(up);
-  }
-  new MutationObserver(list => list.forEach(m => m.addedNodes.forEach(scan))).observe(document.body, { childList:true, subtree:true });
-  scan(document.body);
-})();
 </script>
 
 <script type="module">
