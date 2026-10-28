@@ -19,6 +19,18 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.6] - 2026-10-27
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Changed
+- The buttons on game cards (Steam, PirateGames, download, trailer) are back to the height they
+  had in 4.x, 36 px instead of 44 px. They still fit inside the card at every screen width.
+- The File Password line is shown only on the Games tab. It is hidden on Apps, Leaderboard, and
+  Item Shop.
+- The filter chips (and the category chips in the Item Shop) now have the same corner radius as
+  the search bar (12 px) instead of being fully round.
+
 ## [5.0.0-beta.5] - 2026-10-27
 
 Pre-release for the `redesign` branch. It is not on `main` yet.
