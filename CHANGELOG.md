@@ -19,6 +19,35 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0-beta.7] - 2026-10-30
+
+Pre-release for the `redesign` branch. It is not on `main` yet.
+
+### Added
+- **Featured slider.** In the admin panel each game has a "Featured" checkbox (saved as
+  `featured` in `games.json`). Tick several and the big card on the Games tab becomes a slider
+  that moves left and right every 7 seconds, with arrows, dots, and swipe on touch screens. It
+  pauses while the mouse or keyboard focus is on it and does not move by itself for people who
+  prefer reduced motion. With no game ticked it works as before (the first game with an active
+  badge, otherwise the first game).
+- **App categories.** Apps have an optional Category field in the admin panel. When at least one
+  app has a category, category chips appear on the Apps tab.
+
+### Changed
+- **Redesigned Apps page.** A title with the app count, the search box with category chips, and
+  larger cards with the poster, name, category, and a full-width Download button in the same
+  dark style as the game cards.
+- The GitHub owner used by the site (profile photo requests) and the default owner in the admin
+  panel are now `Parsapoxo` instead of `Parsa1081`.
+- The section headings in the Item Shop used a font that was never loaded (Orbitron); they now
+  use Inter like the rest of the site.
+
+### Removed
+- About 50 unused CSS rules and animations left over from the old design: the sliding tab bar,
+  the old Item Shop card and Main Menu pill, the old leaderboard rows and banner strips, and
+  the old profile window styles. The styles of all views were compared before and after the
+  cleanup and nothing else changed.
+
 ## [5.0.0-beta.6] - 2026-10-27
 
 Pre-release for the `redesign` branch. It is not on `main` yet.
@@ -126,7 +155,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 - The old sliding tab bar and its label swapping, the Main Menu pill, and the Item Shop card.
   Their CSS is still in the file and will be cleaned up later.
 
-## [4.9.1] - 2026-10-19
+## [4.9.1] - 2026-10-21
 
 ### Fixed
 - Video banners (`.webm` / `.mp4`) took up to a minute or more to appear, because every video
@@ -136,7 +165,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 - Removed the `#t=0.001` start-time hint and the `autoplay` attribute added in 4.6.1; playback
   is now started once a video's first frame is ready and it is on screen.
 
-## [4.9.0] - 2026-10-19
+## [4.9.0] - 2026-10-21
 
 ### Added
 - The New, Updated, and Released badges now expire by themselves one week after they were
@@ -152,7 +181,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   starts their week the first time it loads them (saved with the next Save). Until then the
   site keeps showing them.
 
-## [4.8.0] - 2026-10-19
+## [4.8.0] - 2026-10-21
 
 ### Added
 - Two new game badges, set from checkboxes in the admin panel: **Updated** (blue) and
@@ -165,7 +194,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   show at once. Only New still pins a game to the top of the list.
 - The Released badge is not shown while a game is marked Coming soon.
 
-## [4.7.0] - 2026-10-19
+## [4.7.0] - 2026-10-21
 
 ### Added
 - Admin panel, Leaderboard tab: under each player's Prize field there is now a line showing
@@ -185,7 +214,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   a banner loads, and a failed video shows a visible error with its code (and logs the file
   path to the browser console) instead of an empty black card.
 
-## [4.6.0] - 2026-10-19
+## [4.6.0] - 2026-10-18
 
 ### Added
 - Live game-card preview in the admin panel. Each game has a collapsible preview that mirrors
@@ -193,7 +222,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   change, including poster upload and removal. Notes beside the card show where the poster and
   trailer come from, how the ⬇ button will behave, and which buttons will be hidden.
 
-## [4.5.0] - 2026-10-19
+## [4.5.0] - 2026-10-18
 
 ### Changed
 - Redesigned the leaderboard top 3. Rank 1 gets a large full-width card; ranks 2 and 3 sit
@@ -205,7 +234,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 ### Removed
 - The old three-column podium and its CSS.
 
-## [4.4.0] - 2026-10-19
+## [4.4.0] - 2026-10-18
 
 ### Added
 - Announcement history. All announcements stay available behind the bell, newest first, each
@@ -224,7 +253,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 ### Removed
 - The "Clear message" button (replaced by per-announcement Delete).
 
-## [4.3.0] - 2026-10-19
+## [4.3.0] - 2026-10-18
 
 ### Added
 - Announcement bell between the menu button and the profile button. Opening it shows a
@@ -236,7 +265,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 ### Changed
 - The profile button moved one slot to the left to make room for the bell.
 
-## [4.2.2] - 2026-10-19
+## [4.2.2] - 2026-10-18
 
 ### Security
 - `supabase-hardening.sql` (run manually in the Supabase SQL Editor, no site code change):
@@ -256,7 +285,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   while a purchase is running.
 - If the SQL functions are not installed yet, the site falls back to the old method.
 
-## [4.2.1] - 2026-10-19
+## [4.2.1] - 2026-10-18
 
 ### Added
 - Banners can be `.mp4` or `.webm` files (muted, looping, paused while off-screen). The admin
@@ -269,7 +298,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   animation stops once a banner has loaded, and GIFs outside the viewport are swapped for a
   still frame so only visible ones animate. The same applies to leaderboard banners.
 
-## [4.2.0] - 2026-10-19
+## [4.2.0] - 2026-10-18
 
 ### Added
 - Animation when switching between Games, Apps, and Leaderboard: cards fade and slide in one
@@ -279,7 +308,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 ### Changed
 - Clicking the tab that is already open no longer re-renders the list or clears the search.
 
-## [4.1.1] - 2026-10-19
+## [4.1.1] - 2026-10-17
 
 ### Fixed
 - The red indicator in the Games / Apps / Leaderboard tab bar was off-center on Apps and
@@ -293,7 +322,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
 - Tabs now expose `tablist` / `tab` roles and `aria-selected`, have a visible keyboard focus
   outline, and no tap highlight on mobile.
 
-## [4.1.0] - 2026-10-19
+## [4.1.0] - 2026-10-17
 
 ### Added
 - Trailer links can point to Aparat (page links, `videohash` links, or pasted iframe code),
@@ -301,7 +330,7 @@ Pre-release for the `redesign` branch. It is not on `main` yet.
   files still use the normal player, and any other link is tried in an iframe. An "Open in a
   new tab" link is shown under embedded players.
 
-## [4.0.2] - 2026-10-19
+## [4.0.2] - 2026-10-17
 
 ### Added
 - Trailer URL field for each game in the admin panel (stored as `trailer` in `games.json`).
