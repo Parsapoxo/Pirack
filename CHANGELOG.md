@@ -19,6 +19,40 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.0] - 2026-10-31
+
+The redesign. It was tested as `5.0.0-beta.1` to `5.0.0-beta.7` (entries below); the final
+release has no changes beyond beta 7 except the version number.
+
+### Added
+- **Featured slider** on the Games tab: tick "Featured" on any games in the admin panel and
+  the big card rotates left and right (arrows, dots, swipe).
+- **Filter chips** next to the search box (All, Free, New, Updated, and common genres).
+- **Equip avatars.** Purchased avatars can now be chosen from the profile window.
+- **Item Shop cards:** "Your card" (preview of banner, avatar, name, and title) and "Your
+  prize" (available, earned, spent). Click a banner to preview it on your card.
+- **Leaderboard "Your rank" card** with the points needed to reach the next place.
+- **App categories** (optional, set in the admin panel) with chips on the Apps tab.
+
+### Changed
+- **New top bar and navigation** (Games, Apps, Leaderboard, Item Shop) replace the old centered
+  logo, the sliding tab bar, and the Item Shop card.
+- **Redesigned pages:** Games (announcement is only behind the bell, featured game, Top 3,
+  Item Shop shortcut), Item Shop, profile window, leaderboard (one slim row per player with the
+  banner attached to the avatar; gold, silver, and bronze outlines for ranks 1 to 3), and Apps.
+- Game card buttons fit inside the card at every width and are 36 px tall. Button labels are
+  centered, filter chips use the same corner radius as the search box, and the File Password
+  line is shown only on the Games tab.
+- The GitHub owner is now `Parsapoxo` (site and admin panel).
+- The Item Shop section headings use Inter instead of a font that was never loaded.
+
+### Removed
+- The yellow announcement strip, the old podium, and about 50 unused CSS rules.
+
+### Upgrade notes
+- Data files keep working unchanged. The new `featured` (games) and `category` (apps) fields are
+  optional and are set from the admin panel (`admin.html` was updated).
+
 ## [5.0.0-beta.7] - 2026-10-30
 
 Pre-release for the `redesign` branch. It is not on `main` yet.
