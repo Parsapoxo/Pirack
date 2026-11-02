@@ -487,6 +487,130 @@
     "newAt": 1792602758620
   },
   {
+    "name": "Over The Hill",
+    "poster": "posters/over-the-hill.jpg",
+    "steam": "https://store.steampowered.com/app/2929250/over_the_hill/",
+    "dl": "https://www.pirategames.ir/online/over-the-hill-online/",
+    "genres": [
+      "Driving",
+      "Open World",
+      "Exploration"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "2.5 GB",
+    "appid": 2929250,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/over.the.hill.Build.14102026/over.the.hill.Build.14102026.PirateGames.ir.rar"
+    ],
+    "isNew": true,
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/over.the.hill.mp4#t=2",
+    "newAt": 1792602758620
+  },
+  {
+    "name": "Twisted Party",
+    "poster": "posters/twisted-party.jpg",
+    "steam": "https://store.steampowered.com/app/4332910/",
+    "dl": "https://www.pirategames.ir/online/twisted-party-online/",
+    "genres": [
+      "Party",
+      "Horror",
+      "Action"
+    ],
+    "players": "2–8 Online Multiplayer",
+    "size": "255 MB",
+    "appid": 4332910,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Twisted.Party.v1.0.7/Twisted.Party.v1.0.7.PirateGames.ir.rar"
+    ],
+    "isNew": true,
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Twisted.Party.mp4#t=2",
+    "newAt": 1792602758620
+  },
+  {
+    "name": "Stick Fight: The Game",
+    "poster": "posters/stick-fight-the-game.jpg",
+    "steam": "https://store.steampowered.com/app/674940/",
+    "dl": "https://www.pirategames.ir/online/download-stick-fight-game-for-pc/",
+    "genres": [
+      "Fighting",
+      "Party",
+      "Physics"
+    ],
+    "players": "2–4 Online & Local Multiplayer",
+    "size": "400 MB",
+    "appid": 674940,
+    "trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256694999/movie480.webm?t=1506615966#t=2",
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Stick.Fight.build.01182021/Stick.Fight.build.01182021.rar"
+    ],
+    "isNew": true,
+    "newAt": 1792602758620
+  },
+  {
+    "name": "Moving Out 2",
+    "poster": "posters/new-game.jpg",
+    "steam": "https://store.steampowered.com/app/1641700/",
+    "dl": "https://www.pirategames.ir/online/moving-out-2-online/",
+    "genres": [
+      "Casual",
+      "Party",
+      "Simulation",
+      "Co-op"
+    ],
+    "players": "1–4 Online & Local Co-op",
+    "size": "1 GB",
+    "appid": 1641700,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Moving.Out.2.v1.3.311/Moving.Out.2.v1.3.311.PirateGames.ir.rar"
+    ],
+    "trailer": "https://video.akamai.steamstatic.com/store_trailers/256961287/movie480_vp9.webm?t=1692194237#t=2",
+    "isNew": true,
+    "newAt": 1792602758620
+  },
+  {
+    "name": "PEAK",
+    "poster": "posters/peak.jpg",
+    "steam": "https://store.steampowered.com/app//",
+    "dl": "https://www.pirategames.ir/online/peak-online/",
+    "genres": [
+      "Adventure",
+      "Physics",
+      "Climbing"
+    ],
+    "players": "1–4 Online Co-op",
+    "size": "1.3 GB",
+    "appid": 3527290,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/PEAK.v2.6.b/PEAK.v2.6.b.PirateGames.ir.rar"
+    ],
+    "trailer": "https://video.akamai.steamstatic.com/store_trailers/257155585/movie480_vp9.webm?t=1750093233#t=2",
+    "isNew": true,
+    "newAt": 1792603352521
+  },
+  {
+    "name": "Party Animals",
+    "poster": "posters/party-animals.jpg",
+    "steam": "https://store.steampowered.com/app//",
+    "dl": "https://www.pirategames.ir/online/party-animals-online/",
+    "genres": [
+      "Party",
+      "Fighting",
+      "Physics"
+    ],
+    "players": "1–8 Online & Local Multiplayer",
+    "size": "11.2 GB",
+    "appid": 1260320,
+    "dl2Parts": [
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part1.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part2.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part3.rar",
+      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part4.rar"
+    ],
+    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Party.Animals.mp4#t=2",
+    "isNew": true,
+    "newAt": 1792602987206
+  },
+  {
     "name": "Borderlands GOTY Enhanced",
     "poster": "posters/borderlands-goty-enhanced.jpg",
     "steam": "https://store.steampowered.com/app/8980/",
@@ -604,129 +728,5 @@
     "size": "~80 GB",
     "appid": 1285190,
     "comingSoon": true
-  },
-  {
-    "name": "Over The Hill",
-    "poster": "posters/over-the-hill.jpg",
-    "steam": "https://store.steampowered.com/app/2929250/over_the_hill/",
-    "dl": "https://www.pirategames.ir/online/over-the-hill-online/",
-    "genres": [
-      "Driving",
-      "Open World",
-      "Exploration"
-    ],
-    "players": "1–4 Online Co-op",
-    "size": "2.5 GB",
-    "appid": 2929250,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/over.the.hill.Build.14102026/over.the.hill.Build.14102026.PirateGames.ir.rar"
-    ],
-    "isNew": true,
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/over.the.hill.mp4#t=2",
-    "newAt": 1792602758620
-  },
-  {
-    "name": "Twisted Party",
-    "poster": "posters/twisted-party.jpg",
-    "steam": "https://store.steampowered.com/app/4332910/",
-    "dl": "https://www.pirategames.ir/online/twisted-party-online/",
-    "genres": [
-      "Party",
-      "Horror",
-      "Action"
-    ],
-    "players": "2–8 Online Multiplayer",
-    "size": "255 MB",
-    "appid": 4332910,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Twisted.Party.v1.0.7/Twisted.Party.v1.0.7.PirateGames.ir.rar"
-    ],
-    "isNew": true,
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Twisted.Party.mp4#t=2",
-    "newAt": 1792602758620
-  },
-  {
-    "name": "Stick Fight: The Game",
-    "poster": "posters/stick-fight-the-game.jpg",
-    "steam": "https://store.steampowered.com/app/674940/",
-    "dl": "https://www.pirategames.ir/online/download-stick-fight-game-for-pc/",
-    "genres": [
-      "Fighting",
-      "Party",
-      "Physics"
-    ],
-    "players": "2–4 Online & Local Multiplayer",
-    "size": "400 MB",
-    "appid": 674940,
-    "trailer": "https://cdn.akamai.steamstatic.com/steam/apps/256694999/movie480.webm?t=1506615966#t=2",
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Stick.Fight.build.01182021/Stick.Fight.build.01182021.rar"
-    ],
-    "isNew": true,
-    "newAt": 1792602758620
-  },
-  {
-    "name": "Moving Out 2",
-    "poster": "posters/new-game.jpg",
-    "steam": "https://store.steampowered.com/app/1641700/",
-    "dl": "https://www.pirategames.ir/online/moving-out-2-online/",
-    "genres": [
-      "Casual",
-      "Party",
-      "Simulation",
-      "Co-op"
-    ],
-    "players": "1–4 Online & Local Co-op",
-    "size": "1 GB",
-    "appid": 1641700,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Moving.Out.2.v1.3.311/Moving.Out.2.v1.3.311.PirateGames.ir.rar"
-    ],
-    "trailer": "https://video.akamai.steamstatic.com/store_trailers/256961287/movie480_vp9.webm?t=1692194237#t=2",
-    "isNew": true,
-    "newAt": 1792602758620
-  },
-  {
-    "name": "Party Animals",
-    "poster": "posters/party-animals.jpg",
-    "steam": "https://store.steampowered.com/app//",
-    "dl": "https://www.pirategames.ir/online/party-animals-online/",
-    "genres": [
-      "Party",
-      "Fighting",
-      "Physics"
-    ],
-    "players": "1–8 Online & Local Multiplayer",
-    "size": "11.2 GB",
-    "appid": 1260320,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part1.rar",
-      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part2.rar",
-      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part3.rar",
-      "https://dl2.pirategames.ir/dl2/Online/Party.Animals.v1.17.2.0/Party.Animals.v1.17.2.0.PirateGames.ir.part4.rar"
-    ],
-    "trailer": "https://st012.cartoonet.ir/srv31tb/dl2/Trailers/Party.Animals.mp4#t=2",
-    "isNew": true,
-    "newAt": 1792602987206
-  },
-  {
-    "name": "PEAK",
-    "poster": "posters/peak.jpg",
-    "steam": "https://store.steampowered.com/app//",
-    "dl": "https://www.pirategames.ir/online/peak-online/",
-    "genres": [
-      "Adventure",
-      "Physics",
-      "Climbing"
-    ],
-    "players": "1–4 Online Co-op",
-    "size": "1.3 GB",
-    "appid": 3527290,
-    "dl2Parts": [
-      "https://dl2.pirategames.ir/dl2/Online/PEAK.v2.6.b/PEAK.v2.6.b.PirateGames.ir.rar"
-    ],
-    "trailer": "https://video.akamai.steamstatic.com/store_trailers/257155585/movie480_vp9.webm?t=1750093233#t=2",
-    "isNew": true,
-    "newAt": 1792603352521
   }
 ]
