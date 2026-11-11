@@ -52,5 +52,26 @@
     "avatar": "avatars/new-player-7.jpg",
     "prize": 10000,
     "password": "12345678"
+  },
+  {
+    "player": "Torob",
+    "score": 0,
+    "avatar": null,
+    "prize": 10000,
+    "password": "torob1234"
+  },
+  {
+    "player": "Death",
+    "score": 0,
+    "avatar": null,
+    "prize": 10000,
+    "password": "death1234"
+  },
+  {
+    "player": "Dashi",
+    "score": 0,
+    "avatar": null,
+    "prize": 10000,
+    "password": "dashi1234"
   }
 ]
