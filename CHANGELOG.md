@@ -19,6 +19,19 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.1] - 2026-11-13
+
+### Fixed
+- **Slow loading of game and app posters.** On first load the site was downloading about 76 MB
+  of wallpaper videos (the wallpaper menu built all its video thumbnails at startup), which
+  starved the posters of bandwidth. The menu is now built when it is opened, and video
+  thumbnails play only while hovered.
+- The Google Fonts stylesheet no longer blocks the page: scripts (and so the game list) used
+  to wait for it, which is slow where Google is slow. Text shows in the fallback font until
+  Inter arrives.
+- Posters in the first rows load with high priority; the rest load lazily and decode off the
+  main thread.
+
 ## [5.0.0] - 2026-10-31
 
 The redesign. It was tested as `5.0.0-beta.1` to `5.0.0-beta.7` (entries below); the final

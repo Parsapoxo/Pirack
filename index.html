@@ -7,7 +7,8 @@
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <style>
   :root{
     --bg:#0a0a0b;
@@ -1232,7 +1233,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.0</div>
+<div class="version-tag">v5.0.1</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1280,13 +1281,16 @@ function dlPartsHTML(g){
   `;
 }
 
-function posterHTML(g){
+function imgLoadAttrs(i){
+  return (i < 6) ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"';
+}
+function posterHTML(g, i = 99){
   if(g.poster){
-    return `<img src="${g.poster}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
+    return `<img src="${g.poster}" alt="${g.name}" ${imgLoadAttrs(i)} onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
   }
   if(g.appid){
     const url = `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg`;
-    return `<img src="${url}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
+    return `<img src="${url}" alt="${g.name}" ${imgLoadAttrs(i)} onerror="this.parentElement.innerHTML=fallback('${g.name.replace(/'/g,"\\'")}')">`;
   }
   return fallback(g.name);
 }
@@ -1319,10 +1323,10 @@ function isPinned(g){ const t = gameTags(g); return t.isNew || t.updated || t.re
 
 function render(list){
   const sorted = [...list].sort((a,b) => (isPinned(b)?1:0) - (isPinned(a)?1:0));
-  grid.innerHTML = sorted.map(g => `
+  grid.innerHTML = sorted.map((g, i) => `
     <div class="card">
       <div class="poster-wrap">
-        ${posterHTML(g)}
+        ${posterHTML(g, i)}
         ${isPinned(g) ? (() => { const t = gameTags(g); return `<div class="badge-stack">${t.isNew ? '<div class="badge new">New</div>' : ''}${t.updated ? '<div class="badge updated">Updated</div>' : ''}${t.released ? '<div class="badge released">Released</div>' : ''}</div>`; })() : ''}
         ${g.comingSoon ? '<div class="badge soon">Coming Soon</div>' : g.free ? '<div class="badge free">Free</div>' : ''}
       </div>
@@ -1350,10 +1354,10 @@ function render(list){
 }
 
 function renderApps(list){
-  grid.innerHTML = list.map(a => `
+  grid.innerHTML = list.map((a, i) => `
     <div class="card">
       <div class="poster-wrap">
-        ${a.poster ? `<img src="${h(a.poster)}" alt="${h(a.name)}" loading="lazy" onerror="this.parentElement.innerHTML=fallback('${a.name.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">` : fallback(a.name)}
+        ${a.poster ? `<img src="${h(a.poster)}" alt="${h(a.name)}" ${imgLoadAttrs(i)} onerror="this.parentElement.innerHTML=fallback('${a.name.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">` : fallback(a.name)}
       </div>
       <div class="info">
         <div class="title">${h(a.name)}</div>
@@ -2321,6 +2325,7 @@ window.buyTitle = withBuyLock(_buyTitle);
 window.buyBanner = withBuyLock(_buyBanner);
 
 let wallpapers = [];
+let wallpaperListStale = true;
 
 async function loadData(){
   try{
@@ -2404,7 +2409,7 @@ function renderWallpaperList(){
     <div class="wp-option ${currentId===w.id ? 'selected':''}" data-id="${w.id}" data-file="${w.file||''}" data-name="${w.name}">
       <div class="wp-thumb">
         ${w.file
-          ? (isVideoFile(w.file) ? `<video src="${w.file}" muted loop autoplay playsinline></video>` : `<img src="${w.file}" alt="${w.name}">`)
+          ? (isVideoFile(w.file) ? '🎬' : `<img src="${w.file}" alt="${w.name}" loading="lazy" decoding="async">`)
           : '✨'}
       </div>
       <div class="wp-name">${w.name}</div>
@@ -2412,6 +2417,23 @@ function renderWallpaperList(){
     </div>
   `).join('');
   list.querySelectorAll('.wp-option').forEach(el => {
+    // video thumbnails load only while hovered (8 wallpaper videos are ~76 MB in total)
+    if(isVideoFile(el.dataset.file)){
+      const thumb = el.querySelector('.wp-thumb');
+      el.addEventListener('mouseenter', () => {
+        if(thumb.querySelector('video')) return;
+        const v = document.createElement('video');
+        v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = 'auto';
+        v.src = el.dataset.file;
+        thumb.textContent = '';
+        thumb.appendChild(v);
+        const p = v.play(); if(p && p.catch) p.catch(() => {});
+      });
+      el.addEventListener('mouseleave', () => {
+        const v = thumb.querySelector('video');
+        if(v){ v.pause(); v.removeAttribute('src'); v.load(); v.remove(); thumb.textContent = '🎬'; }
+      });
+    }
     el.addEventListener('click', () => {
       const id = el.dataset.id;
       const file = el.dataset.file || null;
@@ -2432,13 +2454,13 @@ function initWallpapers(){
       applyWallpaperMedia(null);
     }
   }
-  renderWallpaperList();
+  wallpaperListStale = true;   // the list itself is built when the menu is opened
 }
 
 const menuBtn = document.getElementById('menuBtn');
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
-function openDrawer(){ drawer.classList.add('open'); drawerOverlay.classList.add('open'); }
+function openDrawer(){ if(wallpaperListStale){ wallpaperListStale = false; renderWallpaperList(); } drawer.classList.add('open'); drawerOverlay.classList.add('open'); }
 function closeDrawer(){ drawer.classList.remove('open'); drawerOverlay.classList.remove('open'); }
 menuBtn.addEventListener('click', openDrawer);
 
