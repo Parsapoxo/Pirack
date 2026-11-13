@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pirack</title>
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
+<link rel="preconnect" href="https://esm.sh" crossorigin>
+<link rel="preconnect" href="https://eouuftmxntizlfjwptbi.supabase.co" crossorigin>
+<link rel="modulepreload" href="https://esm.sh/@supabase/supabase-js@2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1233,7 +1236,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.1</div>
+<div class="version-tag">v5.0.2</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1418,6 +1421,76 @@ let shopMode = false;
 let currentPlayerTitles = { ownedTitles: [], selectedTitle: null, ownedBanners: [], selectedBanner: null, ownedProfilePics: [], selectedProfilePic: null, avatarSpend: 0 };
 let allPlayerData = {};
 
+// ---- player-data layer: dedupes requests, remembers the last answer, never hangs ----
+// Leaderboard / Item Shop used to wait for a fresh Supabase answer on every visit (and the Supabase
+// library itself loads late from esm.sh). Now: show the last known data at once, refresh in the
+// background, re-render only if something changed.
+const DB = (() => {
+  const LS = 'pirack_dbc_', FRESH_MS = 20000, TIMEOUT_MS = 8000;
+  const mem = {};   // key -> { t, data, p }
+  const lsGet = k => { try{ return JSON.parse(localStorage.getItem(LS + k)); }catch(e){ return null; } };
+  const lsSet = (k, d) => { try{ localStorage.setItem(LS + k, JSON.stringify(d)); }catch(e){} };
+  const lsDel = k => { try{ localStorage.removeItem(LS + k); }catch(e){} };
+  const timeout = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('Database timeout')), ms))]);
+  function ready(){
+    if(window.pirackDB) return Promise.resolve();
+    return new Promise(res => window.addEventListener('pirackDBReady', () => res(), { once:true }));
+  }
+  function get(key, loader, force){
+    const m = mem[key];
+    if(m && !force){
+      if(m.p) return m.p;
+      if(Date.now() - m.t < FRESH_MS) return Promise.resolve(m.data);
+    }
+    const entry = { t: 0, data: m ? m.data : undefined, p: null };
+    entry.p = timeout(ready().then(loader), TIMEOUT_MS).then(d => {
+      entry.t = Date.now(); entry.data = d; entry.p = null; lsSet(key, d); return d;
+    }).catch(err => {
+      entry.p = null;
+      if(entry.data !== undefined) return entry.data;   // offline / slow: keep showing the last known data
+      delete mem[key]; throw err;
+    });
+    mem[key] = entry;
+    return entry.p;
+  }
+  const peek = key => (mem[key] && mem[key].data !== undefined) ? mem[key].data : lsGet(key);
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const api = {
+    player: (slugv, force) => get('p:' + slugv, () => window.pirackDB.getPlayerData(slugv), force),
+    all: force => get('all', () => window.pirackDB.getAllPlayerData(), force),
+    peekPlayer: slugv => peek('p:' + slugv),
+    peekAll: () => peek('all'),
+    // cached answer now + silent refresh; calls onFresh(newData) only if it differs. No cache yet: waits (max 8 s).
+    async playerSWR(slugv, onFresh){
+      const cached = api.peekPlayer(slugv);
+      if(!cached) return await api.player(slugv);
+      api.player(slugv).then(fresh => { if(!same(fresh, cached) && onFresh) onFresh(fresh); }).catch(() => {});
+      return cached;
+    },
+    invalidate(slugv){
+      ['p:' + slugv, 'all'].forEach(k => { delete mem[k]; lsDel(k); });
+    },
+    prefetch(){
+      const sess = getSession();
+      if(sess) api.player(slug(sess.player)).catch(() => {});
+      api.all().catch(() => {});
+    }
+  };
+  // after any write, forget what we cached for that player so the next read is fresh
+  const WRITES = ['addOwnedTitle','setSelectedTitle','addOwnedBanner','setSelectedBanner','addOwnedProfilePic','setSelectedProfilePic','addAvatarSpend'];
+  ready().then(() => {
+    WRITES.forEach(n => {
+      const orig = window.pirackDB[n];
+      if(typeof orig !== 'function') return;
+      window.pirackDB[n] = async function(slugv, ...a){
+        try{ return await orig.call(this, slugv, ...a); }
+        finally{ api.invalidate(slugv); }
+      };
+    });
+  });
+  return api;
+})();
+
 function applyFilter(){
   const q = document.getElementById('search').value.trim().toLowerCase();
   if(currentView === 'games'){
@@ -1449,10 +1522,8 @@ async function renderLeaderboard(){
     return;
   }
 
-  if(window.pirackDB){
-    try{ allPlayerData = await window.pirackDB.getAllPlayerData(); }
-    catch(err){ console.error(err); }
-  }
+  const cachedAll = DB.peekAll();
+  if(cachedAll) allPlayerData = cachedAll;
 
   const avatarHTML = (p, sizeClass) => {
     const data = allPlayerData[slug(p.player)];
@@ -1518,6 +1589,14 @@ async function renderLeaderboard(){
       <div class="lbr-list">${sorted.map((p, i) => rowHTML(p, i)).join('')}</div>
     </div>`;
   observeBannerMedia(lbWrap);
+
+  // fresh data in the background; redraw only if it changed (and the leaderboard is still open)
+  DB.all().then(fresh => {
+    if(JSON.stringify(fresh) !== JSON.stringify(allPlayerData)){
+      allPlayerData = fresh;
+      if(currentView === 'leaderboard') renderLeaderboard();
+    }
+  }).catch(err => console.error(err));
 }
 
 document.getElementById('search').addEventListener('input', applyFilter);
@@ -1654,7 +1733,7 @@ function observeBannerMedia(root){
   });
 }
 const _bannerPreloaded = [];
-function preloadBanners(n = 8){
+function preloadBanners(n = 4){
   try{
     (banners || []).filter(b => b.file && !isVideoFile(b.file)).slice(0, n).forEach(b => {
       if(_bannerPreloaded.some(im => im.dataset.f === b.file)) return;
@@ -1755,7 +1834,6 @@ function enterShopMode(){
   if(shopMode) return;
   const dir = Math.sign(NAV_ORDER.indexOf('shop') - NAV_ORDER.indexOf(currentView)) || 0;
   shopMode = true;
-  preloadBanners();
   setNavActive('shop');
   toolbarEl.classList.add('hidden');
   document.getElementById('count').classList.add('hidden');
@@ -1784,10 +1862,10 @@ async function renderShopAccount(){
   const p = leaderboard.find(x => x.player === session.player);
   const prize = p ? (p.prize ?? (p.score||0)*5) : 0;
   let data = currentPlayerTitles;
-  if(window.pirackDB){
-    try{ data = await window.pirackDB.getPlayerData(slug(session.player)); currentPlayerTitles = data; }
-    catch(err){ console.error(err); }
-  }
+  try{
+    data = await DB.playerSWR(slug(session.player), () => { if(shopMode) renderShopAccount(); });
+    currentPlayerTitles = data;
+  }catch(err){ console.error(err); }
   const spent = totalOwnedSpend(data.ownedTitles, data.ownedBanners, data.ownedProfilePics, data.avatarSpend);
   const available = prize - spent;
   const pct = prize > 0 ? Math.max(0, Math.min(100, Math.round(spent * 100 / prize))) : 0;
@@ -2033,13 +2111,11 @@ async function renderProfilesTab(){
   const p = leaderboard.find(x => x.player === session.player);
   const playerPrize = p ? (p.prize ?? (p.score||0)*5) : 0;
   let ownedPics = [];
-  if(window.pirackDB){
-    try{
-      const data = await window.pirackDB.getPlayerData(slug(session.player));
-      ownedPics = data.ownedProfilePics || [];
-      currentPlayerTitles = data;
-    }catch(err){ console.error(err); }
-  }
+  try{
+    const data = await DB.playerSWR(slug(session.player), () => { if(shopMode && activeShopTab === 'profiles') renderProfilesTab(); });
+    ownedPics = data.ownedProfilePics || [];
+    currentPlayerTitles = data;
+  }catch(err){ console.error(err); }
   const spent = totalOwnedSpend(currentPlayerTitles.ownedTitles, currentPlayerTitles.ownedBanners, ownedPics, currentPlayerTitles.avatarSpend);
   const availablePrize = playerPrize - spent;
 
@@ -2105,8 +2181,7 @@ function withBuyLock(fn){
 }
 // Re-read the player's latest data right before a purchase (another tab/device may have changed it)
 async function refreshOwned(session){
-  if(!window.pirackDB) return;
-  try{ currentPlayerTitles = await window.pirackDB.getPlayerData(slug(session.player)); }
+  try{ currentPlayerTitles = await DB.player(slug(session.player), true); }
   catch(err){ console.error(err); }
 }
 
@@ -2144,14 +2219,12 @@ async function renderShop(){
   if(session){
     const p = leaderboard.find(x => x.player === session.player);
     playerPrize = p ? (p.prize ?? (p.score||0)*5) : 0;
-    if(window.pirackDB){
-      try{
-        const data = await window.pirackDB.getPlayerData(slug(session.player));
-        ownedTitles = data.ownedTitles || [];
-        ownedBanners = data.ownedBanners || [];
-        currentPlayerTitles = data;
-      }catch(err){ console.error(err); }
-    }
+    try{
+      const data = await DB.playerSWR(slug(session.player), () => { if(shopMode && activeShopTab === 'titles') renderShop(); });
+      ownedTitles = data.ownedTitles || [];
+      ownedBanners = data.ownedBanners || [];
+      currentPlayerTitles = data;
+    }catch(err){ console.error(err); }
   }
   const spent = totalOwnedSpend(ownedTitles, ownedBanners, currentPlayerTitles.ownedProfilePics, currentPlayerTitles.avatarSpend);
   const availablePrize = playerPrize - spent;
@@ -2216,20 +2289,18 @@ async function _buyTitle(id, price){
 
 async function renderBannerShop(){
   if(shopMode) renderShopAccount();
-  preloadBanners(8);
+  preloadBanners(6);
   const session = getSession();
   let playerPrize = 0, ownedTitles = [], ownedBanners = [];
   if(session){
     const p = leaderboard.find(x => x.player === session.player);
     playerPrize = p ? (p.prize ?? (p.score||0)*5) : 0;
-    if(window.pirackDB){
-      try{
-        const data = await window.pirackDB.getPlayerData(slug(session.player));
-        ownedTitles = data.ownedTitles || [];
-        ownedBanners = data.ownedBanners || [];
-        currentPlayerTitles = data;
-      }catch(err){ console.error(err); }
-    }
+    try{
+      const data = await DB.playerSWR(slug(session.player), () => { if(shopMode && activeShopTab === 'banners') renderBannerShop(); });
+      ownedTitles = data.ownedTitles || [];
+      ownedBanners = data.ownedBanners || [];
+      currentPlayerTitles = data;
+    }catch(err){ console.error(err); }
   }
   const spent = totalOwnedSpend(ownedTitles, ownedBanners, currentPlayerTitles.ownedProfilePics, currentPlayerTitles.avatarSpend);
   const availablePrize = playerPrize - spent;
@@ -2837,10 +2908,9 @@ async function renderProfileView(useCache){
   profileCropState = null;
   const prevScroll = useCache ? authBody.scrollTop : 0;
 
-  if(!useCache && window.pirackDB){
+  if(!useCache){
     try{
-      const data = await window.pirackDB.getPlayerData(slug(session.player));
-      currentPlayerTitles = data;
+      currentPlayerTitles = await DB.playerSWR(slug(session.player), fresh => { currentPlayerTitles = fresh; if(authOverlay.classList.contains('open')) renderProfileView(true); });
     }catch(err){ console.error(err); }
   }
   const data = currentPlayerTitles;
@@ -3128,11 +3198,14 @@ function initAuth(){
   updateProfileBtn();
   // load the equipped avatar so the header button shows it right away
   const session = getSession();
-  if(session && window.pirackDB){
-    window.pirackDB.getPlayerData(slug(session.player))
+  if(session){
+    const cached = DB.peekPlayer(slug(session.player));
+    if(cached){ currentPlayerTitles = cached; updateProfileBtn(); }
+    DB.player(slug(session.player))
       .then(d => { currentPlayerTitles = d; updateProfileBtn(); })
       .catch(err => console.error(err));
   }
+  DB.all().catch(() => {});
 }
 
 </script>

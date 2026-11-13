@@ -19,6 +19,23 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.2] - 2026-11-13
+
+### Fixed
+- **Slow Leaderboard and Item Shop.** Both pages waited for a fresh database answer on every
+  visit, and nothing was shown until it arrived (with no time limit). Now the last known data
+  is shown immediately and refreshed in the background; the page redraws only if something
+  changed. The first visit on a device still waits for the database, for at most 8 seconds.
+- Duplicate database requests (card, tab and header each asked separately) are merged into one,
+  and the player's data is loaded in the background right after the site opens.
+- If the database library had not finished loading yet, the header avatar and the shop silently
+  skipped the player's data; they now wait for it.
+- Item Shop no longer preloads banner images when opened on the Titles or Avatars tab, which
+  competed with the data request.
+- Connections to the database and its library are opened early (preconnect / modulepreload).
+- Purchases still read the latest data straight from the database, and every write clears the
+  cached copy.
+
 ## [5.0.1] - 2026-11-13
 
 ### Fixed
