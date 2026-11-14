@@ -1236,7 +1236,7 @@
   <footer>Built for our crew · Keep it between us 🎮</footer>
 </div>
 
-<div class="version-tag">v5.0.2</div>
+<div class="version-tag">v5.0.3</div>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
@@ -1658,8 +1658,22 @@ function bmFailed(v){
   if(w){ w.classList.remove('loaded'); w.classList.add('failed'); w.dataset.err = (v.error && v.error.code) || '?'; }
   console.error('Banner video failed to load:', v.currentSrc || v.src, v.error);
 }
+// A loaded GIF is kept alive by one Image object per file. When the banner scrolls out of view and
+// back (src: still frame -> GIF), or the list is redrawn, the browser reuses the already downloaded
+// GIF from memory instead of requesting it again (even if the HTTP cache is off or expired).
+const _gifKeep = new Map();
+const GIF_KEEP_MAX = 12;
+function keepGif(file){
+  if(!file || _gifKeep.has(file)) return;
+  const k = new Image();
+  k.decoding = 'async';
+  k.src = file;
+  _gifKeep.set(file, k);
+  if(_gifKeep.size > GIF_KEEP_MAX) _gifKeep.delete(_gifKeep.keys().next().value);
+}
 function bmLoaded(img){
   if(img.parentElement) img.parentElement.classList.add('loaded');
+  if(img.classList.contains('bm-gif') && img.dataset.full && img.currentSrc === new URL(img.dataset.full, location.href).href) keepGif(img.dataset.full);
   if(!img.classList.contains('bm-gif') || img.dataset.still || img.dataset.stillTried) return;
   img.dataset.stillTried = '1';
   try{

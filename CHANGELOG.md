@@ -19,6 +19,15 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.3] - 2026-11-14
+
+### Fixed
+- **Animated (GIF) banners were downloaded again every time they scrolled out of view and back**,
+  in both the Item Shop and the Leaderboard. A loaded GIF is now kept in memory for the rest of
+  the visit, so scrolling and list redraws no longer request it again (works even when the
+  browser cache is off). In a test with the cache disabled, the 6 GIFs of the Item Shop went
+  from 27 downloads to 6, and the 4 on the Leaderboard from 13 to 4.
+
 ## [5.0.2] - 2026-11-13
 
 ### Fixed
