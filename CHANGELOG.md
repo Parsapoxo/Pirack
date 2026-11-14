@@ -19,6 +19,18 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.4] - 2026-11-14
+
+### Changed
+- The 6 remaining GIF banners (`new-banner-19` to `new-banner-24`) were converted to WebM (VP9,
+  960x240, same frame rate, no audio). Together they shrink from 7.4 MB to about 1.7 MB, and
+  they now go through the same lazy video loader as the other video banners. Banner IDs are
+  unchanged, so owned and equipped banners are not affected. `banners.json` now points to the
+  `.webm` files.
+- `new-banner-24` has transparent corners, so it is encoded with an alpha channel (shows
+  correctly in Chrome, Edge and Firefox; browsers without WebM alpha show black corners).
+- The old `.gif` files are still in `banners/` (now unused). They can be deleted.
+
 ## [5.0.3] - 2026-11-14
 
 ### Fixed
