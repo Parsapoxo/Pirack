@@ -19,6 +19,18 @@ and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/
 - `gif2video.py`: a command-line tool (Python + ffmpeg) that converts GIF banners to `.mp4` or
   `.webm`, keeping the original GIFs. Typically cuts file size by 80% or more.
 
+## [5.0.5] - 2026-11-14
+
+### Removed
+- 25 unused files (141 MB) were deleted from the repository; nothing on the site referenced them:
+  - 16 old GIF banners in `banners/` (the shop uses their WebM versions).
+  - `wallpapers/new-wallpaper-3.mp4`.
+  - `trailers/party-animals.mp4` (that game uses a direct trailer link).
+  - `posters/repo.jpg`, `posters/stick-fight.jpg`, 4 old files in `avatars/` and
+    `avatars-shop/new-avatar-5.png`.
+- The other 23 trailers are kept: they are used through `trailers/<slug>.mp4`.
+- The files are still in the Git history if one is ever needed again.
+
 ## [5.0.4] - 2026-11-14
 
 ### Changed
